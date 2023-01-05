@@ -1,14 +1,15 @@
 # postgres-15
+- Reference: [PostgreSQL Official Docker Image](https://hub.docker.com/_/postgres)
 
 This docker image allows you to create an PostgreSQL database with additional databases other than the default.
 
 It's also possible to create user for each new addtional database with automatically access granted.
 
-Based on the official postgres:15 docker official image.
+Based on the official PostgreSQL Official Docker Image.
 
 ## Environment variables
 
-It uses all the default postgres:15 docker image environment variables with some additions, details in the following section(s).
+It uses all the default PostgreSQL environment variables with some additions, details in the following section(s).
 
 ### POSTGRES_ADDITIONAL_DBS
 
@@ -44,7 +45,7 @@ docker run
 
 ## Other examples
 
-Since this image is based on the postgres:15 docker official image, you can specify all the environment variables that the official image uses:
+Since this image is based on the PostgreSQL official image, you can specify all the environment variables that the official one uses:
 
 - Running a default postgres container with a additional database list specified:
 ```
@@ -71,5 +72,3 @@ sudo docker run \
     -e POSTGRES_ADDITIONAL_DBS="\"another-db\",even_other" \
     -d rudiantoni/postgres:15
 ```
-
-
