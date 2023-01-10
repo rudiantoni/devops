@@ -66,7 +66,7 @@ If you want to use non-standard database names like hyphen (-), you need to esca
 
 - Running a default postgres container with a additional database list specified using non-standard names:
 ```
-sudo docker run \
+docker run \
     --name pg-additional \
     -p 5432:5432 \
     -e POSTGRES_DB=postgres \
