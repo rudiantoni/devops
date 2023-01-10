@@ -45,6 +45,8 @@ docker run
 
 ## Other examples
 
+### Using default PostgreSQL environment variables
+
 Since this image is based on the PostgreSQL official image, you can specify all the environment variables that the official one uses:
 
 - Running a default postgres container with a additional database list specified:
@@ -58,6 +60,7 @@ docker run \
     -e POSTGRES_ADDITIONAL_DBS="another_db,even_other" \
     -d rudiantoni/postgres:15
 ```
+### Non standard names
 
 If you want to use non-standard database names like hyphen (-), you need to escape double quotes at each name not including the commas (keep in mind that if you set **POSTGRES_ADDITIONAL_DBS_USER** to *true*, all the additional users will receive the non-standard name too):
 
@@ -70,5 +73,24 @@ sudo docker run \
     -e POSTGRES_USER=postgres \
     -e POSTGRES_PASSWORD=postgres \
     -e POSTGRES_ADDITIONAL_DBS="\"another-db\",even_other" \
+    -d rudiantoni/postgres:15
+```
+
+### Using your own initialization scripts
+
+If you want to use your own database initialization scripts (*.sh*, *.sql*, etc.), you can share (mount) a volume to a dedicated folder containing the files you want to run to the container folder **/docker-entrypoint-initdb.d**.
+
+Note that any kind of different initialization will completely remove the additional database initialization script, even if the **POSTGRES_ADDITIONAL_DBS** and **POSTGRES_ADDITIONAL_DBS_USER** environment variables are set.
+> Any hidden folder (whose name starts with an *.*) will not be executed, they are automatically ignored.
+
+- Running a default postgres container with a additional volume mapped:
+```
+sudo docker run \
+    --name pg-additional \
+    -p 5432:5432 \
+    -e POSTGRES_DB=postgres \
+    -e POSTGRES_USER=postgres \
+    -e POSTGRES_PASSWORD=postgres \
+    -v .../init_files:/docker-entrypoint-initdb.d \
     -d rudiantoni/postgres:15
 ```
