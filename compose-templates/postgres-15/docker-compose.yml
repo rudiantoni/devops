@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  pg_base_15:
+    container_name: pg-base-15
+    image: postgres:15
+    restart: unless-stopped
+    # network_mode: host
+    logging:
+      options:
+        max-file: "5"
+        max-size: "20m"
+    healthcheck:
+      test: psql --echo-all --username postgres --dbname postgres --command="SELECT VERSION();"
+      interval: 10s
+      retries: 15
+      start_period: 5s
+      timeout: 20s
+    environment:
+      - "POSTGRES_DB=postgres"
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      # - "TZ=UTC-3"
+    ports:
+      - 5432:5432
+    volumes:
+      - ./[data-dir]:/var/lib/postgresql/data
+      - ./[init-dir]:/docker-entrypoint-initdb.d/ # use .sh, .sql, run in alphabetical order
+  # application:
+  #   container_name: application
+  #   image: [img]
+  #   depends_on:
+  #     pg_base_15:
+  #       condition: service_healthy
