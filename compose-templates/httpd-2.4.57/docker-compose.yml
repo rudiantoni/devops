@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  httpd_base_2:
+    container_name: httpd-base-2
+    image: httpd:2.4.57-alpine3.18
+    ports:
+      - 80:80
+    volumes:
+      - [data-dir]:/usr/local/apache2/htdocs/
+  
