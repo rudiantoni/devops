@@ -1,0 +1,36 @@
+version: '3'
+services:
+  sqlserver_base_2019:
+    container_name: sqlserver-base-2019
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
+    restart: unless-stopped
+    # network_mode: host
+    logging:
+      options:
+        max-file: "5"
+        max-size: "20m"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -U sa -P 'master' -Q 'SELECT 1'
+      interval: 10s
+      retries: 15
+      start_period: 5s
+      timeout: 20s
+    environment:
+      - "MSSQL_SA_PASSWORD=master"
+      - "ACCEPT_EULA=Y"
+      # - "TZ=UTC-3"
+      # Default database: master
+    ports:
+      - 1433:1433
+    volumes:
+      - ./[data-dir]:/var/opt/mssql/data
+      - ./[bkup-dir]:/opt/backup
+      # Special instruction for entrypoint configurations:
+      # https://github.com/microsoft/mssql-docker/tree/master/linux/preview/examples/mssql-customize
+  # application:
+  #   container_name: application
+  #   image: [img]
+  #   depends_on:
+  #     sqlserver_base_2019:
+  #       condition: service_healthy
