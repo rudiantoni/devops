@@ -9,6 +9,7 @@ This repository is used for any devops related project.
     - [PostgreSQL](#postgresql)
       - [Custom images](#custom-images)
       - [CLI operations for Linux Ubuntu (postgres)](#cli-operations-for-linux-ubuntu-postgres)
+    - [Microsoft SQL Server](#microsoft-sql-server)
     - [MongoDB](#mongodb)
       - [CLI operations for Linux Ubuntu (mongo)](#cli-operations-for-linux-ubuntu-mongo)
 
@@ -58,6 +59,18 @@ This repository is used for any devops related project.
 - Dynamic/fixed partial data only (database needs to exist)
   - `pg_restore --clean --verbose --no-owner --no-privileges --disable-triggers --role=[user] --dbname=postgresql://[user]:[pass]@[host]:[port]/[db] [file_name](.data).dump`
 
+## Microsoft SQL Server
+
+### CLI operations for Linux Ubuntu (sql server)
+- CLI tools: *sqlcmd*
+
+The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a SQL Server docker container.
+
+#### DUMP backup
+- Fixed full backup
+  - `sqlcmd -S [host],[port] -C -U [user] -P [pass] -Q "BACKUP DATABASE [[db]] TO DISK = N'[backup_dir]/[db]_$(date +%Y-%m-%d_%H-%M-%S).dump' WITH NOFORMAT, NOINIT, NAME = '[db]', SKIP, NOREWIND, NOUNLOAD, STATS = 10"`
+  - `sudo chmod 775 [backup_dir]/[filename].dump`
+
 ## MongoDB
 
 ### CLI operations for Linux Ubuntu (mongo)
@@ -66,6 +79,10 @@ This repository is used for any devops related project.
 #### DUMP backup
 - Fixed full backup
   - `mongodump -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[db]_$(date +%Y-%m-%d_%H-%M-%S).dump"`
+
+
+(atualizar com o restore)
+
 
 #### DUMP restore
 - Fixed full restore
