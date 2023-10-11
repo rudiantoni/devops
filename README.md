@@ -62,8 +62,6 @@ The only possible backup in a Linux machine is a internal database backup, gener
 |-------------|:--------------|
 | Fixed full backup | `mongodump -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[db]_$(date +%Y-%m-%d_%H-%M-%S).dump"` |
 
-<!-- TODO: adicionar o restore do banco MongoDB -->
-
 #### DUMP restore
 
 | Description | Specification |
