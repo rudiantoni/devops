@@ -1,4 +1,4 @@
-# Quick INFO
+# Docker
 
 ## Default ports
 - MongoDB (database): 27017
