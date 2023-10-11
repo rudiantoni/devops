@@ -1,6 +1,7 @@
 # DevOps
 
 - Others
+  - [Common info](./COMMON_INFO.md)
   - [Docker info](./DOCKER_INFO.md)
 
 - Content
