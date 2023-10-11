@@ -1,5 +1,16 @@
 # Docker
 
+- Content
+  - [Default ports](#)
+  - [Common SQL/NoSQL database queries](#)
+    - [MySQL](#)
+    - [Microsoft SQL Server](#)
+    - [Oracle](#)
+    - [PostgreSQL](#)
+    - [SQLite](#)
+  - [Common docker commands](#)
+  - [Common docker info](#)
+
 ## Default ports
 - MongoDB (database): 27017
 - Microsoft SQL Server (database): 1433
@@ -9,43 +20,6 @@
 - Redis (database): 6379
 - Samba (file server): 139 e 445
 - SFTP e SSH (communication): 22
-
-## Common SQL/NoSQL database queries
-
-### MySQL
-
-| Description | Specification |
-|-------------|:--------------|
-| Check database version | `select version();` |
-
-### Microsoft SQL Server
-
-| Description | Specification |
-|-------------|:--------------|
-| Check database version | `SELECT @@VERSION;` |
-
-### Oracle
-
-| Description | Specification |
-|-------------|:--------------|
-| Check database version | `select * from v$version;` <br /> `select banner from v$version;` |
-
-### PostgreSQL
-
-| Description | Specification |
-|-------------|:--------------|
-| Check database version | `select version();` |
-| Check database size | `SELECT pg_size_pretty(pg_database_size('[db_name]'));` |
-| Check database table | `SELECT pg_size_pretty(pg_total_relation_size('[table_name]'));` |
-| Reset a sequence | `ALTER SEQUENCE [sequence_name] RESTART WITH 1;` |
-| Set sequence value | `SELECT setval('[sequence_name]', 20, true); -- Next value would be 21;` |
-| Date format in query usage | `'yyyy-MM-dd HH:mm:ss.000'` |
-
-### SQLite
-
-| Description | Specification |
-|-------------|:--------------|
-| Check database version | `select sqlite_version();` |
 
 ## Common docker commands
 

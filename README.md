@@ -1,21 +1,96 @@
-# devops
+# DevOps
 
-This repository is used for any devops related project.
-
-- [Docker info](./DOCKER_INFO.md)
+- Others
+  - [Docker info](./DOCKER_INFO.md)
 
 - Content
-  - [Database](#database)
-    - [PostgreSQL](#postgresql)
-      - [Custom images](#custom-images)
-      - [CLI operations for Linux Ubuntu (postgres)](#cli-operations-for-linux-ubuntu-postgres)
-    - [Microsoft SQL Server](#microsoft-sql-server)
-    - [MongoDB](#mongodb)
-      - [CLI operations for Linux Ubuntu (mongo)](#cli-operations-for-linux-ubuntu-mongo)
+  - [MySQL](#mysql)
+    - [Common queries (mysql)](#common-queries-mysql)
+  - [Microsoft SQL Server](#microsoft-sql-server)
+    - [Common queries (sql server)](#common-queries-sql-server)
+    - [CLI operations for Linux Ubuntu (sql server)](#cli-operations-for-linux-ubuntu-sql-server)
+  - [MongoDB](#mongodb)  
+    - [CLI operations for Linux Ubuntu (mongo)](#cli-operations-for-linux-ubuntu-mongo)
+  - [Oracle](#oracle)
+    - [Common queries (oracle)](#common-queries-oracle)
+  - [PostgreSQL](#postgresql)
+    - [Common queries (postgres)](#common-queries-postgres)
+    - [Custom images](#custom-images)
+    - [CLI operations for Linux Ubuntu (postgres)](#cli-operations-for-linux-ubuntu-postgres)
+  - [SQLite](#sqlite)
+    - [Common queries (sqlite)](#common-queries-sqlite)
 
 # Database
 
+## MySQL
+
+### Common queries (mysql)
+
+| Description | Specification |
+|-------------|:--------------|
+| Check database version | `select version();` |
+
+## Microsoft SQL Server
+
+### Common queries (sql server)
+
+| Description | Specification |
+|-------------|:--------------|
+| Check database version | `SELECT @@VERSION;` |
+
+### CLI operations for Linux Ubuntu (sql server)
+- CLI tools: *sqlcmd*
+
+The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a SQL Server docker container.
+
+#### DUMP backup
+
+| Description | Specification |
+|-------------|:--------------|
+| Fixed full backup | `sqlcmd -S [host],[port] -C -U [user] -P [pass] -Q "BACKUP DATABASE [[db]] TO DISK = N'[backup_dir]/[db]_$(date +%Y-%m-%d_%H-%M-%S).dump' WITH NOFORMAT, NOINIT, NAME = '[db]', SKIP, NOREWIND, NOUNLOAD, STATS = 10"` <br /> `sudo chmod 775 [backup_dir]/[filename].dump` |
+
+<!-- TODO: adicionar o restore do banco SQLServer -->
+
+## MongoDB
+
+### CLI operations for Linux Ubuntu (mongo)
+- CLI tools: *mongodump*, *mongorestore*
+
+#### DUMP backup
+
+| Description | Specification |
+|-------------|:--------------|
+| Fixed full backup | `mongodump -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[db]_$(date +%Y-%m-%d_%H-%M-%S).dump"` |
+
+<!-- TODO: adicionar o restore do banco MongoDB -->
+
+#### DUMP restore
+
+| Description | Specification |
+|-------------|:--------------|
+| Fixed full restore | `mongorestore -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[file_name].dump"` |
+
+## Oracle
+
+### Common queries (oracle)
+
+| Description | Specification |
+|-------------|:--------------|
+| Check database version | `select * from v$version;` <br /> `select banner from v$version;` |
+
+
 ## PostgreSQL
+
+### Common queries (postgres)
+
+| Description | Specification |
+|-------------|:--------------|
+| Check database version | `select version();` |
+| Check database size | `SELECT pg_size_pretty(pg_database_size('[db_name]'));` |
+| Check database table | `SELECT pg_size_pretty(pg_total_relation_size('[table_name]'));` |
+| Reset a sequence | `ALTER SEQUENCE [sequence_name] RESTART WITH 1;` |
+| Set sequence value | `SELECT setval('[sequence_name]', 20, true); -- Next value would be 21;` |
+| Date format in query usage | `'yyyy-MM-dd HH:mm:ss.000'` |
 
 ### Custom images
 - [PostgreSQL 15](https://github.com/rudiantoni/devops/tree/main/postgres/15)
@@ -58,40 +133,20 @@ This repository is used for any devops related project.
 | Dynamic/fixed partial structure only erstore (database needs to exist) | `pg_restore --clean --verbose --no-owner --no-privileges --no-tablespaces --schema-only --role=[user] --dbname=postgresql://[user]:[pass]@[host]:[port]/[db] [file_name](.schema).dump` |
 | Dynamic/fixed partial data only (database needs to exist) | `pg_restore --clean --verbose --no-owner --no-privileges --disable-triggers --role=[user] --dbname=postgresql://[user]:[pass]@[host]:[port]/[db] [file_name](.data).dump` |
 
-## Microsoft SQL Server
+## SQLite
 
-### CLI operations for Linux Ubuntu (sql server)
-- CLI tools: *sqlcmd*
-
-The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a SQL Server docker container.
-
-#### DUMP backup
+### Common queries (sqlite)
 
 | Description | Specification |
 |-------------|:--------------|
-| Fixed full backup | `sqlcmd -S [host],[port] -C -U [user] -P [pass] -Q "BACKUP DATABASE [[db]] TO DISK = N'[backup_dir]/[db]_$(date +%Y-%m-%d_%H-%M-%S).dump' WITH NOFORMAT, NOINIT, NAME = '[db]', SKIP, NOREWIND, NOUNLOAD, STATS = 10"` <br /> `sudo chmod 775 [backup_dir]/[filename].dump` |
+| Check database version | `select sqlite_version();` |
 
-## MongoDB
 
-### CLI operations for Linux Ubuntu (mongo)
-- CLI tools: *mongodump*, *mongorestore*
-
-#### DUMP backup
-
-| Description | Specification |
-|-------------|:--------------|
-| Fixed full backup | `mongodump -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[db]_$(date +%Y-%m-%d_%H-%M-%S).dump"` |
-
-<!-- TODO: atualizar com o restore -->
-
-#### DUMP restore
-
-| Description | Specification |
-|-------------|:--------------|
-| Fixed full restore | `mongorestore -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[file_name].dump"` |
 
 <!-- 
 | Description | Specification |
 |-------------|:--------------|
 | col1 | col2 |
  -->
+
+
