@@ -75,8 +75,17 @@ The only possible backup in a Linux machine is a internal database backup, gener
 
 | Description | Specification |
 |-------------|:--------------|
-| Check database version | `select * from v$version;` <br /> `select banner from v$version;` |
+| Check database version | `SELECT * FROM v$version;` <br /> `SELECT banner FROM v$version;` |
+| Check current database in use | `SELECT ora_database_name AS "Current Database" FROM dual;` |
+| Check available schemas for current user | `SELECT username FROM all_users;` |
+| Check schemas owned by current user | `SELECT username FROM user_users;` |
 
+### CLI operations for Linux Ubuntu (oracle)
+- CLI tools: *sqlplus*
+
+#### General
+
+<!-- TODO: adicionar como conectar com o banco de dados oracle com sqlplus, adicionar padrão do docker ou deixar isso para o docker? -->
 
 ## PostgreSQL
 
@@ -99,7 +108,7 @@ The only possible backup in a Linux machine is a internal database backup, gener
 ### CLI operations for Linux Ubuntu (postgres)
 - CLI tools: *pg_dump*, *pg_restore*, *psql*
 
-#### General automation
+#### General
 
 | Description | Specification |
 |-------------|:--------------|
