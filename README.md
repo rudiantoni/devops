@@ -4,6 +4,7 @@
   - [Common info](./COMMON_INFO.md)
   - [Docker info](./DOCKER_INFO.md)
   - [Microsoft SQL Server advanced SQL snippets](./queries_sqlserver.sql)
+  - [Python snippets](./snippets.py)
 
 - Content
   - [MySQL](#mysql)
