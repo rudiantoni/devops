@@ -57,7 +57,7 @@ mapped_dict_C = list(map(lambda item: {'new_name': item['name'], 'new_country': 
 # Building list of strings using the name property
 mapped_dict_D = [item['name'] for item in people]
 
-print('\nUsing a list comprehension')
+print('Using a list comprehension')
 print(mapped_dict_A)
 
 print('\nUsing list and map functions with external function')
@@ -91,7 +91,7 @@ main_string = 'This is a sample text.'
 substring = 'sample'
 another_substring = 'THIS'
 
-print('\nUsing in operator')
+print('Using in operator')
 if substring in main_string:
     print(f"'{main_string}' contains '{substring}'.")
 else:
@@ -125,3 +125,16 @@ if re.search(another_substring, main_string):
     print(f"'{main_string}' contains '{another_substring}'.")
 else:
     print(f"'{main_string}' does not contain '{another_substring}'.")
+
+print()
+print('##################################################')
+print('# Replace a string with another string')
+print('##################################################')
+original_string = 'Hello world, this is a sample string.'
+
+# Replace all ocorrences of 'is' with 'NOT'
+new_string = original_string.replace('is', 'NOT')
+
+print("Replace all ocorrences of 'is' with 'NOT'")
+print(new_string)
+
