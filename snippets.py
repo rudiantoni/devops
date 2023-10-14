@@ -76,11 +76,35 @@ print('##################################################')
 # Base data
 string_list = ["apple", "banana", "apple", "cherry", "banana", "date"]
 
-# Using to set transformation and to list list transformation
+# Using to set transformation and to list transformation
 unique_string_list = list(set(string_list))
 
 print('\nUsing to set transformation and to list list transformation')
 print(unique_string_list)
+
+print()
+print('##################################################')
+print('# Unpack (spread) lists and objects')
+print('##################################################')
+print('\nUnpacking lists')
+base_unpack_list = [1, 2, 3]
+packed_list = [4, *base_unpack_list, 5]
+print(packed_list) # Output [4, 1, 2, 3, 5]
+
+print('\nUnpacking lists to use as function arguments')
+def add_three_numbers(a, b, c):
+    return a + b + c
+
+result = add_three_numbers(*base_unpack_list)
+print(result)  # Output 6
+
+print('\nUnpacking dictionaries (python 3.5+)')
+base_unpack_dictionary = {'a': 1, 'b': 2}
+base_unpack_dictionary_A = {'a': 1, 'b': 2, 'c': 10}
+packed_dict = {'c': 3, **base_unpack_dictionary} 
+packed_dict_A = {'c': 3, **base_unpack_dictionary_A}
+print(packed_dict) # Output {'c': 3, 'a': 1, 'b': 2}
+print(packed_dict_A) # Output {'c': 10, 'a': 1, 'b': 2}
 
 print()
 print('##################################################')
