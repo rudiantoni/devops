@@ -104,7 +104,7 @@ base_unpack_dictionary_A = {'a': 1, 'b': 2, 'c': 10}
 packed_dict = {'c': 3, **base_unpack_dictionary} 
 packed_dict_A = {'c': 3, **base_unpack_dictionary_A}
 print(packed_dict) # Output {'c': 3, 'a': 1, 'b': 2}
-print(packed_dict_A) # Output {'c': 10, 'a': 1, 'b': 2}
+print(packed_dict_A) # (overwrites previously existent properties) Output {'c': 10, 'a': 1, 'b': 2} ()
 
 print()
 print('##################################################')
