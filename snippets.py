@@ -4,7 +4,7 @@
 import re
 
 print('##################################################')
-print('# Filter list of dict by dict property')
+print('# Filter list of dict by dict key')
 print('##################################################')
 # Example: age is higher than 30
 # Base data
@@ -39,7 +39,7 @@ print(older_than_30_C)
 
 print()
 print('##################################################')
-print('# Map list of dict by dict property')
+print('# Map list of dict by dict key')
 print('##################################################')
 # Example: map only name and country
 # Using a list comprehension
@@ -66,7 +66,7 @@ print(mapped_dict_B)
 print('\nUsing list and map functions inline lambda')
 print(mapped_dict_C)
 
-print('\nBuilding list of strings using the name property')
+print('\nBuilding list of strings using the name key')
 print(mapped_dict_D)
 
 print()
@@ -161,4 +161,130 @@ new_string = original_string.replace('is', 'NOT')
 
 print("Replace all ocorrences of 'is' with 'NOT'")
 print(new_string)
+
+
+
+
+
+
+
+
+print()
+print('##################################################')
+print('# Auxiliary functions')
+print('##################################################')
+print('\nRemove duplicates from a dictionary')
+data_list = [
+    {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
+    {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
+    {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
+    {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
+    {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
+    {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
+    {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
+    {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
+    {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
+    {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
+    {'id': 6, 'name': 'Frank', 'country': 'Germany', 'age': 40, 'city': 'Berlin'},
+    {'id': 6, 'name': 'Bob', 'country': 'Germany', 'age': 30, 'city': 'Berlin'},
+    {'id': 7, 'name': 'Grace', 'country': 'Japan', 'age': 29, 'city': 'Tokyo'},
+    {'id': 8, 'name': 'Helen', 'country': 'India', 'age': 27, 'city': 'Mumbai'},
+    {'id': 9, 'name': 'Ivy', 'country': 'Brazil', 'age': 32, 'city': 'Sao Paulo'},
+    {'id': 10, 'name': 'Jack', 'country': 'China', 'age': 31, 'city': 'Beijing'},
+    {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'},
+
+]
+#
+# Returns a list of dictionary containing only unique values
+# dict_list: list of dictionaries to be evaluated
+# keys: (optional, default='all') list of keys to be evaluated: ['key1', 'key2']
+#    case 'all': a dictionary will only be considered equal when all keys are
+#        equal based on keys existing in the first dictionary keys
+#
+def distinct_dict_list(dict_list, keys='all'):
+    if (not(len(dict_list))):
+        raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+    
+    unique_dict_list = []
+    check_keys = []
+    if (keys == 'all'):
+        first_dict = dict_list[0] 
+        for key in first_dict:
+            check_keys.append(key)
+    else:
+        check_keys = keys
+
+    for dict_item in dict_list:
+        
+        if(len(unique_dict_list)):
+            found_unique_item = None
+            for unique_item in unique_dict_list:
+                equal_condition = True
+                
+                for key in check_keys:
+                    equal_condition = equal_condition and (unique_item[key] == dict_item[key])
+                    if (not(equal_condition)):
+                        break
+
+                if (equal_condition):
+                    found_unique_item = unique_item
+                    break
+            
+            if (found_unique_item is None):
+                unique_dict_list.append(dict_item)
+        
+        else:
+            unique_dict_list.append(dict_item)
+    
+    return unique_dict_list
+
+print('all')
+for item in distinct_dict_list(data_list):
+    print(item)
+
+print('name, age')
+for item in distinct_dict_list(data_list, ['name', 'age']):
+    print(item)
+
+# Same as before, but using sets and string manipulation
+def distinct_dict_list_using_set(dict_list, keys='all'):
+    if (not(len(dict_list))):
+        raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+
+    unique_dict_set = set()
+    unique_dict_list = []
+    check_keys = []
+    if (keys == 'all'):
+        first_dict = dict_list[0] 
+        for key in first_dict:
+            check_keys.append(key)
+    else:
+        check_keys = keys
+
+    for dict_item in dict_list:
+        current_key_pair_str = ''
+
+        for key in check_keys:
+            current_key_pair_str += '__KP_START__' + f'{key}__KP_DIVISOR__{dict_item[key]}' + '__KP_START__'
+
+        if (not(current_key_pair_str in unique_dict_set)):
+            unique_dict_set.add(current_key_pair_str)
+            unique_dict_list.append(dict_item)
+
+    return unique_dict_list
+
+print('all')
+for item in distinct_dict_list_using_set(data_list):
+    print(item)
+
+print('name, age')
+for item in distinct_dict_list_using_set(data_list, ['name', 'age']):
+    print(item)
+
+
+
+
+
+
+
 
