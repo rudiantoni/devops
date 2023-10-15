@@ -152,6 +152,25 @@ else:
 
 print()
 print('##################################################')
+print('# String True (Truthy) and False (Falsy) check')
+print('##################################################')
+print('Check string not empty, empty and None')
+not_empty_string = 'This string is not empty'
+empty_string = ''
+none_string = None
+print(f'not_empty_string: {not_empty_string}')
+print(f'empty_string: {empty_string}')
+print(f'none_string: {none_string}')
+print('\nRESULTS')
+print('not_empty_string: Truthy') if (not_empty_string) else print('not_empty_string: Falsy')
+print('empty_string: Truthy') if (empty_string) else print('empty_string: Falsy')
+print('none_string: Truthy') if (none_string) else print('none_string: Falsy')
+print('NOT not_empty_string: Truthy') if (not(not_empty_string)) else print('NOT not_empty_string: Falsy')
+print('NOT empty_string: Truthy') if (not(empty_string)) else print('NOT empty_string: Falsy')
+print('NOT none_string: Truthy') if (not(none_string)) else print('NOT none_string: Falsy')
+
+print()
+print('##################################################')
 print('# Replace a string with another string')
 print('##################################################')
 original_string = 'Hello world, this is a sample string.'
