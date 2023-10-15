@@ -1,91 +1,102 @@
 # Run with
 # $ python3 snippets.py
 
-import re
-
 print('##################################################')
 print('# Filter list of dict by dict key')
 print('##################################################')
-# Example: age is higher than 30
-# Base data
-people = [
-    {'name': 'Alice', 'age': 28, 'country': 'USA'},
-    {'name': 'Bob', 'age': 35, 'country': 'Canada'},
-    {'name': 'Charlie', 'age': 42, 'country': 'France'},
-    {'name': 'David', 'age': 29, 'country': 'Germany'},
+print('Filtering where age is higher then 30')
+print('--------------------------------------------------')
+people_filter = [
+    {'name': 'Alice', 'age': 28 },
+    {'name': 'Bob', 'age': 35 },
+    {'name': 'Charlie', 'age': 42 },
+    {'name': 'David', 'age': 29 }
 ]
 
-# Using a list comprehension
-older_than_30_A = [item for item in people if item['age'] > 30]
-
-# Using list and filter functions with external function
-def is_older_than_30(person):
-    return person['age'] > 30
-
-older_than_30_B = list(filter(is_older_than_30, people))
-
-# Using list and filter functions inline lambda
-older_than_30_C = list(filter(lambda item: item['age'] > 30, people))
-
-# Print the filtered lists
 print('\nUsing a list comprehension')
+older_than_30_A = [it for it in people_filter if it['age'] > 30]
 print(older_than_30_A)
 
 print('\nUsing list and filter functions with external function')
+def is_older_than_30(person):
+    return person['age'] > 30
+older_than_30_B = list(filter(is_older_than_30, people_filter))
 print(older_than_30_B)
 
 print('\nUsing list and filter functions inline lambda')
+older_than_30_C = list(filter(lambda it: it['age'] > 30, people_filter))
 print(older_than_30_C)
 
 print()
 print('##################################################')
 print('# Map list of dict by dict key')
 print('##################################################')
-# Example: map only name and country
-# Using a list comprehension
-mapped_dict_A = [{'new_name': item['name'], 'new_country': item['country']} for item in people]
-
-# Using list and map functions with external function
-def get_name_and_country(people):
-    return {'new_name': people['name'], 'new_country': people['country']}
-
-mapped_dict_B = list(map(get_name_and_country, people))
-
-# Using list and map functions inline lambda
-mapped_dict_C = list(map(lambda item: {'new_name': item['name'], 'new_country': item['country']}, people))
-
-# Building list of strings using the name property
-mapped_dict_D = [item['name'] for item in people]
-
-print('Using a list comprehension')
+print('Mapping objects with name and country keys')
+print('--------------------------------------------------')
+people_map = [
+    {'name': 'Alice', 'age': 28, 'country': 'USA' },
+    {'name': 'Bob', 'age': 35, 'country': 'Canada' },
+    {'name': 'Charlie', 'age': 42, 'country': 'France' },
+    {'name': 'David', 'age': 29, 'country': 'Germany' }
+]
+print('\nUsing a list comprehension')
+mapped_dict_A = [{'new_name': it['name'], 'new_country': it['country']} for it in people_map]
 print(mapped_dict_A)
 
 print('\nUsing list and map functions with external function')
+def get_name_and_country(people):
+    return {'new_name': people['name'], 'new_country': people['country']}
+mapped_dict_B = list(map(get_name_and_country, people_map))
 print(mapped_dict_B)
 
 print('\nUsing list and map functions inline lambda')
+mapped_dict_C = list(map(lambda it: {'new_name': it['name'], 'new_country': it['country']}, people_map))
 print(mapped_dict_C)
 
-print('\nBuilding list of strings using the name key')
+print('\nBuilding list of by the key \'name\'')
+print('--------------------------------------------------')
+mapped_dict_D = [it['name'] for it in people_map]
 print(mapped_dict_D)
+
+print()
+print('##################################################')
+print('# Next - Find first ocorrence in dict list by dict key or None otherwise')
+print('##################################################')
+print('Find first dict whose ages are higher than 10, 23, 28 and 45.')
+print('--------------------------------------------------')
+base_dict_next = [
+    {'name': 'Alice', 'age': 20},
+    {'name': 'Bob', 'age': 25},
+    {'name': 'Charlie', 'age': 30},
+    {'name': 'David', 'age': 35},
+    {'name': 'Eve', 'age': 40},
+]
+higher_then_10 = next((it for it in base_dict_next if it['age'] > 10), None)
+higher_then_23 = next((it for it in base_dict_next if it['age'] > 23), None)
+higher_then_28 = next((it for it in base_dict_next if it['age'] > 28), None)
+higher_then_45 = next((it for it in base_dict_next if it['age'] > 45), None)
+print(higher_then_10)
+print(higher_then_23)
+print(higher_then_28)
+print(higher_then_45)
 
 print()
 print('##################################################')
 print('# Create list with unique values (remove duplicates)')
 print('##################################################')
-# Base data
+print('Removing strings apple and banana.')
+print('--------------------------------------------------')
+print('\nUsing to set and to list list transformation')
 string_list = ["apple", "banana", "apple", "cherry", "banana", "date"]
-
-# Using to set transformation and to list transformation
 unique_string_list = list(set(string_list))
-
-print('\nUsing to set transformation and to list list transformation')
 print(unique_string_list)
 
 print()
 print('##################################################')
-print('# Unpack (spread) lists and objects')
+print('# Unpack (spread) lists and dicts')
 print('##################################################')
+print('Adding elements to lists and dicts, overwriting previously existing keys in dicts')
+print('--------------------------------------------------')
 print('\nUnpacking lists')
 base_unpack_list = [1, 2, 3]
 packed_list = [4, *base_unpack_list, 5]
@@ -94,7 +105,6 @@ print(packed_list) # Output [4, 1, 2, 3, 5]
 print('\nUnpacking lists to use as function arguments')
 def add_three_numbers(a, b, c):
     return a + b + c
-
 result = add_three_numbers(*base_unpack_list)
 print(result)  # Output 6
 
@@ -110,12 +120,14 @@ print()
 print('##################################################')
 print('# Check a string contains another string')
 print('##################################################')
-# Example: Check if a texc contains sample or THIS
+print('Check if a text contains sample or THIS')
+print('--------------------------------------------------')
+import re
 main_string = 'This is a sample text.'
 substring = 'sample'
 another_substring = 'THIS'
 
-print('Using in operator')
+print('\nUsing in operator')
 if substring in main_string:
     print(f"'{main_string}' contains '{substring}'.")
 else:
@@ -155,13 +167,10 @@ print('##################################################')
 print('# String True (Truthy) and False (Falsy) check')
 print('##################################################')
 print('Check string not empty, empty and None')
+print('--------------------------------------------------')
 not_empty_string = 'This string is not empty'
 empty_string = ''
 none_string = None
-print(f'not_empty_string: {not_empty_string}')
-print(f'empty_string: {empty_string}')
-print(f'none_string: {none_string}')
-print('\nRESULTS')
 print('not_empty_string: Truthy') if (not_empty_string) else print('not_empty_string: Falsy')
 print('empty_string: Truthy') if (empty_string) else print('empty_string: Falsy')
 print('none_string: Truthy') if (none_string) else print('none_string: Falsy')
@@ -173,26 +182,19 @@ print()
 print('##################################################')
 print('# Replace a string with another string')
 print('##################################################')
-original_string = 'Hello world, this is a sample string.'
-
-# Replace all ocorrences of 'is' with 'NOT'
-new_string = original_string.replace('is', 'NOT')
-
 print("Replace all ocorrences of 'is' with 'NOT'")
+print('--------------------------------------------------')
+
+original_string = 'Hello world, this is a sample string.'
+new_string = original_string.replace('is', 'NOT')
 print(new_string)
-
-
-
-
-
-
-
 
 print()
 print('##################################################')
-print('# Auxiliary functions')
+print('# Custom auxiliary functions')
 print('##################################################')
 print('\nRemove duplicates from a dictionary')
+print('--------------------------------------------------')
 data_list = [
     {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
     {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
@@ -210,8 +212,7 @@ data_list = [
     {'id': 8, 'name': 'Helen', 'country': 'India', 'age': 27, 'city': 'Mumbai'},
     {'id': 9, 'name': 'Ivy', 'country': 'Brazil', 'age': 32, 'city': 'Sao Paulo'},
     {'id': 10, 'name': 'Jack', 'country': 'China', 'age': 31, 'city': 'Beijing'},
-    {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'},
-
+    {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'}
 ]
 #
 # Returns a list of dictionary containing only unique values
@@ -257,13 +258,13 @@ def distinct_dict_list(dict_list, keys='all'):
     
     return unique_dict_list
 
-print('all')
-for item in distinct_dict_list(data_list):
-    print(item)
+print('\nUsing key iteration method, considering all keys')
+key_iteration_all = distinct_dict_list(data_list)
+print(key_iteration_all)
 
-print('name, age')
-for item in distinct_dict_list(data_list, ['name', 'age']):
-    print(item)
+print('\nUsing key iteration method, considering keys name and age')
+key_iteration_name_age = distinct_dict_list(data_list, ['name', 'age'])
+print(key_iteration_name_age)
 
 # Same as before, but using sets and string manipulation
 def distinct_dict_list_using_set(dict_list, keys='all'):
@@ -292,18 +293,10 @@ def distinct_dict_list_using_set(dict_list, keys='all'):
 
     return unique_dict_list
 
-print('all')
-for item in distinct_dict_list_using_set(data_list):
-    print(item)
+print('\nUsing set building method, considering all keys')
+set_building_all = distinct_dict_list_using_set(data_list)
+print(set_building_all)
 
-print('name, age')
-for item in distinct_dict_list_using_set(data_list, ['name', 'age']):
-    print(item)
-
-
-
-
-
-
-
-
+print('\nUsing set building method, considering keys name and age')
+set_building_name_age = distinct_dict_list_using_set(data_list, ['name', 'age'])
+print(set_building_name_age)
