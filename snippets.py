@@ -16,16 +16,16 @@ people = [
 ]
 
 # Using a list comprehension
-older_than_30_A = [item for item in people if item["age"] > 30]
+older_than_30_A = [item for item in people if item['age'] > 30]
 
 # Using list and filter functions with external function
 def is_older_than_30(person):
-    return person["age"] > 30
+    return person['age'] > 30
 
 older_than_30_B = list(filter(is_older_than_30, people))
 
 # Using list and filter functions inline lambda
-older_than_30_C = list(filter(lambda item: item["age"] > 30, people))
+older_than_30_C = list(filter(lambda item: item['age'] > 30, people))
 
 # Print the filtered lists
 print('\nUsing a list comprehension')
