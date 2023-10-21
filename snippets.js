@@ -1,4 +1,5 @@
 /*
+Node official docs: https://nodejs.org/en
 Run with
   $ node snippets
 Or
