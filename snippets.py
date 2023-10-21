@@ -164,19 +164,53 @@ else:
 
 print()
 print('##################################################')
-print('# String True (Truthy) and False (Falsy) check')
+print('# True (Truthy) and False (Falsy) values')
 print('##################################################')
-print('Check string not empty, empty and None')
+print('Strings: not empty string and empty string')
 print('--------------------------------------------------')
-not_empty_string = 'This string is not empty'
-empty_string = ''
-none_string = None
-print('not_empty_string: Truthy') if (not_empty_string) else print('not_empty_string: Falsy')
-print('empty_string: Truthy') if (empty_string) else print('empty_string: Falsy')
-print('none_string: Truthy') if (none_string) else print('none_string: Falsy')
-print('NOT not_empty_string: Truthy') if (not(not_empty_string)) else print('NOT not_empty_string: Falsy')
-print('NOT empty_string: Truthy') if (not(empty_string)) else print('NOT empty_string: Falsy')
-print('NOT none_string: Truthy') if (not(none_string)) else print('NOT none_string: Falsy')
+value = 'This string is not empty'
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+value = ''
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+print('\nNumber (integer): Check negative, 0 and positive')
+print('--------------------------------------------------')
+value = -5
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+value = 0
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+value = 5
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+print('\nNumber (float): Check negative, 0 and positive')
+print('--------------------------------------------------')
+value = -5.3
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+value = 0.0
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+value = 5.3
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+print('\nMisc: Check None')
+print('--------------------------------------------------')
+value = None
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+
+
 
 print()
 print('##################################################')
@@ -191,9 +225,47 @@ print(new_string)
 
 print()
 print('##################################################')
+print('# Conditional structures')
+print('##################################################')
+print('Using normal if, if-else to run functions')
+print('--------------------------------------------------')
+if (True):
+    print('Entered the if block')
+
+if (False):
+    print('Entered the if block')
+else:
+    print('Entered the else block')
+
+print('\nUsing inline if, if-else to run functions')
+print('--------------------------------------------------')
+print('Entered the if block') if (True) else None
+print('Entered the if block') if (False) else print('Entered the else block')
+
+print('\nUsing inline if, if-else to return values')
+print('--------------------------------------------------')
+result = 10 if (True) else 20
+print(result)
+
+result = 10 if (False) else 20
+print(result)
+
+
+print()
+print('##################################################')
+print('# Repetitive structures')
+print('##################################################')
+print('Looping through a range of numbers from 1 to 10')
+print('--------------------------------------------------')
+for it in range(1, (10 + 1)):
+    print(it)
+
+
+print()
+print('##################################################')
 print('# Custom auxiliary functions')
 print('##################################################')
-print('\nRemove duplicates from a dictionary')
+print('Remove duplicates from a dictionary')
 print('--------------------------------------------------')
 data_list = [
     {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
