@@ -31,3 +31,34 @@ END
 -- Testing queries
 SELECT dbo.get_numbers_or_null('a205s 1as56d1a 06d 1sklndajklnd\ sd! \@ #~') as func_result
 SELECT dbo.get_numbers_or_null('as asda d sklndajklnd\ sd! \@ #~') as func_result
+
+--
+-- Analyse a query execution load and time
+-- (Run by steps)
+--
+-- Step 1: Enable I/O and time statistics
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+
+-- Step 2: Run you query
+-- The query result is showed in the normal prompt, but the statistics are shown in the system output stream
+SELECT * FROM your_table
+
+-- Step 3: Disable I/O and time statistics
+SET STATISTICS IO OFF;
+SET STATISTICS TIME OFF;
+
+
+--
+-- Analyse a query cost
+-- (Run by steps)
+--
+-- Step 1: Enable query execution plan profile
+SET STATISTICS PROFILE ON;
+
+-- Step 2: Run you query
+-- The query result is showed in the normal prompt, and the statistics are shown in another prompt
+SELECT * FROM your_table
+
+-- Step 3: Disable query execution plan profile
+SET STATISTICS PROFILE OFF;
