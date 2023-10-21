@@ -1,3 +1,4 @@
+# Python official docs: https://www.python.org/
 # Run with
 #   $ python3 snippets.py
 
