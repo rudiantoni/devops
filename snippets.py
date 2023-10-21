@@ -1,5 +1,5 @@
 # Run with
-# $ python3 snippets.py
+#   $ python3 snippets.py
 
 print('##################################################')
 print('# Filter list of dict by dict key')
