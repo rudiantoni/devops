@@ -4,6 +4,7 @@
   - [Common info](./COMMON_INFO.md)
   - [Docker info](./DOCKER_INFO.md)
   - [Microsoft SQL Server advanced SQL snippets](./queries_sqlserver.sql)
+  - [Java 8 snippets](./snippets/java8/snippets.java)
   - [JavaScript snippets](./snippets.js)
   - [Python snippets](./snippets.py)
 
