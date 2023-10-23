@@ -6,6 +6,7 @@
  * Or
  *   $ javac Snippets.java && java Snippets && rm Snippets.class
  * 
+ * You can open the folder in any preferred IDE, just use Java 8 to compile and run.
  */
 
 import java.util.Arrays;
