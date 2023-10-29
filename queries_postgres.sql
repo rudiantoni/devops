@@ -16,3 +16,16 @@ SELECT COUNT(1) FROM (
 -- Using COUNT DISTINCT
 SELECT COUNT(DISTINCT column_name) AS unique_count FROM table_name;
 
+
+--
+-- Mathematical operations
+-- 
+--
+
+-- Return the absolute value (without positive or negative signal) from a number
+SELECT ABS(-10)
+SELECT ABS(10)
+SELECT ABS(-10.5)
+SELECT ABS(10.5)
+
+
