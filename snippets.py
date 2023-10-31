@@ -16,17 +16,17 @@ people_filter = [
 
 print('\nUsing a list comprehension')
 older_than_30_A = [it for it in people_filter if it['age'] > 30]
-print(older_than_30_A)
+print(older_than_30_A) # Output: [{'name': 'Bob', 'age': 35}, {'name': 'Charlie', 'age': 42}]
 
 print('\nUsing list and filter functions with external function')
 def is_older_than_30(person):
     return person['age'] > 30
 older_than_30_B = list(filter(is_older_than_30, people_filter))
-print(older_than_30_B)
+print(older_than_30_B) # Output: [{'name': 'Bob', 'age': 35}, {'name': 'Charlie', 'age': 42}]
 
 print('\nUsing list and filter functions inline lambda')
 older_than_30_C = list(filter(lambda it: it['age'] > 30, people_filter))
-print(older_than_30_C)
+print(older_than_30_C) # Output: [{'name': 'Bob', 'age': 35}, {'name': 'Charlie', 'age': 42}]
 
 print()
 print('##################################################')
@@ -42,22 +42,22 @@ people_map = [
 ]
 print('\nUsing a list comprehension')
 mapped_dict_A = [{'new_name': it['name'], 'new_country': it['country']} for it in people_map]
-print(mapped_dict_A)
+print(mapped_dict_A) # Output: [{'new_name': 'Alice', 'new_country': 'USA'}, {'new_name': 'Bob', 'new_country': 'Canada'}, {'new_name': 'Charlie', 'new_country': 'France'}, {'new_name': 'David', 'new_country': 'Germany'}]
 
 print('\nUsing list and map functions with external function')
 def get_name_and_country(people):
     return {'new_name': people['name'], 'new_country': people['country']}
 mapped_dict_B = list(map(get_name_and_country, people_map))
-print(mapped_dict_B)
+print(mapped_dict_B) # Output: [{'new_name': 'Alice', 'new_country': 'USA'}, {'new_name': 'Bob', 'new_country': 'Canada'}, {'new_name': 'Charlie', 'new_country': 'France'}, {'new_name': 'David', 'new_country': 'Germany'}]
 
 print('\nUsing list and map functions inline lambda')
 mapped_dict_C = list(map(lambda it: {'new_name': it['name'], 'new_country': it['country']}, people_map))
-print(mapped_dict_C)
+print(mapped_dict_C) # Output: [{'new_name': 'Alice', 'new_country': 'USA'}, {'new_name': 'Bob', 'new_country': 'Canada'}, {'new_name': 'Charlie', 'new_country': 'France'}, {'new_name': 'David', 'new_country': 'Germany'}]
 
 print('\nBuilding list of by the key \'name\'')
 print('--------------------------------------------------')
 mapped_dict_D = [it['name'] for it in people_map]
-print(mapped_dict_D)
+print(mapped_dict_D) # Output: ['Alice', 'Bob', 'Charlie', 'David']
 
 print()
 print('##################################################')
@@ -76,10 +76,10 @@ higher_then_10 = next((it for it in base_dict_next if it['age'] > 10), None)
 higher_then_23 = next((it for it in base_dict_next if it['age'] > 23), None)
 higher_then_28 = next((it for it in base_dict_next if it['age'] > 28), None)
 higher_then_45 = next((it for it in base_dict_next if it['age'] > 45), None)
-print(higher_then_10)
-print(higher_then_23)
-print(higher_then_28)
-print(higher_then_45)
+print(higher_then_10) # Output: {'name': 'Alice', 'age': 20}
+print(higher_then_23) # Output: {'name': 'Bob', 'age': 25}
+print(higher_then_28) # Output: {'name': 'Charlie', 'age': 30}
+print(higher_then_45) # Output: None
 
 print()
 print('##################################################')
@@ -90,7 +90,7 @@ print('--------------------------------------------------')
 print('\nUsing to set and to list list transformation')
 string_list = ["apple", "banana", "apple", "cherry", "banana", "date"]
 unique_string_list = list(set(string_list))
-print(unique_string_list)
+print(unique_string_list) # Output: ['apple', 'banana', 'date', 'cherry']
 
 print()
 print('##################################################')
@@ -101,21 +101,21 @@ print('--------------------------------------------------')
 print('\nUnpacking lists')
 base_unpack_list = [1, 2, 3]
 packed_list = [4, *base_unpack_list, 5]
-print(packed_list) # Output [4, 1, 2, 3, 5]
+print(packed_list) # Output: [4, 1, 2, 3, 5]
 
 print('\nUnpacking lists to use as function arguments')
 def add_three_numbers(a, b, c):
     return a + b + c
 result = add_three_numbers(*base_unpack_list)
-print(result)  # Output 6
+print(result) # Output: 6
 
 print('\nUnpacking dictionaries (python 3.5+)')
 base_unpack_dictionary = {'a': 1, 'b': 2}
 base_unpack_dictionary_A = {'a': 1, 'b': 2, 'c': 10}
 packed_dict = {'c': 3, **base_unpack_dictionary} 
 packed_dict_A = {'c': 3, **base_unpack_dictionary_A}
-print(packed_dict) # Output {'c': 3, 'a': 1, 'b': 2}
-print(packed_dict_A) # (overwrites previously existent properties) Output {'c': 10, 'a': 1, 'b': 2} ()
+print(packed_dict) # Output: {'c': 3, 'a': 1, 'b': 2}
+print(packed_dict_A) # Output: {'c': 10, 'a': 1, 'b': 2}
 
 print()
 print('##################################################')
@@ -208,8 +208,8 @@ print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Fa
 print('\nMisc: Check None')
 print('--------------------------------------------------')
 value = None
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
 
 
 
