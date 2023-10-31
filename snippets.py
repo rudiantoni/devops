@@ -81,6 +81,8 @@ print(higher_then_23) # Output: {'name': 'Bob', 'age': 25}
 print(higher_then_28) # Output: {'name': 'Charlie', 'age': 30}
 print(higher_then_45) # Output: None
 
+# TODO: adicionar o any()
+
 print()
 print('##################################################')
 print('# Create list with unique values (remove duplicates)')
@@ -133,35 +135,39 @@ if substring in main_string:
     print(f"'{main_string}' contains '{substring}'.")
 else:
     print(f"'{main_string}' does not contain '{substring}'.")
+# Output: 'This is a sample text.' contains 'sample'.
 
 if another_substring in main_string:
     print(f"'{main_string}' contains '{another_substring}'.")
 else:
     print(f"'{main_string}' does not contain '{another_substring}'.")
-
+# Output: 'This is a sample text.' does not contain 'THIS'.
 
 print('\nUsing .find() str function')
 if main_string.find(substring) != -1:
     print(f"'{main_string}' contains '{substring}'.")
 else:
     print(f"'{main_string}' does not contain '{substring}'.")
+# Output: 'This is a sample text.' contains 'sample'.
 
 if main_string.find(another_substring) != -1:
     print(f"'{main_string}' contains '{another_substring}'.")
 else:
     print(f"'{main_string}' does not contain '{another_substring}'.")
-
+# Output: 'This is a sample text.' does not contain 'THIS'.
 
 print('\nUsing re module .search() function')
 if re.search(substring, main_string):
     print(f"'{main_string}' contains '{substring}'.")
 else:
     print(f"'{main_string}' does not contain '{substring}'.")
+# Output: 'This is a sample text.' contains 'sample'
 
 if re.search(another_substring, main_string):
     print(f"'{main_string}' contains '{another_substring}'.")
 else:
     print(f"'{main_string}' does not contain '{another_substring}'.")
+# Output: 'This is a sample text.' does not contain 'THIS'.
 
 print()
 print('##################################################')
@@ -170,40 +176,40 @@ print('##################################################')
 print('Strings: not empty string and empty string')
 print('--------------------------------------------------')
 value = 'This string is not empty'
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
 
 value = ''
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
 
 print('\nNumber (integer): Check negative, 0 and positive')
 print('--------------------------------------------------')
 value = -5
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
 
 value = 0
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
 
 value = 5
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
 
 print('\nNumber (float): Check negative, 0 and positive')
 print('--------------------------------------------------')
 value = -5.3
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
 
 value = 0.0
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
 
 value = 5.3
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy')
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy')
+print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
+print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
 
 print('\nMisc: Check None')
 print('--------------------------------------------------')
@@ -222,7 +228,7 @@ print('--------------------------------------------------')
 
 original_string = 'Hello world, this is a sample string.'
 new_string = original_string.replace('is', 'NOT')
-print(new_string)
+print(new_string) # Output: Hello world, thNOT NOT a sample string.
 
 print()
 print('##################################################')
@@ -232,24 +238,26 @@ print('Using normal if, if-else to run functions')
 print('--------------------------------------------------')
 if (True):
     print('Entered the if block')
+# Output: Entered the if block
 
 if (False):
     print('Entered the if block')
 else:
     print('Entered the else block')
+# Output: Entered the else block
 
 print('\nUsing inline if, if-else to run functions')
 print('--------------------------------------------------')
-print('Entered the if block') if (True) else None
-print('Entered the if block') if (False) else print('Entered the else block')
+print('Entered the if block') if (True) else None # Output: Entered the if block
+print('Entered the if block') if (False) else print('Entered the else block') # Output: Entered the else block
 
 print('\nUsing inline if, if-else to return values')
 print('--------------------------------------------------')
 result = 10 if (True) else 20
-print(result)
+print(result) # Output: 10
 
 result = 10 if (False) else 20
-print(result)
+print(result) # Output: 20
 
 
 print()
@@ -260,7 +268,7 @@ print('Looping through a range of numbers from 1 to 10')
 print('--------------------------------------------------')
 for it in range(1, (10 + 1)):
     print(it)
-
+# Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
 print()
 print('##################################################')
