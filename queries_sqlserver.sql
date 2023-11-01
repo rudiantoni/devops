@@ -1,8 +1,71 @@
+-- ##################################################
+-- Annotations
+-- 
+-- Default datatype for the function GETDATE(): DATETIME
+--
+-- ##################################################
+
+-- ##################################################
+-- Current time
+-- ##################################################
+-- 
+-- Using function GETDATE()
+SELECT GETDATE()
+
+-- ##################################################
+-- Other operations
+-- ##################################################
+--
+-- Detect a type from a data
+SELECT SQL_VARIANT_PROPERTY(your_data_or_column, 'BaseType') AS data_type
+SELECT SQL_VARIANT_PROPERTY(GETDATE(), 'BaseType') AS data_type
+
+-- Extract time unit data from an DATETIME
+SELECT YEAR(GETDATE())
+SELECT MONTH(GETDATE())
+SELECT DAY(GETDATE())
+SELECT DATEPART(hour, GETDATE())
+SELECT DATEPART(MINUTE, GETDATE())
+SELECT DATEPART(SECOND, GETDATE())
+
+--
+-- ##################################################
+-- Performances
+-- ##################################################
+--
+-- Analyse a query execution load and time (Run by steps)
+--
+-- Step 1: Enable I/O and time statistics
+SET STATISTICS IO ON;
+SET STATISTICS TIME ON;
+
+-- Step 2: Run you query
+-- The query result is showed in the normal prompt, but the statistics are shown in the system output stream
+SELECT * FROM your_table
+
+-- Step 3: Disable I/O and time statistics
+SET STATISTICS IO OFF;
+SET STATISTICS TIME OFF;
+
+--
+-- Analyse a query cost (Run by steps)
+-- Step 1: Enable query execution plan profile
+SET STATISTICS PROFILE ON;
+
+-- Step 2: Run you query
+-- The query result is showed in the normal prompt, and the statistics are shown in another prompt
+SELECT * FROM your_table
+
+-- Step 3: Disable query execution plan profile
+SET STATISTICS PROFILE OFF;
+
+-- 
+-- ##################################################
+-- Custom functions
+-- ##################################################
 --
 -- Create a function that receives a string and returns all numbers inside that string
 -- or null if there's no numbers otherwise
---
-
 DROP FUNCTION dbo.get_numbers_or_null;
 CREATE FUNCTION dbo.get_numbers_or_null(@STR_INPUT VARCHAR(MAX))
 RETURNS VARCHAR(MAX)
@@ -31,34 +94,3 @@ END
 -- Testing queries
 SELECT dbo.get_numbers_or_null('a205s 1as56d1a 06d 1sklndajklnd\ sd! \@ #~') as func_result
 SELECT dbo.get_numbers_or_null('as asda d sklndajklnd\ sd! \@ #~') as func_result
-
---
--- Analyse a query execution load and time
--- (Run by steps)
---
--- Step 1: Enable I/O and time statistics
-SET STATISTICS IO ON;
-SET STATISTICS TIME ON;
-
--- Step 2: Run you query
--- The query result is showed in the normal prompt, but the statistics are shown in the system output stream
-SELECT * FROM your_table
-
--- Step 3: Disable I/O and time statistics
-SET STATISTICS IO OFF;
-SET STATISTICS TIME OFF;
-
-
---
--- Analyse a query cost
--- (Run by steps)
---
--- Step 1: Enable query execution plan profile
-SET STATISTICS PROFILE ON;
-
--- Step 2: Run you query
--- The query result is showed in the normal prompt, and the statistics are shown in another prompt
-SELECT * FROM your_table
-
--- Step 3: Disable query execution plan profile
-SET STATISTICS PROFILE OFF;
