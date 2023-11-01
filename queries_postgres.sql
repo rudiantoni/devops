@@ -6,19 +6,20 @@
 --
 -- ##################################################
 
---
+-- ##################################################
 -- Current time
---
+-- ##################################################
 -- Using function NOW()
 SELECT NOW()
 
 -- Using variable CURRENT_TIMESTAMP
 SELECT CURRENT_TIMESTAMP
 
---
--- Count a column by its unique values amount
+-- ##################################################
+-- Query shortcuts and defaults
+-- ##################################################
 -- 
---
+-- Count a column by its unique values amount
 -- Using subquery with GROUP BY
 SELECT COUNT(1) FROM (
 	SELECT column_name FROM table_name GROUP BY column_name
@@ -32,9 +33,9 @@ SELECT COUNT(1) FROM (
 -- Using COUNT DISTINCT
 SELECT COUNT(DISTINCT column_name) AS unique_count FROM table_name;
 
---
+-- ##################################################
 -- Mathematics
--- 
+-- ##################################################
 --
 -- Return the absolute value (without positive or negative signal) from a number
 SELECT ABS(-10)
@@ -43,10 +44,14 @@ SELECT ABS(-10.5)
 SELECT ABS(10.5)
 
 
---
+-- ##################################################
 -- Other operations
+-- ##################################################s
 --
---
+-- Detect a type from a data
+SELECT PG_TYPEOF(your_data_or_column)
+SELECT PG_TYPEOF(NOW())
+
 -- Convert VARCHAR (string) to TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ)
 SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ
 
@@ -61,10 +66,6 @@ SELECT '3 years 2 months 9 days 14 hours 25 minutes 35 seconds 258 milliseconds'
 SELECT '3 years 2 months 9 days 14 hours 25 minutes 35 seconds 258 milliseconds 359 microseconds'::INTERVAL
 -- Other ways to write INTERVALs
 SELECT '3 y 2 mon 9 d 14 h 25 min 35 sec'::INTERVAL
-
--- Detect a type from a data
-SELECT PG_TYPEOF(your_data_or_column)
-SELECT PG_TYPEOF(NOW())
 
 -- Calc difference between dates as INTERVAL, (differencing negative and positive)
 SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ - '2000-01-01 00:00:00'::TIMESTAMPTZ
@@ -83,10 +84,3 @@ SELECT EXTRACT(MINUTE FROM '3 years 2 months 3 days 14 hours 25 minutes 35 secon
 SELECT EXTRACT(SECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 SELECT EXTRACT(MILLISECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 SELECT EXTRACT(MICROSECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
-
-
-
-
-
-
-
