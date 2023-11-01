@@ -7,6 +7,15 @@
 -- ##################################################
 
 --
+-- Current time
+--
+-- Using function NOW()
+SELECT NOW()
+
+-- Using variable CURRENT_TIMESTAMP
+SELECT CURRENT_TIMESTAMP
+
+--
 -- Count a column by its unique values amount
 -- 
 --
