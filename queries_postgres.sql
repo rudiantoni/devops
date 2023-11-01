@@ -70,9 +70,8 @@ SELECT PG_TYPEOF(NOW())
 SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ - '2000-01-01 00:00:00'::TIMESTAMPTZ
 SELECT '2000-01-01 00:00:00'::TIMESTAMPTZ - '2005-01-01 00:00:00'::TIMESTAMPTZ
 
--- Extract certain datadays portion from an INTERVAL
--- EPOCH (total number of seconds in the INTERVAL)
-SELECT EXTRACT(EPOCH FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
+-- Extract time unit data from an INTERVAL
+SELECT EXTRACT(EPOCH FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL); -- EPOCH (total number of seconds in the INTERVAL)
 SELECT EXTRACT(CENTURY FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 SELECT EXTRACT(DECADE FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 SELECT EXTRACT(YEAR FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
