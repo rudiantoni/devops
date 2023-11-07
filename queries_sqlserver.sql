@@ -30,7 +30,7 @@ SELECT DATEPART(SECOND, GETDATE())
 
 --
 -- ##################################################
--- Performances
+-- Management operations
 -- ##################################################
 --
 -- Analyse a query execution load and time (Run by steps)
