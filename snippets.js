@@ -481,7 +481,7 @@ console.log(setBuildingNameAge)
 const performanceTest = () => {
   const testingAmount = 100000
   const dataSetSize = 1000
-  console.log(`Using ${testingAmount} test cases with a ${dataSetSize} data set size for performance test.`)
+  console.log(`Using ${testingAmount} iterations with a ${dataSetSize} data set size for performance test.`)
   const dataList = []
   const possibleNames = ['Alice','Bob','Charlie','David','Eve','Frank', 'Grace', 'Helen', 'Ivy', 'Jack']
   const possibleCountries = ['USA', 'Canada', 'UK', 'Australia', 'France', 'Germany', 'Japan', 'India', 'Brazil', 'China']
