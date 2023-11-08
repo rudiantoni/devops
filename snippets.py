@@ -289,6 +289,11 @@ data_list = [
  # Returns:
  #   - list: A new list containing unique dictionaries based on the specified keys or all keys if none are provided.
 ###
+###
+ # PERFORMANCE TESTING: 100000 iterations, 1000 data set size.
+ # Time generating data: 0.002482s
+ # Time processing: 3506.001339s
+###
 def distinct_dict_list(dict_list, keys='all'):
   if (not(len(dict_list))):
     return dict_list
@@ -337,6 +342,11 @@ print(key_iteration_name_age)
 ###
  # Variation from distinct_dict_list()
  # Using sets and string manipulation
+###
+###
+ # PERFORMANCE TESTING: 100000 iterations, 1000 data set size.
+ # Time generating data: 0.002482s
+ # Time processing: 122.708315s
 ###
 def distinct_dict_list_using_set(dict_list, keys='all'):
   if (not(len(dict_list))):
