@@ -283,11 +283,11 @@ data_list = [
 # dict_list: list of dictionaries to be evaluated
 # keys: (optional, default='all') list of keys to be evaluated: ['key1', 'key2']
 #  case 'all': a dictionary will only be considered equal when all keys are
-#    equal based on keys existing in the first dictionary keys
+#    equal based on keys existing in the first dictionary
 #
 def distinct_dict_list(dict_list, keys='all'):
   if (not(len(dict_list))):
-    raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+    return dict_list
   
   unique_dict_list = []
   check_keys = []
