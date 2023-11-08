@@ -373,3 +373,52 @@ set_building_name_age = distinct_dict_list_using_set(data_list, ['name', 'age'])
 print(set_building_name_age)
 
 
+# CODE TO PERFORMANCE TESTINGS
+import random
+from datetime import datetime
+def performance_test():
+  testing_amount = 100000
+  data_set_size = 1000
+  print(f'Using {testing_amount} iterations with a {data_set_size} data set size for performance test.')
+  dataList = []
+  possible_names = ['Alice','Bob','Charlie','David','Eve','Frank', 'Grace', 'Helen', 'Ivy', 'Jack']
+  possible_countries = ['USA', 'Canada', 'UK', 'Australia', 'France', 'Germany', 'Japan', 'India', 'Brazil', 'China']
+  possible_cities = ['New York', 'Toronto', 'London', 'Sydney', 'Paris', 'Berlin', 'Tokyo', 'Mumbai', 'Sao Paulo', 'Beijing']
+  min_age = 18
+  max_age = 50
+  current_id = 0;
+
+  start_gen_data = datetime.now()
+  print(f'Started - Generating data')
+  for i in range(0, data_set_size):
+    id = current_id
+    current_id += 1
+    name = possible_names[random.randint(0, len(possible_names) - 1)]
+    country = possible_countries[random.randint(0, len(possible_countries) - 1)]
+    age = random.randint(min_age, max_age)
+    city = possible_cities[random.randint(0, len(possible_cities) - 1)]
+    
+    data_obj = {'id': id, 'name': name, 'country': country, 'age': age, 'city': city}
+    data_list.append(data_obj)
+
+  end_gen_data = datetime.now()
+  elapsed_seconds_gen_data = (end_gen_data - start_gen_data).total_seconds()
+  print(f'Finished - Generating data: Total {elapsed_seconds_gen_data}s')
+
+  start_test_stage_a = datetime.now()
+  print(f'Started STAGE A - Performance test')
+  for i in range(0, testing_amount):
+    testResult = distinct_dict_list(data_list)
+  end_test_stage_a = datetime.now()
+  elapsed_test_stage_a = (end_test_stage_a - start_test_stage_a).total_seconds()
+  print(f'Finished STAGE A - Performance test: Total {elapsed_test_stage_a}s')
+
+  start_test_stage_b = datetime.now()
+  print(f'Started STAGE B - Performance test')
+  for i in range(0, testing_amount):
+    testResult = distinct_dict_list_using_set(data_list)
+  end_test_stage_b = datetime.now()
+  elapsed_test_stage_b = (end_test_stage_b - start_test_stage_b).total_seconds()
+  print(f'Finished STAGE B - Performance test: Total {elapsed_test_stage_b}s')
+
+performance_test()
