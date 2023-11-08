@@ -230,12 +230,12 @@ else:
   print('Entered the else block')
 # Output: Entered the else block
 
-print('\nUsing inline if, if-else to run functions')
+print('\nUsing inline if (pseudo-ternary), if-else to run functions')
 print('--------------------------------------------------')
 print('Entered the if block') if (True) else None # Output: Entered the if block
 print('Entered the if block') if (False) else print('Entered the else block') # Output: Entered the else block
 
-print('\nUsing inline if, if-else to return values')
+print('\nUsing inline if (pseudo-ternary), if-else to return values')
 print('--------------------------------------------------')
 result = 10 if (True) else 20
 print(result) # Output: 10
