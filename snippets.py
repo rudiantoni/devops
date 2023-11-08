@@ -278,13 +278,17 @@ data_list = [
   {'id': 10, 'name': 'Jack', 'country': 'China', 'age': 31, 'city': 'Beijing'},
   {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'}
 ]
-#
-# Returns a list of dictionary containing only unique values
-# dict_list: list of dictionaries to be evaluated
-# keys: (optional, default='all') list of keys to be evaluated: ['key1', 'key2']
-#  case 'all': a dictionary will only be considered equal when all keys are
-#    equal based on keys existing in the first dictionary
-#
+
+###
+ # Returns a list of unique dictionaries based on the provided keys or all keys if none are specified, keeping only the first occurence of duplicates.
+ # Args:
+ #   - dict_list (list): The list of dictionaries to be evaluated.
+ #   - keys (list, optional): A list of keys by which dictionaries should be compared to determine their uniqueness.
+ #     If not specified, all dictionary keys present in the first item will be considered. Default is 'all'.
+ # 
+ # Returns:
+ #   - list: A new list containing unique dictionaries based on the specified keys or all keys if none are provided.
+###
 def distinct_dict_list(dict_list, keys='all'):
   if (not(len(dict_list))):
     return dict_list
@@ -322,15 +326,18 @@ def distinct_dict_list(dict_list, keys='all'):
   
   return unique_dict_list
 
-print('\nUsing key iteration method, considering all keys')
+print('\nUsing manual key iteration method, considering all keys')
 key_iteration_all = distinct_dict_list(data_list)
 print(key_iteration_all)
 
-print('\nUsing key iteration method, considering keys name and age')
+print('\nUsing manual key iteration method, considering keys name and age')
 key_iteration_name_age = distinct_dict_list(data_list, ['name', 'age'])
 print(key_iteration_name_age)
 
-# Same as before, but using sets and string manipulation
+###
+ # Variation from distinct_dict_list()
+ # Using sets and string manipulation
+###
 def distinct_dict_list_using_set(dict_list, keys='all'):
   if (not(len(dict_list))):
     raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
