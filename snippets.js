@@ -9,7 +9,7 @@ If you don't have node installed, create a generic (index.html) page and add thi
   <script src="./snippets.js"></script>
 */
 console.log('##################################################')
-console.log('# Filter list of objects by object key')
+console.log('# Filter list of objects by object property')
 console.log('##################################################')
 console.log('\nFiltering where age is higher then 30')
 console.log('--------------------------------------------------')
@@ -26,9 +26,9 @@ console.log(filteredData) // Output: [ { name: 'Bob', age: 35 }, { name: 'Charli
 
 console.log()
 console.log('##################################################')
-console.log('# Map list of objects by object key')
+console.log('# Map list of objects by object property')
 console.log('##################################################')
-console.log('\nMapping objects with name and country keys')
+console.log('\nMapping objects with name and country property')
 console.log('--------------------------------------------------')
 const dataMap = [
   {name: 'Alice', age: 28, country: 'USA' },
@@ -49,14 +49,14 @@ console.log(mappedData)
 ]
 */
 
-console.log('\nBuilding list of by the key \'name\'')
+console.log('\nBuilding list of by the property \'name\'')
 console.log('--------------------------------------------------')
 const mappedDataA = dataMap.map(it => it.name)
 console.log(mappedDataA) // Output: [ 'Alice', 'Bob', 'Charlie', 'David' ]
 
 console.log()
 console.log('##################################################')
-console.log('# Find - Find first ocorrence in object list by key or undefined otherwise')
+console.log('# Find - Find first ocorrence in object list by property or undefined otherwise')
 console.log('##################################################')
 console.log('\nFind first dict whose ages are higher than 10, 23, 28 and 45.')
 console.log('--------------------------------------------------')
@@ -91,7 +91,7 @@ console.log()
 console.log('##################################################')
 console.log('# Spread lists and objects')
 console.log('##################################################')
-console.log('Adding elements to lists and objects, overwriting previously existing keys in dicts')
+console.log('Adding elements to lists and objects, overwriting previously existing properties in objects')
 console.log('--------------------------------------------------')
 console.log('\nSpreading lists')
 const baseSpreadList = [1, 2, 3]
@@ -269,19 +269,262 @@ for (let i = 1; i <= 10; i++) {
 }
 // Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
+console.log('\nLooping through an object keys')
+console.log('--------------------------------------------------')
+console.log('\nUsing for...in with .hasOwnProperty() object function')
+const objPropLoop = {name: 'Alice', age: 25, occupation: 'Developer'}
+for (let key in objPropLoop) { // Keys only
+  if (objPropLoop.hasOwnProperty(key)) { // ensure that the property is not inherited (even from the prototype chain)
+    console.log(key, objPropLoop[key]);
+  }
+}
+/* Output:
+name Alice
+age 25
+occupation Developer
+*/
 
-const arrayOfObjects = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
-  { id: 1, name: 'Alice' },
-  { id: 3, name: 'Charlie' },
-];
+console.log('\nUsing Object.keys() function')
+Object.keys(objPropLoop).forEach((key) => { // Keys only
+  console.log(key, objPropLoop[key]);
+});
+/* Output:
+name Alice
+age 25
+occupation Developer
+*/
 
-const uniqueObjects = (arr, prop) => {
-  const uniqueSet = new Set();
-  return arr.filter(obj => !uniqueSet.has(obj[prop]) && uniqueSet.add(obj[prop]));
-};
+console.log('\nUsing Object.entries() function with reassignment')
+Object.entries(objPropLoop).forEach((entry) => { // Keys and values
+  const key = entry[0]
+  const value = entry[1]
+  console.log(key, value)
+})
+/* Output:
+name Alice
+age 25
+occupation Developer
+*/
 
-const uniqueById = uniqueObjects(arrayOfObjects, 'id');
+console.log('\nUsing Object.entries() function with destructuring')
+Object.entries(objPropLoop).forEach(([key, value]) => { // Keys and values
+  console.log(key, value)
+})
+/* Output:
+name Alice
+age 25
+occupation Developer
+*/
 
-console.log(uniqueById);
+console.log('\nUsing Object.values() function')
+Object.values(objPropLoop).forEach((value) => { // Values only
+  console.log(value);
+});
+/* Output:
+Alice
+25
+Developer
+*/
+
+console.log()
+console.log('##################################################')
+console.log('# Custom auxiliary functions')
+console.log('##################################################')
+console.log('Remove duplicates from a object list')
+console.log('--------------------------------------------------')
+const dataDistinctObject = [
+  {id: 1, name: 'Alice', country: 'USA', age: 25, city: 'New York'},
+  {id: 1, name: 'Alice', country: 'USA', age: 25, city: 'New York'},
+  {id: 2, name: 'Bob', country: 'Canada', age: 30, city: 'Toronto'},
+  {id: 2, name: 'Bob', country: 'Canada', age: 30, city: 'Toronto'},
+  {id: 3, name: 'Charlie', country: 'UK', age: 22, city: 'London'},
+  {id: 3, name: 'Charlie', country: 'UK', age: 22, city: 'London'},
+  {id: 4, name: 'David', country: 'Australia', age: 35, city: 'Sydney'},
+  {id: 4, name: 'David', country: 'Australia', age: 35, city: 'Sydney'},
+  {id: 5, name: 'Eve', country: 'France', age: 28, city: 'Paris'},
+  {id: 5, name: 'Eve', country: 'France', age: 28, city: 'Paris'},
+  {id: 6, name: 'Frank', country: 'Germany', age: 40, city: 'Berlin'},
+  {id: 6, name: 'Bob', country: 'Germany', age: 30, city: 'Berlin'},
+  {id: 7, name: 'Grace', country: 'Japan', age: 29, city: 'Tokyo'},
+  {id: 8, name: 'Helen', country: 'India', age: 27, city: 'Mumbai'},
+  {id: 9, name: 'Ivy', country: 'Brazil', age: 32, city: 'Sao Paulo'},
+  {id: 10, name: 'Jack', country: 'China', age: 31, city: 'Beijing'},
+  {id: 10, name: 'Alice', country: 'China', age: 25, city: 'Beijing'}
+]
+
+/**
+ * Returns a list of unique dictionaries based on the provided keys or all keys if none are specified, keeping only the first occurence of duplicates.
+ * Args:
+ *  - objList (list): The list of objects to be evaluated.
+ *  - properties (list, optional): A list of properties by which objects should be compared to determine their uniqueness.
+ *    If not specified, all object properties present in the first item will be considered. Default is 'all'.
+ * 
+ * Returns:
+ *   list: A new list containing unique objects based on the specified properties or all properties if none are provided.
+ */
+/*
+/**
+ * PERFORMANCE TESTING: 100000 iterations, 1000 data set size.
+ * Time generating data: 0.002s
+ * Time processing: 1199.382s
+ */
+const distinctObjList = (objList, properties = 'all') => {
+  if (!objList.length) {
+    return objList
+  }
+  const uniqueObjList = []
+  let checkKeys = []
+
+  if (properties === 'all') {
+    const firstObj = objList[0]
+    Object.keys(firstObj).forEach((key) => {
+      checkKeys.push(key)
+    });
+  } else {
+    checkKeys = properties
+  }
+  
+  objList.forEach(objItem => {
+    if (uniqueObjList.length) {
+      let foundUniqueItem = null
+
+      uniqueObjList.forEach(uniqueObjItem => {
+        let equalCondition = true
+
+        for (const checkKey of checkKeys) {
+          equalCondition = equalCondition && objItem[checkKey] === uniqueObjItem[checkKey] 
+          if (!equalCondition) {
+            break
+          }
+        }
+
+        if (equalCondition) {
+          foundUniqueItem = uniqueObjItem
+        }
+      })  
+
+      if (!foundUniqueItem) {
+        uniqueObjList.push(objItem)
+      }
+
+    } else {
+      uniqueObjList.push(objItem)
+    }
+  })
+  return uniqueObjList
+}
+
+console.log('\nUsing manual key iteration method, considering all keys')
+const manualKeyIterationAll = distinctObjList(dataDistinctObject)
+console.log(manualKeyIterationAll)
+
+console.log('\nUsing manual key iteration method, considering keys name and age')
+const manualKeyIterationNameAge = distinctObjList(dataDistinctObject, ['name', 'age'])
+console.log(manualKeyIterationNameAge)
+
+/**
+ * Variation from distinctObjList()
+ * Using sets and string manipulation
+ */
+/**
+ * PERFORMANCE TESTING: 100000 iterations, 1000 data set size.
+ * Time generating data: 0.002s
+ * Time processing: 80.872s
+ */
+const distinctObjList_usingSet = (objList, properties = 'all') => {
+  if (!objList.length) {
+    return objList
+  }
+  const uniqueObjSet = new Set()
+  const uniqueObjList = []
+  let checkKeys = []
+
+  if (properties === 'all') {
+    const firstObj = objList[0]
+    Object.keys(firstObj).forEach((key) => {
+      checkKeys.push(key)
+    });
+  } else {
+    checkKeys = properties
+  }
+  
+  objList.forEach(objItem => {
+    let objItemStr = ''
+      checkKeys.forEach(checkKey => {
+        objItemStr += `__KP_START__${checkKey}__KP_DIVISOR__${objItem[checkKey]}__KP_END__`
+      })
+
+    if (!uniqueObjSet.has(objItemStr)) {
+      uniqueObjList.push(objItem)
+      uniqueObjSet.add(objItemStr)
+    }
+  })
+
+  return uniqueObjList
+}
+
+console.log('\nUsing set building method, considering all keys')
+const setBuildingAll = distinctObjList_usingSet(dataDistinctObject)
+console.log(setBuildingAll)
+
+console.log('\nUsing set building method, considering keys name and age')
+const setBuildingNameAge = distinctObjList_usingSet(dataDistinctObject, ['name', 'age'])
+console.log(setBuildingNameAge)
+
+/*
+// CODE TO PERFORMANCE TESTINGS
+const performanceTest = () => {
+  const testingAmount = 100000
+  const dataSetSize = 1000
+  console.log(`Using ${testingAmount} test cases with a ${dataSetSize} data set size for performance test.`)
+  const dataList = []
+  const possibleNames = ['Alice','Bob','Charlie','David','Eve','Frank', 'Grace', 'Helen', 'Ivy', 'Jack']
+  const possibleCountries = ['USA', 'Canada', 'UK', 'Australia', 'France', 'Germany', 'Japan', 'India', 'Brazil', 'China']
+  const possibleCities = ['New York', 'Toronto', 'London', 'Sydney', 'Paris', 'Berlin', 'Tokyo', 'Mumbai', 'Sao Paulo', 'Beijing']
+  const minAge = 18
+  const maxAge = 50
+  let currentId = 0;
+
+  const startGenData = new Date()
+  console.log(`Started - Generating data`)
+  for (let i = 0; i < dataSetSize; i++) {
+    const id = currentId++
+    const name = possibleNames[getRandomInt(0, possibleNames.length)]
+    const country = possibleCountries[getRandomInt(0, possibleCountries.length)]
+    const age = getRandomInt(minAge, maxAge + 1)
+    const city = possibleCities[getRandomInt(0, possibleCities.length)]
+    const dataObj = {id: id, name: name, country: country, age: age, city: city }
+    dataList.push(dataObj)
+  }
+  const endGenData = new Date()
+  const elapsedSecondsGenData = (endGenData.getTime() - startGenData.getTime()) / 1000
+  console.log(`Finished - Generating data: Total ${elapsedSecondsGenData}s`)
+
+  const startTestStageA = new Date()
+  console.log(`Started STAGE A - Performance test`)
+  for (let i = 0; i < testingAmount; i++) {
+    const testResult = distinctObjList(dataList)
+  }
+  const endTestStageA = new Date()
+  const elapsedTestStageA = (endTestStageA.getTime() - startTestStageA.getTime()) / 1000
+  console.log(`Finished STAGE A - Performance test: Total ${elapsedTestStageA}s`)
+
+  const startTestStageB = new Date()
+  console.log(`Started STAGE B - Performance test`)
+  for (let i = 0; i < testingAmount; i++) {
+    const testResult = distinctObjList_usingSet(dataList)
+  }
+  const endTestStageB = new Date()
+  const elapsedTestStageB = (endTestStageB.getTime() - startTestStageB.getTime()) / 1000
+  console.log(`Finished STAGE B - Performance test: Total ${elapsedTestStageB}s`)
+}
+
+performanceTest()
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+ */
+
