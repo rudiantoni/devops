@@ -8,10 +8,10 @@ print('##################################################')
 print('Filtering where age is higher then 30')
 print('--------------------------------------------------')
 people_filter = [
-    {'name': 'Alice', 'age': 28 },
-    {'name': 'Bob', 'age': 35 },
-    {'name': 'Charlie', 'age': 42 },
-    {'name': 'David', 'age': 29 }
+  {'name': 'Alice', 'age': 28 },
+  {'name': 'Bob', 'age': 35 },
+  {'name': 'Charlie', 'age': 42 },
+  {'name': 'David', 'age': 29 }
 ]
 
 print('\nUsing a list comprehension')
@@ -20,7 +20,7 @@ print(older_than_30_A) # Output: [{'name': 'Bob', 'age': 35}, {'name': 'Charlie'
 
 print('\nUsing list and filter functions with external function')
 def is_older_than_30(person):
-    return person['age'] > 30
+  return person['age'] > 30
 older_than_30_B = list(filter(is_older_than_30, people_filter))
 print(older_than_30_B) # Output: [{'name': 'Bob', 'age': 35}, {'name': 'Charlie', 'age': 42}]
 
@@ -35,10 +35,10 @@ print('##################################################')
 print('Mapping objects with name and country keys')
 print('--------------------------------------------------')
 people_map = [
-    {'name': 'Alice', 'age': 28, 'country': 'USA' },
-    {'name': 'Bob', 'age': 35, 'country': 'Canada' },
-    {'name': 'Charlie', 'age': 42, 'country': 'France' },
-    {'name': 'David', 'age': 29, 'country': 'Germany' }
+  {'name': 'Alice', 'age': 28, 'country': 'USA' },
+  {'name': 'Bob', 'age': 35, 'country': 'Canada' },
+  {'name': 'Charlie', 'age': 42, 'country': 'France' },
+  {'name': 'David', 'age': 29, 'country': 'Germany' }
 ]
 print('\nUsing a list comprehension')
 mapped_dict_A = [{'new_name': it['name'], 'new_country': it['country']} for it in people_map]
@@ -46,7 +46,7 @@ print(mapped_dict_A) # Output: [{'new_name': 'Alice', 'new_country': 'USA'}, {'n
 
 print('\nUsing list and map functions with external function')
 def get_name_and_country(people):
-    return {'new_name': people['name'], 'new_country': people['country']}
+  return {'new_name': people['name'], 'new_country': people['country']}
 mapped_dict_B = list(map(get_name_and_country, people_map))
 print(mapped_dict_B) # Output: [{'new_name': 'Alice', 'new_country': 'USA'}, {'new_name': 'Bob', 'new_country': 'Canada'}, {'new_name': 'Charlie', 'new_country': 'France'}, {'new_name': 'David', 'new_country': 'Germany'}]
 
@@ -66,11 +66,11 @@ print('##################################################')
 print('Find first dict whose ages are higher than 10, 23, 28 and 45.')
 print('--------------------------------------------------')
 base_dict_next = [
-    {'name': 'Alice', 'age': 20},
-    {'name': 'Bob', 'age': 25},
-    {'name': 'Charlie', 'age': 30},
-    {'name': 'David', 'age': 35},
-    {'name': 'Eve', 'age': 40},
+  {'name': 'Alice', 'age': 20},
+  {'name': 'Bob', 'age': 25},
+  {'name': 'Charlie', 'age': 30},
+  {'name': 'David', 'age': 35},
+  {'name': 'Eve', 'age': 40},
 ]
 higher_then_10 = next((it for it in base_dict_next if it['age'] > 10), None)
 higher_then_23 = next((it for it in base_dict_next if it['age'] > 23), None)
@@ -107,7 +107,7 @@ print(packed_list) # Output: [4, 1, 2, 3, 5]
 
 print('\nUnpacking lists to use as function arguments')
 def add_three_numbers(a, b, c):
-    return a + b + c
+  return a + b + c
 result = add_three_numbers(*base_unpack_list)
 print(result) # Output: 6
 
@@ -126,98 +126,82 @@ print('##################################################')
 print('Check if a text contains sample or THIS')
 print('--------------------------------------------------')
 import re
-main_string = 'This is a sample text.'
-substring = 'sample'
-another_substring = 'THIS'
+main_string = 'This is a sample text.' # Main string
+search_a = 'sample' # Exists on the main string
+search_b = 'THIS' # Don't exists on the main string
 
 print('\nUsing in operator')
-if substring in main_string:
-    print(f"'{main_string}' contains '{substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{substring}'.")
-# Output: 'This is a sample text.' contains 'sample'.
+print(search_a in main_string) # Output: True
+print(search_b in main_string) # Output: False
 
-if another_substring in main_string:
-    print(f"'{main_string}' contains '{another_substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{another_substring}'.")
-# Output: 'This is a sample text.' does not contain 'THIS'.
+print('\nUsing .find() string function')
+print(main_string.find(search_a) != -1) # Output: True
+print(main_string.find(search_b) != -1) # Output: False
 
-print('\nUsing .find() str function')
-if main_string.find(substring) != -1:
-    print(f"'{main_string}' contains '{substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{substring}'.")
-# Output: 'This is a sample text.' contains 'sample'.
+print('\nUsing (regex) re module .search() function')
+print(re.search(search_a, main_string)) # Output: <re.Match object; span=(10, 16), match='sample'>
+print(re.search(search_b, main_string)) # Output: None
 
-if main_string.find(another_substring) != -1:
-    print(f"'{main_string}' contains '{another_substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{another_substring}'.")
-# Output: 'This is a sample text.' does not contain 'THIS'.
-
-print('\nUsing re module .search() function')
-if re.search(substring, main_string):
-    print(f"'{main_string}' contains '{substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{substring}'.")
-# Output: 'This is a sample text.' contains 'sample'
-
-if re.search(another_substring, main_string):
-    print(f"'{main_string}' contains '{another_substring}'.")
-else:
-    print(f"'{main_string}' does not contain '{another_substring}'.")
-# Output: 'This is a sample text.' does not contain 'THIS'.
+print('\nUsing (regex) re module .search() function in a if condition')
+print(True) if (re.search(search_a, main_string)) else print(False) # Output: True
+print(True) if (re.search(search_b, main_string)) else print(False) # Output: False
 
 print()
 print('##################################################')
-print('# True (Truthy) and False (Falsy) values')
+print('# Truthy and falsy (true and false) values checking')
 print('##################################################')
-print('Strings: not empty string and empty string')
+print('Strings: not empty string and empty string (normal and negated)')
 print('--------------------------------------------------')
 value = 'This string is not empty'
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
+print(f'Value: ({value})')
+print(True) if (value) else print(False) # Output: True
+print(True) if (not(value)) else print(False) # Output: False
 
 value = ''
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
+print(f'Value: ({value})')
+print(True) if (value) else print(False) # Output: False
+print(True) if (not(value)) else print(False) # Output: True
 
-print('\nNumber (integer): Check negative, 0 and positive')
+print('\nNumber (integer): Check negative, 0 and positive (normal and negated)')
 print('--------------------------------------------------')
 value = -5
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
 value = 0
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
 value = 5
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
-print('\nNumber (float): Check negative, 0 and positive')
+print('\nNumber (float): Check negative, 0 and positive (normal and negated)')
 print('--------------------------------------------------')
 value = -5.3
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
 value = 0.0
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
 value = 5.3
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Truthy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Falsy
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
-print('\nMisc: Check None')
+print('\nMisc: Check None (normal and negated)')
 print('--------------------------------------------------')
 value = None
-print(f'{value}: Truthy') if (value) else print(f'{value}: Falsy') # Output: Falsy
-print(f'\tnot({value}): Truthy') if (not(value)) else print(f'\tnot({value}): Falsy') # Output: Truthy
-
-
+print(f'Value: ({value})')
+print(True) if (value) else print(False)
+print(True) if (not(value)) else print(False)
 
 print()
 print('##################################################')
@@ -237,13 +221,13 @@ print('##################################################')
 print('Using normal if, if-else to run functions')
 print('--------------------------------------------------')
 if (True):
-    print('Entered the if block')
+  print('Entered the if block')
 # Output: Entered the if block
 
 if (False):
-    print('Entered the if block')
+  print('Entered the if block')
 else:
-    print('Entered the else block')
+  print('Entered the else block')
 # Output: Entered the else block
 
 print('\nUsing inline if, if-else to run functions')
@@ -259,7 +243,6 @@ print(result) # Output: 10
 result = 10 if (False) else 20
 print(result) # Output: 20
 
-
 print()
 print('##################################################')
 print('# Repetitive structures')
@@ -267,7 +250,7 @@ print('##################################################')
 print('Looping through a range of numbers from 1 to 10')
 print('--------------------------------------------------')
 for it in range(1, (10 + 1)):
-    print(it)
+  print(it)
 # Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
 print()
@@ -277,67 +260,67 @@ print('##################################################')
 print('Remove duplicates from a dictionary')
 print('--------------------------------------------------')
 data_list = [
-    {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
-    {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
-    {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
-    {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
-    {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
-    {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
-    {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
-    {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
-    {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
-    {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
-    {'id': 6, 'name': 'Frank', 'country': 'Germany', 'age': 40, 'city': 'Berlin'},
-    {'id': 6, 'name': 'Bob', 'country': 'Germany', 'age': 30, 'city': 'Berlin'},
-    {'id': 7, 'name': 'Grace', 'country': 'Japan', 'age': 29, 'city': 'Tokyo'},
-    {'id': 8, 'name': 'Helen', 'country': 'India', 'age': 27, 'city': 'Mumbai'},
-    {'id': 9, 'name': 'Ivy', 'country': 'Brazil', 'age': 32, 'city': 'Sao Paulo'},
-    {'id': 10, 'name': 'Jack', 'country': 'China', 'age': 31, 'city': 'Beijing'},
-    {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'}
+  {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
+  {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
+  {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
+  {'id': 2, 'name': 'Bob', 'country': 'Canada', 'age': 30, 'city': 'Toronto'},
+  {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
+  {'id': 3, 'name': 'Charlie', 'country': 'UK', 'age': 22, 'city': 'London'},
+  {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
+  {'id': 4, 'name': 'David', 'country': 'Australia', 'age': 35, 'city': 'Sydney'},
+  {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
+  {'id': 5, 'name': 'Eve', 'country': 'France', 'age': 28, 'city': 'Paris'},
+  {'id': 6, 'name': 'Frank', 'country': 'Germany', 'age': 40, 'city': 'Berlin'},
+  {'id': 6, 'name': 'Bob', 'country': 'Germany', 'age': 30, 'city': 'Berlin'},
+  {'id': 7, 'name': 'Grace', 'country': 'Japan', 'age': 29, 'city': 'Tokyo'},
+  {'id': 8, 'name': 'Helen', 'country': 'India', 'age': 27, 'city': 'Mumbai'},
+  {'id': 9, 'name': 'Ivy', 'country': 'Brazil', 'age': 32, 'city': 'Sao Paulo'},
+  {'id': 10, 'name': 'Jack', 'country': 'China', 'age': 31, 'city': 'Beijing'},
+  {'id': 10, 'name': 'Alice', 'country': 'China', 'age': 25, 'city': 'Beijing'}
 ]
 #
 # Returns a list of dictionary containing only unique values
 # dict_list: list of dictionaries to be evaluated
 # keys: (optional, default='all') list of keys to be evaluated: ['key1', 'key2']
-#    case 'all': a dictionary will only be considered equal when all keys are
-#        equal based on keys existing in the first dictionary keys
+#  case 'all': a dictionary will only be considered equal when all keys are
+#    equal based on keys existing in the first dictionary keys
 #
 def distinct_dict_list(dict_list, keys='all'):
-    if (not(len(dict_list))):
-        raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+  if (not(len(dict_list))):
+    raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+  
+  unique_dict_list = []
+  check_keys = []
+  if (keys == 'all'):
+    first_dict = dict_list[0] 
+    for key in first_dict:
+      check_keys.append(key)
+  else:
+    check_keys = keys
+
+  for dict_item in dict_list:
     
-    unique_dict_list = []
-    check_keys = []
-    if (keys == 'all'):
-        first_dict = dict_list[0] 
-        for key in first_dict:
-            check_keys.append(key)
+    if(len(unique_dict_list)):
+      found_unique_item = None
+      for unique_item in unique_dict_list:
+        equal_condition = True
+        
+        for key in check_keys:
+          equal_condition = equal_condition and (unique_item[key] == dict_item[key])
+          if (not(equal_condition)):
+            break
+
+        if (equal_condition):
+          found_unique_item = unique_item
+          break
+      
+      if (found_unique_item is None):
+        unique_dict_list.append(dict_item)
+    
     else:
-        check_keys = keys
-
-    for dict_item in dict_list:
-        
-        if(len(unique_dict_list)):
-            found_unique_item = None
-            for unique_item in unique_dict_list:
-                equal_condition = True
-                
-                for key in check_keys:
-                    equal_condition = equal_condition and (unique_item[key] == dict_item[key])
-                    if (not(equal_condition)):
-                        break
-
-                if (equal_condition):
-                    found_unique_item = unique_item
-                    break
-            
-            if (found_unique_item is None):
-                unique_dict_list.append(dict_item)
-        
-        else:
-            unique_dict_list.append(dict_item)
-    
-    return unique_dict_list
+      unique_dict_list.append(dict_item)
+  
+  return unique_dict_list
 
 print('\nUsing key iteration method, considering all keys')
 key_iteration_all = distinct_dict_list(data_list)
@@ -349,30 +332,30 @@ print(key_iteration_name_age)
 
 # Same as before, but using sets and string manipulation
 def distinct_dict_list_using_set(dict_list, keys='all'):
-    if (not(len(dict_list))):
-        raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
+  if (not(len(dict_list))):
+    raise Error('Unable to remove dictionary list duplicates: dictionary list must not be empty.')
 
-    unique_dict_set = set()
-    unique_dict_list = []
-    check_keys = []
-    if (keys == 'all'):
-        first_dict = dict_list[0] 
-        for key in first_dict:
-            check_keys.append(key)
-    else:
-        check_keys = keys
+  unique_dict_set = set()
+  unique_dict_list = []
+  check_keys = []
+  if (keys == 'all'):
+    first_dict = dict_list[0] 
+    for key in first_dict:
+      check_keys.append(key)
+  else:
+    check_keys = keys
 
-    for dict_item in dict_list:
-        current_key_pair_str = ''
+  for dict_item in dict_list:
+    current_key_pair_str = ''
 
-        for key in check_keys:
-            current_key_pair_str += '__KP_START__' + f'{key}__KP_DIVISOR__{dict_item[key]}' + '__KP_START__'
+    for key in check_keys:
+      current_key_pair_str += '__KP_START__' + f'{key}__KP_DIVISOR__{dict_item[key]}' + '__KP_START__'
 
-        if (not(current_key_pair_str in unique_dict_set)):
-            unique_dict_set.add(current_key_pair_str)
-            unique_dict_list.append(dict_item)
+    if (not(current_key_pair_str in unique_dict_set)):
+      unique_dict_set.add(current_key_pair_str)
+      unique_dict_list.append(dict_item)
 
-    return unique_dict_list
+  return unique_dict_list
 
 print('\nUsing set building method, considering all keys')
 set_building_all = distinct_dict_list_using_set(data_list)
@@ -381,3 +364,5 @@ print(set_building_all)
 print('\nUsing set building method, considering keys name and age')
 set_building_name_age = distinct_dict_list_using_set(data_list, ['name', 'age'])
 print(set_building_name_age)
+
+
