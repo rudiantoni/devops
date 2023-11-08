@@ -257,7 +257,7 @@ print()
 print('##################################################')
 print('# Custom auxiliary functions')
 print('##################################################')
-print('Remove duplicates from a dictionary')
+print('Remove duplicates from a dictionary list')
 print('--------------------------------------------------')
 data_list = [
   {'id': 1, 'name': 'Alice', 'country': 'USA', 'age': 25, 'city': 'New York'},
