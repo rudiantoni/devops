@@ -22,35 +22,34 @@
 - https://vitejs.dev/
 - https://vitejs.dev/guide/
 
-**React with JavaScript**
-```bash
+**[template_name] - Possible templates**
+- React with JavaScript: react
+- React with TypeScript: react-ts
+
+**Project generation command**
+
+```sh
 # npm 6.x
-npm create vite@latest my-vue-app --template react
+npm create vite@latest [project_folder_name] --template [template_name]
 
 # npm 7+, extra double-dash is needed:
-npm create vite@latest my-vue-app -- --template react
+npm create vite@latest [project_folder_name] -- --template [template_name]
 
 # yarn
-yarn create vite my-vue-app --template react
+yarn create vite [project_folder_name] --template [template_name]
 
 # pnpm
-pnpm create vite my-vue-app --template react
+pnpm create vite [project_folder_name] --template [template_name]
 ```
 
-**React with TypeScript**
+**Project initialization**
 
-```bash
-# npm 6.x
-npm create vite@latest my-vue-app --template react-ts
+After running the project creation
 
-# npm 7+, extra double-dash is needed:
-npm create vite@latest my-vue-app -- --template react-ts
-
-# yarn
-yarn create vite my-vue-app --template react-ts
-
-# pnpm
-pnpm create vite my-vue-app --template react-ts
+```sh
+cd [project_folder_name]
+npm install
+npm run dev
 ```
 
 <!-- 
