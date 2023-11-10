@@ -11,7 +11,7 @@ If you don't have node installed, create a generic (index.html) page and add thi
 console.log('##################################################')
 console.log('# Filter list of objects by object property')
 console.log('##################################################')
-console.log('\nFiltering where age is higher then 30')
+console.log('Filtering where age is higher then 30')
 console.log('--------------------------------------------------')
 const dataFilter = [
   {name: 'Alice', age: 28 },
@@ -28,7 +28,7 @@ console.log()
 console.log('##################################################')
 console.log('# Map list of objects by object property')
 console.log('##################################################')
-console.log('\nMapping objects with name and country property')
+console.log('Mapping objects with name and country property')
 console.log('--------------------------------------------------')
 const dataMap = [
   {name: 'Alice', age: 28, country: 'USA' },
@@ -117,7 +117,7 @@ console.log()
 console.log('##################################################')
 console.log('# String operations')
 console.log('##################################################')
-console.log('\nCheck string contains text')
+console.log('Check string contains text')
 console.log('--------------------------------------------------')
 const mainString = 'This is a sample text.' // Main string
 const searchA = 'sample' // Exists on the main string
@@ -139,7 +139,7 @@ console.log()
 console.log('##################################################')
 console.log('# Truthy and falsy (true and false) values checking')
 console.log('##################################################')
-console.log('\nStrings: not empty string and empty string (normal and negated)')
+console.log('Strings: not empty string and empty string (normal and negated)')
 console.log('--------------------------------------------------')
 let value = 'This string is not empty'
 console.log(`Value (${value})`)
@@ -197,13 +197,18 @@ console.log(`Value (${value})`)
 value ? console.log(true) : console.log(false) // Output: false
 !value ? console.log(true) : console.log(false) // Output: true
 
+value = NaN
+console.log(`Value (${value})`)
+value ? console.log(true) : console.log(false) // Output: false
+!value ? console.log(true) : console.log(false) // Output: true
+
 console.log()
 console.log('##################################################')
 console.log('# Replace a string with another string')
 console.log('##################################################')
 console.log('Replace all ocorrences of \'is\' with \'NOT\'')
 console.log('--------------------------------------------------')
-console.log('\nUsing .replaceAll() string function')
+console.log('Using .replaceAll() string function')
 const baseReplaceString = 'Hello world, this is a sample string.'
 const replaceString = 'NOT'
 console.log(baseReplaceString.replaceAll('is', replaceString)) // Output: Hello world, thNOT NOT a sample string.
@@ -271,9 +276,9 @@ for (let i = 1; i <= 10; i++) {
 
 console.log('\nLooping through an object keys')
 console.log('--------------------------------------------------')
-console.log('\nUsing for...in with .hasOwnProperty() object function')
+console.log('\nUsing for...in with .hasOwnProperty() object function to access KEYS ONLY')
 const objPropLoop = {name: 'Alice', age: 25, occupation: 'Developer'}
-for (let key in objPropLoop) { // Keys only
+for (let key in objPropLoop) {
   if (objPropLoop.hasOwnProperty(key)) { // ensure that the property is not inherited (even from the prototype chain)
     console.log(key, objPropLoop[key]);
   }
@@ -284,8 +289,8 @@ age 25
 occupation Developer
 */
 
-console.log('\nUsing Object.keys() function')
-Object.keys(objPropLoop).forEach((key) => { // Keys only
+console.log('\nUsing Object.keys() function to access KEYS ONLY')
+Object.keys(objPropLoop).forEach((key) => {
   console.log(key, objPropLoop[key]);
 });
 /* Output:
@@ -294,8 +299,8 @@ age 25
 occupation Developer
 */
 
-console.log('\nUsing Object.entries() function with reassignment')
-Object.entries(objPropLoop).forEach((entry) => { // Keys and values
+console.log('\nUsing Object.entries() function with reassignment to access KEYS AND VALUES')
+Object.entries(objPropLoop).forEach((entry) => {
   const key = entry[0]
   const value = entry[1]
   console.log(key, value)
@@ -306,8 +311,8 @@ age 25
 occupation Developer
 */
 
-console.log('\nUsing Object.entries() function with destructuring')
-Object.entries(objPropLoop).forEach(([key, value]) => { // Keys and values
+console.log('\nUsing Object.entries() function with destructuring to access KEYS AND VALUES')
+Object.entries(objPropLoop).forEach(([key, value]) => {
   console.log(key, value)
 })
 /* Output:
@@ -316,8 +321,8 @@ age 25
 occupation Developer
 */
 
-console.log('\nUsing Object.values() function')
-Object.values(objPropLoop).forEach((value) => { // Values only
+console.log('\nUsing Object.values() function to access VALUES ONLY')
+Object.values(objPropLoop).forEach((value) => {
   console.log(value);
 });
 /* Output:
