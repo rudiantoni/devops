@@ -299,6 +299,16 @@ age 25
 occupation Developer
 */
 
+console.log('\nUsing Object.keys() function to access INDEXES AND KEYS')
+Object.keys(objPropLoop).forEach((key, index) => {
+  console.log(index, key, objPropLoop[key]);
+});
+/* Output:
+0 name Alice
+1 age 25
+2 occupation Developer
+*/
+
 console.log('\nUsing Object.entries() function with reassignment to access KEYS AND VALUES')
 Object.entries(objPropLoop).forEach((entry) => {
   const key = entry[0]
@@ -329,6 +339,16 @@ Object.values(objPropLoop).forEach((value) => {
 Alice
 25
 Developer
+*/
+
+console.log('\nUsing Object.entries() function to access INDEXES, KEYS AND VALUES')
+Object.entries(objPropLoop).forEach(([key, value], index) => {
+  console.log(index, key, value);
+});
+/* Output:
+0 name Alice
+1 age 25
+2 occupation Developer
 */
 
 console.log()
