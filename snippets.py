@@ -5,7 +5,7 @@
 print('##################################################')
 print('# Filter list of dict by dict key')
 print('##################################################')
-print('Filtering where age is higher then 30')
+print('\nFiltering where age is higher then 30')
 print('--------------------------------------------------')
 people_filter = [
   {'name': 'Alice', 'age': 28 },
@@ -81,8 +81,6 @@ print(higher_then_23) # Output: {'name': 'Bob', 'age': 25}
 print(higher_then_28) # Output: {'name': 'Charlie', 'age': 30}
 print(higher_then_45) # Output: None
 
-# TODO: adicionar o any()
-
 print()
 print('##################################################')
 print('# Create list with unique values (remove duplicates)')
@@ -121,9 +119,9 @@ print(packed_dict_A) # Output: {'c': 10, 'a': 1, 'b': 2}
 
 print()
 print('##################################################')
-print('# Check a string contains another string')
+print('# String operations')
 print('##################################################')
-print('Check if a text contains sample or THIS')
+print('Check string contains text')
 print('--------------------------------------------------')
 import re
 main_string = 'This is a sample text.' # Main string
@@ -252,6 +250,46 @@ print('--------------------------------------------------')
 for it in range(1, (10 + 1)):
   print(it)
 # Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+print('\nLooping through an dictionary keys')
+print('--------------------------------------------------')
+print('\nUsing for...in to access KEYS ONLY')
+dict_key_loop = {'name': 'Alice', 'age': 25, 'occupation': 'Developer'}
+for key in dict_key_loop:
+  print(key, dict_key_loop[key])
+### Output:
+ # name Alice
+ # age 25
+ # occupation Developer
+###
+
+print('\nUsing for...in with .keys() dictionary function to access KEYS ONLY')
+for key in dict_key_loop.keys():
+  print(key, dict_key_loop[key])
+### Output:
+ # name Alice
+ # age 25
+ # occupation Developer
+###
+
+print('\nUsing for...in with .items() dictionary function to access KEYS AND VALUES')
+for key, value in dict_key_loop.items():
+  print(key, value)
+### Output:
+ # name Alice
+ # age 25
+ # occupation Developer
+###
+
+print('\nUsing for...in with enumerate() to access INDEXES, KEYS AND VALUES')
+for index, (key, value) in enumerate(dict_key_loop.items()):
+  print(index, key, value)
+### Output:
+ # 0 name Alice
+ # 1 age 25
+ # 2 occupation Developer
+###
+
 
 print()
 print('##################################################')
