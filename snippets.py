@@ -290,7 +290,6 @@ for index, (key, value) in enumerate(dict_key_loop.items()):
  # 2 occupation Developer
 ###
 
-
 print()
 print('##################################################')
 print('# Custom auxiliary functions')
