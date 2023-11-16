@@ -9,55 +9,56 @@
  * You can open the folder in any preferred IDE, just use Java 8 to compile and run.
  */
 
+/**
+ * java.util.Arrays
+ * https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html
+ * 
+ * java.util.Objects
+ * https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html
+ */
+
 import java.util.Arrays;
 import java.util.Objects;
 
 public class Snippets {
+  
   public static void main(String[] args) {
     
-    /**
-     * java.util.Arrays
-     * https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html
-     * 
-     * java.util.Objects
-     * https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html
-     */
-
     print("##################################################");
-    print("# Primitive types - Default values when creating arrays with size");
+    print("# Default non initialized variable values");
     print("##################################################");
-    print("Default value for byte is 0");
+    print("Primitive types (only works when a non-empty array of that type is created)");
     print("--------------------------------------------------");
-    print(Arrays.toString(new byte[1]));
+    print("\nbyte");
+    print((new byte[1])[0]); // Output: 0
 
-    print("\nDefault value for short is 0");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new short[1]));
+    print("\nshort");
+    print((new short[1])[0]); // Output: 0
 
-    print("\nDefault value for int is 0");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new int[1]));
+    print("\nint");
+    print((new int[1])[0]); // Output: 0
 
-    print("\nDefault value for long is 0L");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new long[1]));
+    print("\nlong");
+    print((new long[1])[0]); // Output: 0 (0L)
     
-    print("\nDefault value for float is 0.0f");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new float[1]));
+    print("\nfloat");
+    print((new float[1])[0]); // Output: 0 (0.0f)
+
+    print("\ndouble");
+    print((new double[1])[0]); // Output: 0 (0.0d)
     
-    print("\nDefault value for double is 0.0d");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new double[1]));
-   
-    print("\nDefault value for char is '\u0000', null character for unicode");
-    print("--------------------------------------------------");
-    print(Arrays.toString(new char[1]));
+    print("\nchar");
+    print((new char[1])[0]); // Output: \u0000 (null character for unicode)
+
+    print("\nboolean");
+    print((new boolean[1])[0]); // Output: false
     
-    print("\nDefault value for boolean is false");
+    print("\nReference types");
     print("--------------------------------------------------");
-    print(Arrays.toString(new boolean[1]));
-    
+    Teste refTypeTest = new Teste();
+    print(refTypeTest.checkRefTypeNull); // Output: null
+    // Only works when loading from another object, local access in a non initialized variable throws a compile error
+
     print();
     print("##################################################");
     print("# Arrays - Different ways to create one");
