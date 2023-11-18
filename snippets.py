@@ -3,6 +3,62 @@
 #   $ python3 snippets.py
 
 print('##################################################')
+print('# Default non initialized variable values')
+print('##################################################')
+print('AHA! Python doesn\'t allow a the creation of a non initialized variables')
+print('--------------------------------------------------')
+print('Anyways, we can emulate that using the None value')
+none_variable = None
+print(none_variable) # Output: None
+
+print()
+print('##################################################')
+print('# Lists - Different ways to create one')
+print('##################################################')
+print('There are not much ways to create a list')
+print('--------------------------------------------------')
+print('Using list literals')
+print(['apple', 'banana', 'cherry']) # Output: ['apple', 'banana', 'cherry']
+
+print('\nUsing NumPy arrays')
+# pip install numpy
+import numpy as np
+print(np.array([1, 2, 3, 4, 5])) # Output: [1 2 3 4 5]
+
+print('\nAssigning values to each list/nparray position')
+list_assign = [1, 2, 3]
+# First element in every array
+list_assign[0] = 10
+# Last element in a 3 elements array
+list_assign[2] = 50
+print(list_assign) # Output: [10, 2, 50]
+
+print('\nObtaining list/nparray size')
+print('--------------------------------------------------')
+print('Obtaining size from list using len()')
+print(len(['apple', 'banana', 'cherry'])) # Output: 3
+
+print('\nObtaining size from nparray using len()')
+print(len(np.array(['apple', 'banana', 'cherry']))) # Output: 3
+
+print('\nObtaining size from nparray using .size')
+print(np.array(['apple', 'banana', 'cherry']).size) # Output: 3
+
+print('\nAcessing list/nparray first element')
+print(['apple', 'banana', 'cherry'][0]) # Output: apple
+
+print('\nAcessing list/nparray last element')
+print('--------------------------------------------------')
+print('Using len()')
+list_last_element = [ 'apple', 'banana', 'cherry' ]
+print(list_last_element[len(list_last_element) - 1]) # Output: cherry
+
+print('\nUsing reverse indexing')
+list_last_element = [ 'apple', 'banana', 'cherry' ]
+print(list_last_element[-1]) # Output: cherry
+
+print()
+print('##################################################')
 print('# Filter list of dict by dict key')
 print('##################################################')
 print('\nFiltering where age is higher then 30')
