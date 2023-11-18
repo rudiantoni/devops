@@ -1,7 +1,8 @@
 #!/bin/bash
 
-javac Snippets.java
-javac Teste.java
+javac *.java
+
 java Snippets
-rm Snippets.class
-rm Teste.class
+
+rm *.class
+
