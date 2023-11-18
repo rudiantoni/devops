@@ -15,6 +15,8 @@ If you don't have node installed, create a generic (index.html) page and add thi
 console.log('##################################################')
 console.log('# Default non initialized variable values')
 console.log('##################################################')
+console.log('JS contains no types, but still allows to create non initialized variables')
+console.log('--------------------------------------------------')
 
 console.log('\nUsing let or var')
 let noValueVariable
