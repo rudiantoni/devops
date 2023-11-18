@@ -8,6 +8,72 @@ Or
 If you don't have node installed, create a generic (index.html) page and add this script in the <head> tag:
   <script src="./snippets.js"></script>
 */
+/**
+ * Array
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+ */
+console.log('##################################################')
+console.log('# Default non initialized variable values')
+console.log('##################################################')
+
+console.log('\nUsing let or var')
+let noValueVariable
+console.log(noValueVariable) // Output: undefined
+
+console.log()
+console.log('##################################################')
+console.log('# Arrays - Different ways to create one')
+console.log('##################################################')
+console.log('There\'s some different ways to create arrays in JS, there are some.')
+console.log('--------------------------------------------------')
+
+console.log('\nUsing array literals')
+console.log(['apple', 'banana', 'cherry']) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing array constructor')
+console.log(new Array('apple', 'banana', 'cherry')) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing array.from() this way you can "copy" the array')
+console.log(Array.from(['apple', 'banana', 'cherry'])) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing array.of()')
+console.log(Array.of('apple', 'banana', 'cherry')) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing spread opeartor this way you can "copy" the array')
+console.log([...['apple', 'banana', 'cherry']]) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing .fill()')
+console.log(new Array(5).fill('apple')) // Output: [ 'apple', 'apple', 'apple', 'apple', 'apple' ]
+
+console.log('\nUsing .concat()')
+console.log(['apple'].concat(['banana', 'cherry'])) // Output: [ 'apple', 'banana', 'cherry' ]
+
+console.log('\nUsing destructuring on an iterable')
+const [destructStrToArrA, destructStrToArrB] = 'ab'
+console.log([destructStrToArrA, destructStrToArrB]) // Output: [ 'a', 'b' ]
+
+console.log('\nUsing spreading on an iterable')
+console.log([...'ab']) // Output: [ 'a', 'b' ]
+
+console.log('\nAssigning values to each array position')
+const createArrayAccess = [ 'apple', 'banana', 'cherry' ]
+// First element in every array
+createArrayAccess[0] = 'orange'
+// Last element in a 3 elements array
+createArrayAccess[2] = 'pear'
+console.log(createArrayAccess) // Output: [ 'orange', 'banana', 'pear' ]
+
+console.log('\nObtaining array size')
+console.log(['apple', 'banana', 'cherry'].length) // Output: 3
+
+console.log('\nAcessing array first element')
+console.log(['apple', 'banana', 'cherry'][0]) // Output: apple
+
+console.log('\nAcessing array last element')
+const createArrayAccessLast = [ 'apple', 'banana', 'cherry' ]
+console.log(createArrayAccessLast[createArrayAccessLast.length - 1]) // Output: cherry
+
+console.log()
 console.log('##################################################')
 console.log('# Filter list of objects by object property')
 console.log('##################################################')
