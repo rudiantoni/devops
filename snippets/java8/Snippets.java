@@ -84,14 +84,6 @@ public class Snippets {
     print("\nAssigning values to each array position");
     print("--------------------------------------------------");
     arr4[0] = 262; // First element in every array
-    arr4[1] = 860;
-    arr4[2] = 56;
-    arr4[3] = 69;
-    arr4[4] = 112;
-    arr4[5] = -425;
-    arr4[6] = 303;
-    arr4[7] = 377;
-    arr4[8] = 181;
     arr4[9] = -65; // Last element in a 10 elements array
 
     print("\nArray literals: Declare, initialize and assign values to an array and each of its elements");
