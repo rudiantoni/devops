@@ -571,6 +571,11 @@ public class Snippets {
       .collect(Collectors.toList())
     ); // Output: [James, Julie, Jenna]
 
+
+    /*
+    TODO: ATUALIZAR COM A UTILIZAÇÃO DE RUNNABLE (VER método de passar função em lambda, parecido com as arrow functions do JS)
+    */
+
   }
 
   private static void print(Object o) {
