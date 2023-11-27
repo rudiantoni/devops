@@ -364,6 +364,18 @@ public class Snippets {
 
     print();
     print("##################################################");
+    print("# Other Lists operations");
+    print("##################################################");
+    print("Shuffle a list, by shuffle I mean re-order the elements in a pseudo-random order");
+    print("--------------------------------------------------");
+    List<Integer> listShuffle = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    for (int i = 0; i < 3; i++) {
+      Collections.shuffle(listShuffle);
+      print(listShuffle); // Output: unknown, but it must be different orderings of the listShuffle list.
+    }
+    
+    print();
+    print("##################################################");
     print("# String operations");
     print("##################################################");
     print("Check string contains text");
