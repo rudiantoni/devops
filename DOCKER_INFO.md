@@ -16,6 +16,8 @@
 | List files on container configuration directory (overlay2) | `sudo ls -ahl /var/lib/docker/containers/$(sudo docker ps -af "name=[container_name]" -q --no-trunc)` |
 | List files on container configuration directory (snap) | `sudo ls -ahl /var/snap/docker/common/var-lib-docker/containers/$(sudo docker ps -af "name=[container_name]" -q --no-trunc)` |
 | Browse to the container configuration directory (overlay2) | `cd /var/lib/docker/containers/$(sudo docker ps -af "name=container_name" -q --no-trunc)` |
+| Remove all stopped containers, all unused networks, all unused images and all build cache  |`docker system prune -a` |
+
 
 ## Common info
 
