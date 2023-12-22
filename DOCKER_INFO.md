@@ -8,7 +8,7 @@
 
 | Description | Specification |
 |-------------|:--------------|
-| Open shell inside a container | `sudo docker exec -it container_name bash` <br /> `sudo docker exec -it container_name /bin/bash` |
+| Open shell inside a container | `sudo docker exec -it container_name bash` <br /> `sudo docker exec -it container_name /bin/bash`|
 | Copy file from local machine to container | `sudo docker cp [local_file_path] [container_name]:[container_file_path]` |
 | Read IPs file inside a UNIX-based container | `sudo docker exec container_name cat /etc/hosts` |
 | Check daemon storage driver | `sudo docker info \| grep 'Storage Driver' -i` |
@@ -17,6 +17,8 @@
 | List files on container configuration directory (snap) | `sudo ls -ahl /var/snap/docker/common/var-lib-docker/containers/$(sudo docker ps -af "name=[container_name]" -q --no-trunc)` |
 | Browse to the container configuration directory (overlay2) | `cd /var/lib/docker/containers/$(sudo docker ps -af "name=container_name" -q --no-trunc)` |
 | Remove all stopped containers, all unused networks, all unused images and all build cache  | `sudo docker system prune -a` |
+| Lists all images | `sudo docker images` |
+| Remove untagged images | `sudo docker rmi -f $(sudo docker images -q -f "dangling=true") 2> /dev/null` <br /> `sudo docker images -q -f "dangling=true" \| sudo xargs --no-run-if-empty docker rmi -f` |
 
 
 ## Common info
