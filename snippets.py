@@ -57,6 +57,20 @@ print('\nUsing reverse indexing')
 list_last_element = [ 'apple', 'banana', 'cherry' ]
 print(list_last_element[-1]) # Output: cherry
 
+# TODO: usar esta estrutura como exemplo
+print('\nCreate an array from a range of indexes from another array')
+print('--------------------------------------------------')
+print('\nUsing start index and end index (exclusive), example')
+list_sub = ['a', 'b', 'c', 'd', 'e']
+print(list_sub[2:4]) # Output: ['c', 'd']
+
+print('\nUsing start index and end index (exclusive), without the first element')
+print(list_sub[1:len(list_sub)]) # Output: ['b', 'c', 'd', 'e']
+
+print('\nUsing start index and end index (exclusive), without the last element')
+print(list_sub[0:len(list_sub) - 1]) # Output: ['a', 'b', 'c', 'd']
+# TODO: estrutura de exemplo até aqui
+
 print()
 print('##################################################')
 print('# Filter list of dict by dict key')
