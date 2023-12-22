@@ -214,6 +214,11 @@ print('\nUsing (regex) re module .search() function in a if condition')
 print(True) if (re.search(search_a, main_string)) else print(False) # Output: True
 print(True) if (re.search(search_b, main_string)) else print(False) # Output: False
 
+print('Split a string into an list by delimiter')
+print('--------------------------------------------------')
+split_string = 'apple,banana,cherry'
+print(split_string.split(',')) # Output: ['apple', 'banana', 'cherry']
+
 print()
 print('##################################################')
 print('# Truthy and falsy (true and false) values checking')
