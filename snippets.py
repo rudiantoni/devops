@@ -13,6 +13,17 @@ print(none_variable) # Output: None
 
 print()
 print('##################################################')
+print('# Dictionaries operations')
+print('##################################################')
+print('Check dictionary contains key (key exists in dictionary)')
+print('--------------------------------------------------')
+print('Using in operator')
+dict_check_key_exists = meu_dicionario = {'chave1': 'valor1', 'chave2': 'valor2', 'chave3': 'valor3'}
+print('chave2' in dict_check_key_exists) # Output: True
+print('chave10' in dict_check_key_exists) # Output: False
+
+print()
+print('##################################################')
 print('# Lists - Different ways to create one')
 print('##################################################')
 print('There are not much ways to create a list')
@@ -214,10 +225,20 @@ print('\nUsing (regex) re module .search() function in a if condition')
 print(True) if (re.search(search_a, main_string)) else print(False) # Output: True
 print(True) if (re.search(search_b, main_string)) else print(False) # Output: False
 
-print('Split a string into an list by delimiter')
+print('\nSplit a string into an list by delimiter')
 print('--------------------------------------------------')
 split_string = 'apple,banana,cherry'
 print(split_string.split(',')) # Output: ['apple', 'banana', 'cherry']
+
+print('\nTransform a string in lowercase')
+print('--------------------------------------------------')
+lower_string = 'APPLE'
+print(lower_string.lower()) # Output: apple
+
+print('\nTransform a string in uppercase')
+print('--------------------------------------------------')
+upper_string = 'apple'
+print(upper_string.upper()) # Output: APPLE
 
 print()
 print('##################################################')
