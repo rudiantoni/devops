@@ -337,8 +337,16 @@ console.log('# Repetitive structures')
 console.log('##################################################')
 console.log('Looping through a range of numbers from 1 to 10')
 console.log('--------------------------------------------------')
+console.log('\nUsing for...i array looping by index')
 for (let i = 1; i <= 10; i++) {
   console.log(i);
+}
+// Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+
+console.log('\nUsing for...of iteration over array elements')
+const arrLoopIteration = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+for (item of arrLoopIteration) {
+  console.log(item);
 }
 // Output: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
