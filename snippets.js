@@ -26,7 +26,7 @@ console.log()
 console.log('##################################################')
 console.log('# Arrays - Different ways to create one')
 console.log('##################################################')
-console.log('There\'s some different ways to create arrays in JS, there are some.')
+console.log('There\'s some different ways to create arrays in JS, some.')
 console.log('--------------------------------------------------')
 
 console.log('\nUsing array literals')
@@ -426,6 +426,22 @@ Object.entries(objPropLoop).forEach(([key, value], index) => {
 1 age 25
 2 occupation Developer
 */
+
+console.log()
+console.log('##################################################')
+console.log('# Objects - Different ways to create one')
+console.log('##################################################')
+console.log('There\'s not so much different ways to create objects in JS.')
+console.log('--------------------------------------------------')
+
+console.log('\nUsing Object.fromEntries() with a KEY VALUE PAIR ARRAY (array of 2 elements sized arrays)')
+const arrEntries = [
+  ['nome', 'João'],
+  ['idade', 30],
+  ['cidade', 'São Paulo']
+];
+const objFromArrEntries = Object.fromEntries(arrEntries)
+console.log(objFromArrEntries) // Output: { nome: 'João', idade: 30, cidade: 'São Paulo' }
 
 console.log()
 console.log('##################################################')
