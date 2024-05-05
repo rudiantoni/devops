@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  pg_base_15:
-    container_name: pg-base-15
-    image: postgres:15
+  pg_base_16:
+    container_name: pg-base-16
+    image: postgres:16
     restart: unless-stopped
     # network_mode: host
     logging:
@@ -11,7 +11,7 @@ services:
         max-file: "5"
         max-size: "20m"
     healthcheck:
-      test: psql --echo-all --username postgres --dbname postgres --command="SELECT VERSION();"
+      test: psql --echo-all --username postgres --dbname postgres --command="SELECT VERSION();" 
       interval: 10s
       retries: 15
       start_period: 5s
@@ -31,5 +31,5 @@ services:
   #   container_name: application
   #   image: [img]
   #   depends_on:
-  #     pg_base_15:
+  #     pg_base_16:
   #       condition: service_healthy
