@@ -1,4 +1,7 @@
 @ECHO OFF
+@REM --------------------------------------------------
+@REM Currently working on: Windows 10 (add more here when working on other OSs)
+@REM --------------------------------------------------
 @REM 
 @REM This script creates files based in utc timestamp granting liabilty when creating database migrations.
 @REM By default, the file will be empty and placed inside a directory called migration.
@@ -10,7 +13,9 @@
 @REM Just enter a name you want when asked, and it will be created with the following pattern:
 @REM OUTPUT_FILE_PREFIX + CURRENT_UTC_TIMESTAMP + "__" + MIGRATION_FILE_NAME + OUTPUT_FILE_SUFFIX
 @REM 
+
 SETLOCAL
+
 :: SETTINGS START
 SET MIGRATION_OUTPUT_FOLDER=./migration
 SET OUTPUT_FILE_PREFIX=V
@@ -43,8 +48,8 @@ ECHO --------------------------------------------------
 ECHO Finished creating migration file.
 ECHO --------------------------------------------------
 
-GOTO :jumpFunctions
 :: START AUXILIAR FUNCTIONS
+GOTO :jumpAuxiliarFunctions
 :getCurrentUtcTimestamp
   FOR /F "tokens=2 delims==" %%i IN ('WMIC TIMEZONE GET BIAS /VALUE') DO SET /A inputTzOffsetMinutes=%%i
   FOR /F "delims=" %%A in ('powershell -Command "Get-Date -UFormat '%%s'"') do SET "currentDateTime=%%A"
@@ -52,7 +57,5 @@ GOTO :jumpFunctions
   SET /A currentLocalTimestamp=%currentDateTime:~0,10%
   SET /A currentLocalToUtcTimestamp=%currentLocalTimestamp%-%tzOffsetSeconds%
   SET %1=%currentLocalToUtcTimestamp%
+:jumpAuxiliarFunctions
 :: END AUXILIAR FUNCTIONS
-:jumpFunctions
-
-@REM PAUSE

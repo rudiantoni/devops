@@ -1,4 +1,7 @@
 @ECHO OFF
+@REM --------------------------------------------------
+@REM Currently working on: Windows 10 (add more here when working on other OSs)
+@REM --------------------------------------------------
 @REM 
 @REM This script creates files based in utc timestamp granting liabilty when creating database migrations.
 @REM By default, the migration file will be empty but the rollback will be created with a warning text at the top.
@@ -11,7 +14,9 @@
 @REM Just enter a name you want when asked, and it will be created with the following pattern:
 @REM OUTPUT_FILE_PREFIX + CURRENT_UTC_TIMESTAMP + "__" + [MIGRATION_FILE_NAME or ROLLBACK_FILE_NAME] + OUTPUT_FILE_SUFFIX
 @REM 
+
 SETLOCAL
+
 :: SETTINGS START
 SET MIGRATION_OUTPUT_FOLDER=./migration
 SET ROLLBACK_OUTPUT_FOLDER=./rollback
@@ -51,20 +56,16 @@ ECHO Creating migration file %MIGRATION_FILE_NAME% in %MIGRATION_OUTPUT_FOLDER%
 TYPE NUL > "%MIGRATION_PATH%\%MIGRATION_FILE_NAME%"
 
 ECHO Creating rollback file %ROLLBACK_FILE_NAME% in %ROLLBACK_OUTPUT_FOLDER%
-> "%ROLLBACK_PATH%\%ROLLBACK_FILE_NAME%" (
-  <NUL SET /P="-- --------------------------------------------"
-  ECHO.
-  <NUL SET /P="-- WARNING: THIS IS A DATABASE ROLLBACK SCRIPT!"
-  ECHO.
-  <NUL SET /P="-- --------------------------------------------"
-)
+ECHO -- -------------------------------------------- >> %ROLLBACK_PATH%\%ROLLBACK_FILE_NAME%
+ECHO -- WARNING: THIS IS A DATABASE ROLLBACK SCRIPT! >> %ROLLBACK_PATH%\%ROLLBACK_FILE_NAME%
+ECHO -- -------------------------------------------- >> %ROLLBACK_PATH%\%ROLLBACK_FILE_NAME%
 
 ECHO --------------------------------------------------
 ECHO Finished creating migration and rollback files.
 ECHO --------------------------------------------------
 
-GOTO :jumpFunctions
 :: START AUXILIAR FUNCTIONS
+GOTO :jumpAuxiliarFunctions
 :getCurrentUtcTimestamp
   FOR /F "tokens=2 delims==" %%i IN ('WMIC TIMEZONE GET BIAS /VALUE') DO SET /A inputTzOffsetMinutes=%%i
   FOR /F "delims=" %%A in ('powershell -Command "Get-Date -UFormat '%%s'"') do SET "currentDateTime=%%A"
@@ -72,7 +73,5 @@ GOTO :jumpFunctions
   SET /A currentLocalTimestamp=%currentDateTime:~0,10%
   SET /A currentLocalToUtcTimestamp=%currentLocalTimestamp%-%tzOffsetSeconds%
   SET %1=%currentLocalToUtcTimestamp%
+:jumpAuxiliarFunctions
 :: END AUXILIAR FUNCTIONS
-:jumpFunctions
-
-@REM PAUSE
