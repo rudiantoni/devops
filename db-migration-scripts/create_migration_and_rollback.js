@@ -10,7 +10,7 @@
  * They will be placed inside a directory called migration and rollback.
  * Those must be in the same directory level as the script.
  * 
- * If you want to create a migration without rollback, use the create_migration.sh script instead.
+ * If you want to create a migration without rollback, use the create_migration.js script instead.
  * If you want to change the output directory, change MIGRATION_OUTPUT_FOLDER and/or ROLLBACK_OUTPUT_FOLDER.
  * 
  * Just enter a name you want when asked, and it will be created with the following pattern:
@@ -62,12 +62,13 @@ const run = async () => {
 
   console.log(`Creating migration file ${migrationFileName} in ${MIGRATION_OUTPUT_FOLDER}`)
   await fs.writeFile(migrationFileCreationPath, '');
+
   let rollbackFileStarterContent = '-- --------------------------------------------\n'
   rollbackFileStarterContent += '-- WARNING: THIS IS A DATABASE ROLLBACK SCRIPT!\n'
   rollbackFileStarterContent += '-- --------------------------------------------'
-
   console.log(`Creating rollback file ${rollbackFileName} in ${ROLLBACK_OUTPUT_FOLDER}`)
   await fs.writeFile(rollbackFileCreationPath, rollbackFileStarterContent);
+  
   console.log('--------------------------------------------------');
   console.log('Finished creating migration and rollback files.');
   console.log('--------------------------------------------------');
