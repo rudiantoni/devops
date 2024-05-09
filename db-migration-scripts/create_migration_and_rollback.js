@@ -16,6 +16,7 @@
  * Just enter a name you want when asked, and it will be created with the following pattern:
  * OUTPUT_FILE_PREFIX + CURRENT_UTC_TIMESTAMP + "__" + [MIGRATION_FILE_NAME or ROLLBACK_FILE_NAME] + OUTPUT_FILE_SUFFIX
  */
+
 const readline = require('node:readline/promises');
 const fs = require('fs/promises');
 const fsSync = require('fs');
@@ -65,7 +66,7 @@ const run = async () => {
 
   let rollbackFileStarterContent = '-- --------------------------------------------\n'
   rollbackFileStarterContent += '-- WARNING: THIS IS A DATABASE ROLLBACK SCRIPT!\n'
-  rollbackFileStarterContent += '-- --------------------------------------------'
+  rollbackFileStarterContent += '-- --------------------------------------------\n'
   console.log(`Creating rollback file ${rollbackFileName} in ${ROLLBACK_OUTPUT_FOLDER}`)
   await fs.writeFile(rollbackFileCreationPath, rollbackFileStarterContent);
   

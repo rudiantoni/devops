@@ -15,6 +15,7 @@
  * Just enter a name you want when asked, and it will be created with the following pattern:
  * OUTPUT_FILE_PREFIX + CURRENT_UTC_TIMESTAMP + "__" + MIGRATION_FILE_NAME + OUTPUT_FILE_SUFFIX
  */
+
 const readline = require('node:readline/promises');
 const fs = require('fs/promises');
 const fsSync = require('fs');
