@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   sqlserver_base_2019:
     container_name: sqlserver-base-2019
