@@ -12,6 +12,7 @@ services:
         max-size: "20m"
     healthcheck:
       test: psql --echo-all --username postgres --dbname postgres --command="SELECT VERSION();" 
+      # test: psql --echo-all --username $$POSTGRES_USER --dbname $$POSTGRES_DB --command="SELECT VERSION();"
       interval: 10s
       retries: 15
       start_period: 5s
