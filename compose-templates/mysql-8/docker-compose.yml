@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  mysql_base_8:
+    container_name: mysql-base-8
+    image: mysql:8
+    restart: unless-stopped
+    # network_mode: host
+    logging:
+      options:
+        max-file: "5"
+        max-size: "20m"
+    healthcheck:
+      # test: mysql --user=root --password=mysqlrootpass --execute="SELECT VERSION();"
+      test: mysql --user=root --password=$$MYSQL_ROOT_PASSWORD --execute="SELECT VERSION();"
+      interval: 10s
+      retries: 15
+      start_period: 5s
+      timeout: 20s
+    environment:
+      - "MYSQL_DATABASE=mysqldb"
+      - "MYSQL_USER=mysqluser"
+      - "MYSQL_PASSWORD=mysqlpass"
+      - "MYSQL_ROOT_PASSWORD=mysqlrootpass"
+      # - "TZ=UTC"
+      # - "TZ=America/Sao_Paulo"
+    ports:
+      - 3306:3306
+    # volumes:
+      # - ./[data-dir]:/var/lib/mysql
+      # - ./[init-dir]:/docker-entrypoint-initdb.d/ # use .sh, .sql, run in alphabetical order
+  # application:
+  #   container_name: application
+  #   image: [img]
+  #   depends_on:
+  #     mysql_base_8:
+  #       condition: service_healthy
