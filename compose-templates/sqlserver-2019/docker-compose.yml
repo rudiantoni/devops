@@ -1,33 +1,45 @@
 version: "3"
+
+# Notes:
+# The services.[service].user property is defined as "root" so any command with docker exec can be run as root
+# The database password must have at least 8 characters and must follow at least 3 of these characters rules:
+#   - Contain uppercase letters
+#   - Contain lowercase letters
+#   - Contain base 10 digits (numbers)
+#   - Contain symbols
+# Default (non-changeable) user is "sa"
+# Default (non-changeable) database is "master"
+# Special instruction for entrypoint configurations: https://github.com/microsoft/mssql-docker/tree/master/linux/preview/examples/mssql-customize
+
 services:
   sqlserver_base_2019:
     container_name: sqlserver-base-2019
     image: mcr.microsoft.com/mssql/server:2019-latest
-    user: root
     restart: unless-stopped
+    user: root
     # network_mode: host
     logging:
       options:
         max-file: "5"
         max-size: "20m"
     healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -U sa -P 'master' -Q 'SELECT 1'
+      test: /opt/mssql-tools/bin/sqlcmd -U sa -P "masterDB123" -Q "SELECT @@VERSION"
+      # test: /opt/mssql-tools/bin/sqlcmd -U sa -P "$$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION"
       interval: 10s
       retries: 15
       start_period: 5s
       timeout: 20s
     environment:
-      - "MSSQL_SA_PASSWORD=master"
+      - "MSSQL_SA_PASSWORD=masterDB123"
       - "ACCEPT_EULA=Y"
-      # - "TZ=UTC-3"
-      # Default database: master
+      # - "TZ=UTC"
+      # - "TZ=America/Sao_Paulo"
     ports:
       - 1433:1433
-    volumes:
-      - ./[data-dir]:/var/opt/mssql/data
-      - ./[bkup-dir]:/opt/backup
-      # Special instruction for entrypoint configurations:
-      # https://github.com/microsoft/mssql-docker/tree/master/linux/preview/examples/mssql-customize
+    # volumes:
+      # - ./[bkup-dir]:/opt/backup
+      # - ./[data-dir]:/var/opt/mssql/data
+      # - ./[init-dir]:(follow instructions above) 
   # application:
   #   container_name: application
   #   image: [img]
