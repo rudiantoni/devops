@@ -47,6 +47,7 @@ TYPE NUL > "%MIGRATION_PATH%\%MIGRATION_FILE_NAME%"
 ECHO --------------------------------------------------
 ECHO Finished creating migration file.
 ECHO --------------------------------------------------
+ECHO.
 
 :: START AUXILIAR FUNCTIONS
 GOTO :jumpAuxiliarFunctions

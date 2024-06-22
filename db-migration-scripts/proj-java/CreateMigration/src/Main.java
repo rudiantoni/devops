@@ -5,7 +5,7 @@
  * $ java -jar CreateMigration.jar
  * --------------------------------------------------
  *
- * This application creates files based in utc timestamp granting liabilty when creating database migrations.
+ * This application creates files based in utc timestamp granting liability when creating database migrations.
  * By default, the file will be empty and placed inside a directory called migration.
  * Those must be in the same directory level as the application.
  *
@@ -52,7 +52,7 @@ public class Main {
 
       System.out.println("--------------------------------------------------");
       System.out.println("Finished creating migration file.");
-      System.out.print("--------------------------------------------------");
+      System.out.println("--------------------------------------------------");
 
     } catch (Exception e) {
       System.out.println("Error creating migration");

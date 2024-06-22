@@ -63,6 +63,7 @@ ECHO -- -------------------------------------------- >> %ROLLBACK_PATH%\%ROLLBAC
 ECHO --------------------------------------------------
 ECHO Finished creating migration and rollback files.
 ECHO --------------------------------------------------
+ECHO.
 
 :: START AUXILIAR FUNCTIONS
 GOTO :jumpAuxiliarFunctions

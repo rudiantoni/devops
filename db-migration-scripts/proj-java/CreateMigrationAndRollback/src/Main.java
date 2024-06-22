@@ -66,10 +66,10 @@ public class Main {
 
       System.out.println("--------------------------------------------------");
       System.out.println("Finished creating migration and rollback files.");
-      System.out.print("--------------------------------------------------");
+      System.out.println("--------------------------------------------------");
 
     } catch (Exception e) {
-      System.out.println("Error creating migration");
+      System.out.println("Error creating migration and rollback");
       e.printStackTrace();
     } finally {
       sc.close();
