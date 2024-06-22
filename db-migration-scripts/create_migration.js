@@ -1,11 +1,11 @@
 /**
- * Requires NodeJS >= 18
+ * Requires NodeJS 18+
  * --------------------------------------------------
  * Run with
  * $ node create_migration.js
  * --------------------------------------------------
  * 
- * This script creates files based in utc timestamp granting liabilty when creating database migrations.
+ * This script creates files based in utc timestamp granting liability when creating database migrations.
  * By default, the file will be empty and placed inside a directory called migration.
  * Those must be in the same directory level as the script.
  * 

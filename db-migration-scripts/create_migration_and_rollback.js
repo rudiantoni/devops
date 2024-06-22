@@ -1,11 +1,11 @@
 /**
- * Requires NodeJS >= 18
+ * Requires NodeJS 18+
  * --------------------------------------------------
  * Run with
  * $ node create_migration_and_rollback.js
  * --------------------------------------------------
  * 
- * This script creates files based in utc timestamp granting liabilty when creating database migrations.
+ * This script creates files based in utc timestamp granting liability when creating database migrations.
  * By default, the migration file will be empty but the rollback will be created with a warning text at the top.
  * They will be placed inside a directory called migration and rollback.
  * Those must be in the same directory level as the script.
