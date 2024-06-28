@@ -12,6 +12,7 @@ If you don't have node installed, create a generic (index.html) page and add thi
  * Array
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
  */
+
 console.log('##################################################')
 console.log('# Default non initialized variable values')
 console.log('##################################################')
@@ -655,3 +656,21 @@ function getRandomInt(min, max) {
 ***************************************************************************************************************************************************
 ***************************************************************************************************************************************************
 ****************************************************************************************************************************************************/
+
+// TODO: Atualizar com didática similar a do Java.
+// Também adicionar snippets sobre classes em JS.
+
+// Requer ES2022, e/ou TS 3.8+
+class Teste {
+  #serio() {
+    console.log('EH ISSO')
+  }
+  teste() {
+    this.#serio();
+    console.log('qualleeee')
+  }
+}
+
+const t = new Teste();
+t.teste();
+//t.#serio(); // Erro

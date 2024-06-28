@@ -1,13 +1,22 @@
 # DevOps
 
-- Others
+- [Compose templates](./compose-templates/)
+<!-- TODO: ATUALIZAR AQUI, ESPELHAR ESTRUTURA EM PASTAS -->
+
+- [Custom docker images](./custom-docker-images/)
+  - [PostgreSQL 15](./custom-docker-images/postgres-15/)
+    - Reference: [PostgreSQL Official Docker Image](https://hub.docker.com/_/postgres): Allows you to initialize with multiple database while keeping the PostgreSQL compatibility and much more.
+
+- Snippets
+  - [Java 8 snippets](./snippets/java8/Snippets.java)
+  - [JavaScript snippets](./snippets/snippets.js)
+  - [Python snippets](./snippets/snippets.py)
+  - [SQL snippets for Microsoft SQL Server](./snippets/queries_sqlserver.sql)
+  - [SQL snippets for PostgreSQL](./snippets/queries_postgres.sql)
+
+- Info
   - [Common info](./COMMON_INFO.md)
   - [Docker info](./DOCKER_INFO.md)
-  - [Java 8 snippets](./snippets/java8/Snippets.java)
-  - [JavaScript snippets](./snippets.js)
-  - [Python snippets](./snippets.py)
-  - [SQL snippets for Microsoft SQL Server](./queries_sqlserver.sql)
-  - [SQL snippets for PostgreSQL](./queries_postgres.sql)
 
 - Content
   - [MySQL](#mysql)
@@ -129,11 +138,6 @@ VIEW, WAITFOR, WHEN, WHERE, WHILE, WITH, WRITETEXT.
 | Reset a sequence | `ALTER SEQUENCE [sequence_name] RESTART WITH 1;` |
 | Set sequence value | `SELECT setval('[sequence_name]', 20, true); -- Next value would be 21;` |
 | Date format in query usage | `'yyyy-MM-dd HH:mm:ss.000'` |
-
-### Custom images
-- [PostgreSQL 15](https://github.com/rudiantoni/devops/tree/main/postgres/15)
-  - Reference: [PostgreSQL Official Docker Image](https://hub.docker.com/_/postgres)
-  - Docker image based on the default PostgreSQL Docker Official image, which allows you to initialize with multiple database while keeping the PostgreSQL compatibility and much more.
 
 ### CLI operations for Linux Ubuntu (postgres)
 - CLI tools: *pg_dump*, *pg_restore*, *psql*
