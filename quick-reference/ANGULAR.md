@@ -1,23 +1,76 @@
 # Angular
 
+## References
 
-## Modificadores de acesso
+- [Home • Angular](https://angular.io/)
+- [Playground • Angular](https://angular.dev/playground)
 
-- **public**: O modificador padrão. Propriedades e métodos com este modificador são acessíveis de qualquer lugar.
-- **private**: Propriedades e métodos com este modificador só são acessíveis dentro da própria classe. Eles não podem ser acessados de fora da classe, nem mesmo por subclasses.
-- **protected**: Propriedades e métodos com este modificador são acessíveis dentro da classe e por qualquer classe derivada (subclasse). No entanto, não são acessíveis de fora dessas classes.
-- **readonly**: Propriedades com este modificador só podem ser atribuídas durante a inicialização ou no construtor. Elas não podem ser modificadas depois.
+## Angular CLI
 
-Quando omitido, o modificador de acesso padrão aplicado é **public**.
+- **Installing**
+  - Requirements: Node and NPM
+  - To install the most updated verison of Angular CLI globally
+    - `$ npm install -g @angular/cli`
+    - Use `ng -v` or `ng help` to check if it was installed successfully
+  - To install a specific version of your Angular CLI
+    - `$ npm install -g @angular/cli@12`
 
-## Injeção de dependência
+- **Uninstalling**
+  - To uninstall the globally installed Angular CLI
+  - `npm uninstall -g @angular/cli`
 
-Dependências podem ser injetadas no construtor da classe do componente ou, utilizando a função `inject()` do Angular Core. Seu uso é recomendado também quando for necessário injetar dependências dentro de outras funções.
+## Iniciando um projeto
 
-## Formulários
+- To create the project
+- Run `$ ng new project-name`
+  - A *project-name* directory will be created in the current directory.
+  - The project version will match your current Angular CLI version
+  - Common setup:
+    - Style format: Sass (SCSS)
+    - Enable SSR: N
+- To test if it's working
+  - Run `$ cd project-name`
+  - Run `$ ng serve` or `$ ng s`
 
-As pricipais abordagens de formulários são: *template-driven* e *reactive*.
+### Common first steps
 
-Quando utilizar o *template-driven*, atente-se para a aplicação do `NgModel`, do `FormsModule`. Também é importante notar a utilização do `NgValue`, quando tiver que lidar com property binding do atributo `value` utilizando objetos ao invés de valores literais.
+- **Default starting structure**: Uses `AppComponent` as a routing point without common content between pages.
+  - In the template `app.component.html`: copy everything below the comment *End of Placeholder.*
+  - In the class `app.component.ts`: add the `template` property to the `@Component` decorator, and set its value to the content copied previously.
+  - In the class `app.component.ts`: remove the `templateUrl` and `styleUrl` properties from the `@Component` decorator.
+  - In the class `app.component.ts`: remove any existing code in the `AppComponent` class.
+  - Delete the files: `app.component.html`, `app.component.scss`, and `app.component.spec.ts`.
+  - Create your main component: `$ ng g c components/home`.
+  - In the router `app.routes.ts`: add the main component to the general route. It should look like this:
+```python
+import { Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+export const routes: Routes = [
+  {path: '', component: HomeComponent}
+];
+```
 
-Quando utilizar o *reactive*, atente-se para a aplicação do `FormControl`, `FormGroup` e `FormArray`. Ou, utilize o `FormBuilder` para substituir toda a cadeia de criação de objetos `Form*` por uma sintaxe mais compacta (previne vários `new` no código).
+- **Starting structure option A**: Uses `AppComponent` as a routing point with common content between pages.
+  - In the template `app.component.html`: remove everything above the comment *End of Placeholder.*
+  - In the template `app.component.html`: add the following content: `<p>app works!</p>`
+  - In the style `app.component.scss`: remove everything.
+
+## Access modifiers
+- **public**: The default modifier. Properties and methods with this modifier are accessible from anywhere.
+- **private**: Properties and methods with this modifier are only accessible within the class itself. They cannot be accessed from outside the class, not even by subclasses.
+- **protected**: Properties and methods with this modifier are accessible within the class and by any derived class (subclass). However, they are not accessible from outside these classes.
+- **readonly**: Properties with this modifier can only be assigned during initialization or in the constructor. They cannot be modified afterward.
+
+When omitted, the default access modifier applied is `public`.
+
+## Dependency injection
+
+Dependencies can be injected into the constructor of the component class or by using the inject() function from Angular Core. Its use is also recommended when dependencies need to be injected into other functions.
+
+## Forms
+
+The main approaches to forms are: *template-driven* and *reactive*.
+
+When using *template-driven* forms, pay attention to the application of `NgModel` from the `FormsModule`. It is also important to note the use of `NgValue` when dealing with property binding of the `value` attribute using objects instead of literal values.
+
+When using *reactive* forms, pay attention to the application of `FormControl`, `FormGroup`, and `FormArray`. Alternatively, use `FormBuilder` to replace the entire chain of `Form*` object creation with a more compact syntax (prevents multiple `new` statements in the code).
