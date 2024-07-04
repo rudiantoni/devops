@@ -8,6 +8,8 @@
   - [Starting a project](#starting-a-project)
     - [Creating](#creating)
     - [Common first steps](#common-first-steps)
+    - [Default starting structure](#default-starting-structure)
+    - [Starting structure option A](#starting-structure-option-a)
     - [Style bootstrap](#style-bootstrap)
     - [Common reset style](#common-reset-style)
   - [Information](#information)
@@ -61,27 +63,46 @@
 
 Uses `AppComponent` as a routing point without common content between pages.
 
-- **Angular 17**
+- **Common**
   - In the template `app.component.html`: copy everything below the comment *End of Placeholder.*
   - In the class `app.component.ts`: add the `template` property to the `@Component` decorator, and set its value to the content copied previously.
   - In the class `app.component.ts`: remove the `templateUrl` and `styleUrl` properties from the `@Component` decorator.
   - In the class `app.component.ts`: remove any existing code in the `AppComponent` class.
   - Delete the files: `app.component.html`, `app.component.scss`, and `app.component.spec.ts`.
   - Create your main component: `$ ng g c components/home`.
+- **Angular 17+**
   - In the router `app.routes.ts`: add the main component to the general route. It should look like this:
-```python
+```typescript
 import { Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 export const routes: Routes = [
   {path: '', component: HomeComponent}
 ];
 ```
+- **Angular 15 and 16**
+  - In the router `app-routing.module.ts`: add the main component to the general route. It should look like this:
+```typescript
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+
+const routes: Routes = [{
+  path: '', component: HomeComponent
+}];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
 
 #### Starting structure option A
+[[Top]](#)<br />
 
 Uses `AppComponent` as a routing point with common content between pages.
 
-- **Angular 17**: 
+- **Common**
   - In the template `app.component.html`: remove everything above the comment *End of Placeholder.*
   - In the template `app.component.html`: add the following content: `<p>app works!</p>`
   - In the style `app.component.scss`: remove everything.
