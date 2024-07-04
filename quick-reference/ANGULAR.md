@@ -14,7 +14,6 @@
     - [Access modifiers](#access-modifiers)
     - [Dependency injection](#dependency-injection)
     - [Forms](#forms)
-    
 
 ## Angular CLI
 [[Top]](#)<br />
