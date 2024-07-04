@@ -22,7 +22,7 @@
   - Requirements: Node and NPM
   - To install the most updated verison of Angular CLI globally
     - `$ npm install -g @angular/cli`
-    - Use `ng -v` or `ng help` to check if it was installed successfully
+    - Use `ng v` or `ng help` to check if it was installed successfully
   - To install a specific version of your Angular CLI
     - `$ npm install -g @angular/cli@12`
 
