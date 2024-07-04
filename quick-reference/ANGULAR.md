@@ -1,11 +1,23 @@
 # Angular
 
-## References
-
-- [Home • Angular](https://angular.io/)
-- [Playground • Angular](https://angular.dev/playground)
+- References
+  - [Home • Angular](https://angular.io/)
+  - [Playground • Angular](https://angular.dev/playground)
+- Content
+  - [Angular CLI](#angular-cli)
+  - [Starting a project](#starting-a-project)
+    - [Creating](#creating)
+    - [Common first steps](#common-first-steps)
+    - [Style bootstrap](#style-bootstrap)
+    - [Common reset style](#common-reset-style)
+  - [Information](#information)
+    - [Access modifiers](#access-modifiers)
+    - [Dependency injection](#dependency-injection)
+    - [Forms](#forms)
+    
 
 ## Angular CLI
+[[Top]](#)<br />
 
 - **Installing**
   - Requirements: Node and NPM
@@ -19,7 +31,11 @@
   - To uninstall the globally installed Angular CLI
   - `npm uninstall -g @angular/cli`
 
-## Iniciando um projeto
+## Starting a project
+[[Top]](#)<br />
+
+### Creating
+[[Top]](#)<br />
 
 - To create the project
 - Run `$ ng new project-name`
@@ -33,6 +49,7 @@
   - Run `$ ng serve` or `$ ng s`
 
 ### Common first steps
+[[Top]](#)<br />
 
 - **Default starting structure**: Uses `AppComponent` as a routing point without common content between pages.
   - In the template `app.component.html`: copy everything below the comment *End of Placeholder.*
@@ -55,7 +72,99 @@ export const routes: Routes = [
   - In the template `app.component.html`: add the following content: `<p>app works!</p>`
   - In the style `app.component.scss`: remove everything.
 
-## Access modifiers
+### Style bootstrap
+[[Top]](#)<br />
+
+> You can change every SCSS mentioned here by a CSS, just keeps following the same pattern.
+
+- Create a folder scss in *./src/*.
+- Create a folder base in *./src/scss/*.
+- Create a folder component in *./src/scss/*.
+- Create a folder layout in *./src/scss/*.
+- Create a folder theme in *./src/scss/*.
+- Create a file _index.scss in *./src/scss/*.
+- Create a file _index.scss in *./src/scss/base/*.
+- Create a file _index.scss in *./src/scss/component/*.
+- Create a file _index.scss in *./src/scss/layout/*.
+- Create a file _index.scss in *./src/scss/theme/*.
+- Create a file _variables.scss in *./src/scss/theme/*.
+- Edit the file *./src/styles.scss*
+```scss
+@import "scss";
+```
+- Edit the file *./src/scss/_index.scss*
+```scss
+@import "base/index";
+@import "component/index";
+@import "layout/index";
+@import "theme/index";
+```
+- Edit the file *./src/scss/theme/_index.scss*
+```scss
+@use "variables";
+```
+- Edit the file *./src/scss/theme/_variables.scss*
+```scss
+:root {
+  --primary: #2fbf71;
+  --primary-010: #21804d;
+
+  --white: #fff;
+  --black: #000;
+}
+```
+
+### Common reset style
+[[Top]](#)<br />
+
+```scss
+* {
+  box-sizing: border-box;
+
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  font-family: Roboto, "Helvetica neue";
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2, h3 {
+  font-size: 14px;
+}
+
+h1, h2, h3, a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+p {
+  color: var(--black);
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+```
+
+## Information
+[[Top]](#)<br />
+
+### Access modifiers
+[[Top]](#)<br />
+
 - **public**: The default modifier. Properties and methods with this modifier are accessible from anywhere.
 - **private**: Properties and methods with this modifier are only accessible within the class itself. They cannot be accessed from outside the class, not even by subclasses.
 - **protected**: Properties and methods with this modifier are accessible within the class and by any derived class (subclass). However, they are not accessible from outside these classes.
@@ -63,11 +172,13 @@ export const routes: Routes = [
 
 When omitted, the default access modifier applied is `public`.
 
-## Dependency injection
+### Dependency injection
+[[Top]](#)<br />
 
 Dependencies can be injected into the constructor of the component class or by using the inject() function from Angular Core. Its use is also recommended when dependencies need to be injected into other functions.
 
-## Forms
+### Forms
+[[Top]](#)<br />
 
 The main approaches to forms are: *template-driven* and *reactive*.
 
