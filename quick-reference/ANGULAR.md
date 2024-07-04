@@ -1,6 +1,6 @@
 # Angular
 
-- References
+- Useful links
   - [Home • Angular](https://angular.io/)
   - [Playground • Angular](https://angular.dev/playground)
 - Content
