@@ -3,6 +3,11 @@
 - Useful links
   - [Home • Angular](https://angular.io/)
   - [Playground • Angular](https://angular.dev/playground)
+  - [PrimeNG - Angular UI Component Library](https://primeng.org/)
+    - [PrimeNG (17) - Angular UI Component Library](https://primeng.org/installation)
+    - [PrimeNG (16 LTS) - Angular UI Component Library](https://www.primefaces.org/primeng-v16-lts/installation)
+    - [PrimeNG (15 LTS) - Angular UI Component Library](https://www.primefaces.org/primeng-v15-lts/installation)
+    - [Releases · primefaces/primeng](https://github.com/primefaces/primeng/releases)
 - Content
   - [Angular CLI](#angular-cli)
   - [Starting a project](#starting-a-project)
