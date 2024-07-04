@@ -40,9 +40,16 @@
 - Run `$ ng new project-name`
   - A *project-name* directory will be created in the current directory.
   - The project version will match your current Angular CLI version
-  - Common setup:
+- Common settings:
+  - Angular 17
     - Style format: Sass (SCSS)
     - Enable SSR: N
+  - Angular 16
+    - Style format: Sass (SCSS)
+    - Use Anguar routing: Y
+  - Angular 15
+    - Style format: Sass (SCSS)
+    - Use Anguar routing: Y
 - To test if it's working
   - Run `$ cd project-name`
   - Run `$ ng serve` or `$ ng s`
@@ -50,7 +57,11 @@
 ### Common first steps
 [[Top]](#)<br />
 
-- **Default starting structure**: Uses `AppComponent` as a routing point without common content between pages.
+#### Default starting structure
+
+Uses `AppComponent` as a routing point without common content between pages.
+
+- **Angular 17**
   - In the template `app.component.html`: copy everything below the comment *End of Placeholder.*
   - In the class `app.component.ts`: add the `template` property to the `@Component` decorator, and set its value to the content copied previously.
   - In the class `app.component.ts`: remove the `templateUrl` and `styleUrl` properties from the `@Component` decorator.
@@ -66,7 +77,11 @@ export const routes: Routes = [
 ];
 ```
 
-- **Starting structure option A**: Uses `AppComponent` as a routing point with common content between pages.
+#### Starting structure option A
+
+Uses `AppComponent` as a routing point with common content between pages.
+
+- **Angular 17**: 
   - In the template `app.component.html`: remove everything above the comment *End of Placeholder.*
   - In the template `app.component.html`: add the following content: `<p>app works!</p>`
   - In the style `app.component.scss`: remove everything.
