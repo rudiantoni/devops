@@ -160,3 +160,20 @@ WHERE (NOW() - pg_stat_activity.query_start) > INTERVAL '5 minutes';
 
 -- Cancel a running query by its PID (see previous query on how to obtain)
 SELECT pg_cancel_backend(pid);
+
+
+-- TODO: Atualizar com especificações, testes, versões de db, etc
+-- Criar banco de dados, usuário e dar acesso para ele
+CREATE DATABASE market;
+CREATE ROLE market
+	NOSUPERUSER
+	NOCREATEDB
+	CREATEROLE
+	INHERIT
+	LOGIN
+	REPLICATION
+	BYPASSRLS
+	PASSWORD 'market';
+
+GRANT ALL PRIVILEGES ON DATABASE market TO market;
+-- Fim TODO
