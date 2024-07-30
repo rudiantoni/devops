@@ -44,13 +44,14 @@ CREATE TABLE IF NOT EXISTS public.your_table_name (        -- public = schema
     
   CONSTRAINT pk_your_table_name PRIMARY KEY (id),      -- Default simple PK definition
   CONSTRAINT uk_your_table_name_ex_uk UNIQUE (ex_uk),  -- Default simple UK definition
-  -- CONSTRAINT pk_your_table_name PRIMARY KEY (ex_comp_pk_a, ex_comp_pk_b),                       -- Default composite PK definition
-  -- CONSTRAINT uk_your_table_name_ex_comp_uk_a_ex_comp_uk_b UNIQUE (ex_comp_uk_a, ex_comp_uk_b),  -- Default composite UK definition
+  CONSTRAINT fk_your_table_name_on_another_table FOREIGN KEY (ex_bigint_id) REFERENCES public.another_table(id),  -- Default FK definition
+  -- CONSTRAINT pk_your_table_name PRIMARY KEY (ex_comp_pk_a, ex_comp_pk_b),                                      -- Default composite PK definition
+  -- CONSTRAINT uk_your_table_name_ex_comp_uk_a_ex_comp_uk_b UNIQUE (ex_comp_uk_a, ex_comp_uk_b),                 -- Default composite UK definition
 );
 
--- Default FK definition
+-- Creating an FK after the table has been created
 ALTER TABLE public.your_table_name
-  ADD CONSTRAINT fk_your_table_name_another_table FOREIGN KEY (ex_bigint_id) REFERENCES public.another_table(id);
+  ADD CONSTRAINT fk_your_table_name_on_another_table FOREIGN KEY (ex_bigint_id) REFERENCES public.another_table(id);
 
 -- For tables without BIGSERIAL, you need to create SEQUENCES
 -- Create the table
