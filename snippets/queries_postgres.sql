@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS public.your_table_name (        -- public = schema
   ex_bigint_id      BIGINT,                                -- (references a BIGSERIAL from a FK) Alias: INT8
   ex_boolean        BOOLEAN,                               -- Alias: BOOL
   ex_vchar          VARCHAR(255),                          -- Name: CHARACTER VARYING
+  ex_real           REAL,                                  -- Alias: FLOAT4
+  ex_double         DOUBLE PRECISION,                      -- Alias: FLOAT8
+  ex_numeric_a      NUMERIC(4,0),                          -- Numeric(precision, scale), from -9999 to 9999 without decimal
+  ex_numeric_b      NUMERIC(8,4),                          -- From -9999.9999 to 9999.9999
+  ex_num_int        NUMERIC(10,0),                         -- Pseudo-equivalent numeric to int
+  ex_num_bigint     NUMERIC(19,0),                         -- Pseudo-equivalent numeric to bigin
+  ex_num_real       NUMERIC(7,3),                          -- Pseudo-equivalent numeric to real
+  ex_num_double     NUMERIC(15,6),                         -- Pseudo-equivalent numeric to double precision
   ex_text           TEXT,                                  -- Usage for stupids amount of text
   ex_ts             TIMESTAMP,                             -- Default for dates
   ex_not_null       VARCHAR(255) NOT NULL,                 -- Field that can't be NULL (everyone is NULL by default)
