@@ -16,42 +16,6 @@
 | Samba (file server) | 139, 445 |
 | SSH/SFTP (communication) | 22 |
 
-## Start projects
-
-### Vite
-- https://vitejs.dev/
-- https://vitejs.dev/guide/
-
-**[template_name] - Possible templates**
-- React with JavaScript: react
-- React with TypeScript: react-ts
-
-**Project generation command**
-
-```sh
-# npm 6.x
-npm create vite@latest [project_folder_name] --template [template_name]
-
-# npm 7+, extra double-dash is needed:
-npm create vite@latest [project_folder_name] -- --template [template_name]
-
-# yarn
-yarn create vite [project_folder_name] --template [template_name]
-
-# pnpm
-pnpm create vite [project_folder_name] --template [template_name]
-```
-
-**Project initialization**
-
-After running the project creation
-
-```sh
-cd [project_folder_name]
-npm install
-npm run dev
-```
-
 <!-- 
 | Description | Specification |
 |-------------|:--------------|
