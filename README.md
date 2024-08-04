@@ -46,6 +46,7 @@
 # Database
 
 ## MySQL
+[[Top]](#)<br />
 
 ### Common queries (mysql)
 
@@ -54,6 +55,7 @@
 | Check database version | `select version();` |
 
 ## Microsoft SQL Server
+[[Top]](#)<br />
 
 ### Common queries (sql server)
 
@@ -62,6 +64,7 @@
 | Check database version | `SELECT @@VERSION;` |
 
 ### CLI operations for Linux Ubuntu (sql server)
+
 - CLI tools: *sqlcmd*
 
 The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a SQL Server docker container.
@@ -70,9 +73,21 @@ The only possible backup in a Linux machine is a internal database backup, gener
 
 | Description | Specification |
 |-------------|:--------------|
-| Fixed full backup | `sqlcmd -S [host],[port] -C -U [user] -P [pass] -Q "BACKUP DATABASE [[db]] TO DISK = N'[backup_dir]/[db]_$(date +%Y-%m-%d_%H-%M-%S).dump' WITH NOFORMAT, NOINIT, NAME = '[db]', SKIP, NOREWIND, NOUNLOAD, STATS = 10"` <br /> `sudo chmod 775 [backup_dir]/[filename].dump` |
+| Fixed full backup | `( CMD=/opt/mssql-tools18/bin/sqlcmd && BKP_DIR=[backup_dir] && BKP_FILE=[db]_$(date +%Y-%m-%d_%H-%M-%S).dump && $CMD -C -S [host],[port] -U [user] -P [pass] -Q "BACKUP DATABASE [[db]] TO DISK = N'$BKP_DIR/$BKP_FILE' WITH NOFORMAT, NOINIT, NAME = '[db]', SKIP, NOREWIND, NOUNLOAD, STATS = 10" && chmod 775 $BKP_DIR/$BKP_FILE )` |
 
-<!-- TODO: adicionar o restore do banco SQLServer -->
+#### DUMP restore
+
+| Description | Specification |
+|-------------|:--------------|
+| Fixed full restore on master database<br />Needs to start database as single user mode<br />Database will shutdown after running successfully | `/opt/mssql-tools18/bin/sqlcmd -C -S [host],[port] -U [user] -P [pass] -Q "RESTORE DATABASE [master] FROM DISK = N'[file_name]' WITH FILE = 1, NOUNLOAD, REPLACE, STATS = 5"` |
+| Fixed full restore on other database | `/opt/mssql-tools18/bin/sqlcmd -C -S [host],[port] -U [user] -P [pass] -Q "RESTORE DATABASE [[db]] FROM DISK = N'[file_name]' WITH FILE = 1, NOUNLOAD, REPLACE, STATS = 5"` |
+
+- Always replace ALL OCCURRENCES of the placeholders shown in previous commands with the correct info
+  - `[backup_dir]`: backup directory eg.: */opt/backup*
+  - `[db]`: database name eg.: *localhost*
+  - `[host]`: database port eg.: *1433*
+  - `[user]`: database user
+  - `[pass]`: database password
 
 ### Reserved words (sql server)
 
@@ -98,6 +113,7 @@ VIEW, WAITFOR, WHEN, WHERE, WHILE, WITH, WRITETEXT.
 
 
 ## MongoDB
+[[Top]](#)<br />
 
 ### CLI operations for Linux Ubuntu (mongo)
 - CLI tools: *mongodump*, *mongorestore*
@@ -115,6 +131,7 @@ VIEW, WAITFOR, WHEN, WHERE, WHILE, WITH, WRITETEXT.
 | Fixed full restore | `mongorestore -vv --authenticationDatabase="admin" --uri="mongodb://[host]:[port]" --username="[user]" --password="[pass]" --db="[db]" --archive="[file_name].dump"` |
 
 ## Oracle
+[[Top]](#)<br />
 
 ### Common queries (oracle)
 
@@ -133,8 +150,11 @@ VIEW, WAITFOR, WHEN, WHERE, WHILE, WITH, WRITETEXT.
 <!-- TODO: adicionar como conectar com o banco de dados oracle com sqlplus, adicionar padrão do docker ou deixar isso para o docker? -->
 
 ## PostgreSQL
+[[Top]](#)<br />
 
 ### Common queries (postgres)
+
+<!-- TODO: remover essas queries e passar para os snippets de db -->
 
 | Description | Specification |
 |-------------|:--------------|
@@ -232,6 +252,7 @@ WHERE, WHITESPACE, WINDOW, WITH, WITHIN, WITHOUT, WORK, WRITE, YEAR, ZONE
 ```
 
 ## SQLite
+[[Top]](#)<br />
 
 ### Common queries (sqlite)
 
