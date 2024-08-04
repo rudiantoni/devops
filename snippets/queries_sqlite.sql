@@ -11,5 +11,4 @@
 -- # Using native related functionality
 -- ##################################################
 -- Get database version
--- --------------------------------------------------
 SELECT SQLITE_VERSION();
