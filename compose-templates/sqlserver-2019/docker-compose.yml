@@ -1,15 +1,27 @@
 version: "3"
 
 # Notes:
-# The services.[service].user property is defined as "root" so any command with docker exec can be run as root
-# The database password must have at least 8 characters and must follow at least 3 of these characters rules:
-#   - Contain uppercase letters
-#   - Contain lowercase letters
-#   - Contain base 10 digits (numbers)
-#   - Contain symbols
-# Default (non-changeable) user is "sa"
-# Default (non-changeable) database is "master"
-# Special instruction for entrypoint configurations: https://github.com/microsoft/mssql-docker/tree/master/linux/preview/examples/mssql-customize
+#
+# User property usage:
+#   The defined [service].user property is defined as "root" so any command with docker exec can be run as root
+#
+# Command property usage:
+#   The defined [service].command is only needed when you need to run the database to run certain routines
+#     eg.: restore the database master, after which the database is automatically shut down
+#
+# Password definition:
+#   The database password must have at least 8 characters and must follow at least 3 of these characters rules:
+#     - Contain uppercase letters
+#     - Contain lowercase letters
+#     - Contain base 10 digits (numbers)
+#     - Contain symbols
+#
+# References:
+#   Special instruction for entrypoint configurations: https://github.com/microsoft/mssql-docker/tree/master/linux/preview/examples/mssql-customize
+#
+# Default credentials (non-changeable)
+#   User is "sa"
+#   Database is "master"
 
 services:
   sqlserver_base_2019:
@@ -33,7 +45,7 @@ services:
     environment:
       - "MSSQL_SA_PASSWORD=masterDB123"
       - "ACCEPT_EULA=Y"
-      # - "TZ=UTC"
+      # - "TZ=UTC" # Container default
       # - "TZ=America/Sao_Paulo"
     ports:
       - 1433:1433
