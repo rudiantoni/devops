@@ -15,6 +15,7 @@ services:
   sqlserver_base_2019:
     container_name: sqlserver-base-2019
     image: mcr.microsoft.com/mssql/server:2019-latest
+    # command: /opt/mssql/bin/sqlservr -m   # Use only when need to start the database in single user mode eg.: restore master database
     restart: unless-stopped
     user: root
     # network_mode: host
