@@ -177,6 +177,15 @@ WHERE (NOW() - pg_stat_activity.query_start) > INTERVAL '5 minutes';
 -- Cancel a running query by its PID (need to obtain the PID first)
 SELECT PG_CANCEL_BACKEND(pid);
 
+-- List all available databases
+SELECT datname FROM pg_database;
+
+-- Show current active database
+SELECT current_database();
+
+-- List all tables from the active database
+SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type = 'BASE TABLE';
+
 -- ##################################################
 -- # Using native related functionality
 -- ##################################################
