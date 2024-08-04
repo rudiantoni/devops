@@ -38,8 +38,8 @@ services:
         max-file: "5"
         max-size: "20m"
     healthcheck:
-      test: echo 'SELECT 1 FROM dual;' > /healthcheck.sql && echo 'EXIT;' >> /healthcheck.sql && sqlplus -l -s SYS/mypass@//localhost:1521/XE as SYSDBA @/healthcheck.sql && rm /healthcheck.sql
-      # test: echo 'SELECT 1 FROM dual;' > /healthcheck.sql && echo 'EXIT;' >> /healthcheck.sql && sqlplus -l -s SYS/$$ORACLE_PWD@//localhost:1521/XE as SYSDBA @/healthcheck.sql && rm /healthcheck.sql
+      test: echo 'SELECT 1 FROM dual;' > /healthcheck.sql && echo 'EXIT;' >> /healthcheck.sql && sqlplus -l -s sys/mypass@//localhost:1521/xe as sysdba @/healthcheck.sql && rm /healthcheck.sql
+      # test: echo 'SELECT 1 FROM dual;' > /healthcheck.sql && echo 'EXIT;' >> /healthcheck.sql && sqlplus -l -s sys/$$ORACLE_PWD@//localhost:1521/xe as sysdba @/healthcheck.sql && rm /healthcheck.sql
       interval: 10s
       retries: 30
       start_period: 5s
