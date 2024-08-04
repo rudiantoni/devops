@@ -1,17 +1,19 @@
 version: "3"
 
 # Notes:
-# The services.[service].command property is only needed when you want to set a timezone through the "TZ"
-#   environtment variable since the command installs the "tzdata" application inside the application and 
-#   then run the http server as the container starts
+# 
+# Command property usage:
+#   The defined [service].command property is only needed when you want to set a timezone through the "TZ"
+#     environment variable since the command installs the "tzdata" application inside the application and 
+#     then run the http server as the container starts
 
 services:
   httpd_base_2:
     container_name: httpd-base-2
     image: httpd:2.4.57-alpine3.18
-    command: sh -c "apk add --no-cache tzdata && httpd-foreground"
+    command: sh -c "apk add --no-cache tzdata && httpd-foreground" # Only needed to set the TZ env
     environment:
-      - "TZ=UTC"
+      - "TZ=UTC" # Container default
       # - "TZ=America/Sao_Paulo"
     ports:
       - 80:80
