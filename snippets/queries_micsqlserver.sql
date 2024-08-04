@@ -70,6 +70,21 @@ SELECT DATEPART(SECOND, GETDATE())
 -- ##################################################
 -- Management
 -- ##################################################
+-- List all available databases
+SELECT name FROM sys.databases;
+
+-- Define an active database
+USE db_name;
+
+-- Show current active database
+SELECT DB_NAME()
+
+-- List all tables from the active database
+SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE';
+
+-- ##################################################
+-- Custom procedures
+-- ##################################################
 -- Analyse a query execution load and time (Run by steps)
 -- --------------------------------------------------
 -- Step 1: Enable I/O and time statistics
