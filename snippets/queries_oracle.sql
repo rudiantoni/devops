@@ -15,11 +15,15 @@
 SELECT * FROM v$version;
 SELECT banner FROM v$version;
 
--- Check current database in use
+--List all available schemas
+SELECT username FROM all_users;
+
+--Show current active database
+SELECT name FROM v$database;
 SELECT ora_database_name AS "Current Database" FROM dual;
 
--- Check available schemas for current user
-SELECT username FROM all_users;
+-- List all tables from the active database
+SELECT table_name FROM user_tables;
 
 -- Check schemas owned by current user
 SELECT username FROM user_users;
