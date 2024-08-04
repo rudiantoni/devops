@@ -1,7 +1,13 @@
 # DevOps
 
-- [Compose templates](./compose-templates/)
-<!-- TODO: ATUALIZAR AQUI, ESPELHAR ESTRUTURA EM PASTAS -->
+- [Docker Compose templates](./compose-templates/)
+  - [Apache HTTP Server 2.4.57 (Alpine 3.18)](./compose-templates/httpd-2.4.57/docker-compose.yml)
+  - [mongo-5.0.3](./compose-templates/mongo-5.0.3/docker-compose.yml)
+  - [mysql-8](./compose-templates/mysql-8/docker-compose.yml)
+  - [postgres-14](./compose-templates/postgres-14/docker-compose.yml)
+  - [postgres-15](./compose-templates/postgres-15/docker-compose.yml)
+  - [postgres-16](./compose-templates/postgres-16/docker-compose.yml)
+  - [sqlserver-2019](./compose-templates/sqlserver-2019/docker-compose.yml)
 
 - [Custom docker images](./custom-docker-images/)
   - [PostgreSQL 15](./custom-docker-images/postgres-15/)
