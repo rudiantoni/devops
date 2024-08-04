@@ -179,7 +179,7 @@ WHERE (NOW() - pg_stat_activity.query_start) > INTERVAL '5 minutes';
 SELECT PG_CANCEL_BACKEND(pid);
 
 -- ##################################################
--- # Using PostgreSQL native related functionality
+-- # Using native related functionality
 -- ##################################################
 -- Get database version
 -- --------------------------------------------------
