@@ -119,24 +119,9 @@ The only possible backup in a Linux machine is a internal database backup, gener
 
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli (sqlplus) e rodar queries em tabelas
-
-como se conectar
-
-e
-
-List all available databases
-
-Define an active database
-
-Show current active database
-
-List all tables from the active database
-
-caso houver comandos de CLI, listar aqui, as queries é só nos snippets
-
--->
-
+**How to connect and run queries with sqlplus**
+- Use this to connect to the database: `sqlplus [user]/[pass]@//[host]:[port]/[db_or_svc_name] as sysdba`
+- Use `exit` to exit the application
 
 ## PostgreSQL
 [[Top]](#)<br />
