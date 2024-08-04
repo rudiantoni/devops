@@ -6,9 +6,11 @@
 
 ## Common commands
 
+<!-- TODO: atualizar aqui com o que tem no notion -->
+
 | Description | Specification |
 |-------------|:--------------|
-| Open shell inside a container | `sudo docker exec -it container_name bash` <br /> `sudo docker exec -it container_name /bin/bash`|
+| Open bash terminal inside a container | `sudo docker exec -it container_name bash` <br /> `sudo docker exec -it container_name /bin/bash`|
 | Copy file from local machine to container | `sudo docker cp [local_file_path] [container_name]:[container_file_path]` |
 | Read IPs file inside a UNIX-based container | `sudo docker exec container_name cat /etc/hosts` |
 | Check daemon storage driver | `sudo docker info \| grep 'Storage Driver' -i` |
