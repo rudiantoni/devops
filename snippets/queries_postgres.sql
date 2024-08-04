@@ -1,19 +1,32 @@
 -- ##################################################
 -- Annotations
 -- 
+-- Below queries are supported (and tested) in PostgreSQL versions 14, 15 and 16
+--
 -- Official docs: https://www.postgresql.org/docs/16/index.html
 --   - Data Types: https://www.postgresql.org/docs/current/datatype.html
---
--- Default datatype for the function NOW(): TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ)
--- Default datatype for date subtraction: INTERVAL
---
 -- ##################################################
 
 -- ##################################################
--- DDLs (Data Definition Languages)
+-- # Major structure manipulation (database, role, table and sequence)
 -- ##################################################
---
--- CREATE TABLE defaults
+-- Creating a database, with a user and privileges
+-- --------------------------------------------------
+CREATE DATABASE my_database_name;
+CREATE ROLE my_database_name
+	NOSUPERUSER
+	NOCREATEDB
+	CREATEROLE
+	INHERIT
+	LOGIN
+	REPLICATION
+	BYPASSRLS
+	PASSWORD 'my_database_name';
+
+GRANT ALL PRIVILEGES ON DATABASE my_database_name TO my_database_name;
+
+-- Creating and modifying a table with different setups
+-- --------------------------------------------------
 CREATE TABLE IF NOT EXISTS public.your_table_name (        -- public = schema
   id                BIGSERIAL NOT NULL,                    -- Example field for a FK (BIGINT with autoincrement) Alias: SERIAL8
   ex_uk             VARCHAR(255) NOT NULL,                 -- Example field for a UK
@@ -53,15 +66,14 @@ CREATE TABLE IF NOT EXISTS public.your_table_name (        -- public = schema
 ALTER TABLE public.your_table_name
   ADD CONSTRAINT fk_your_table_name_on_another_table FOREIGN KEY (ex_bigint_id) REFERENCES public.another_table(id);
 
--- For tables without BIGSERIAL, you need to create SEQUENCES
--- Create the table
+-- Creating a table without BIGSERIAL id, you will need SEQUENCES
 CREATE TABLE IF NOT EXISTS public.your_table_name (
   id              BIGINT NOT NULL,
   name            VARCHAR(255),
 
   CONSTRAINT pk_your_table_name PRIMARY KEY (id)
 );
--- Create the sequence for the table
+-- Create the sequence for the non-BIGSERIAL id table
 CREATE SEQUENCE IF NOT EXISTS public.your_table_name_seq
   AS BIGINT -- Same datatype from the increment field on the database
   INCREMENT 1
@@ -74,21 +86,11 @@ CREATE SEQUENCE IF NOT EXISTS public.your_table_name_seq
 ALTER TABLE public.your_table_name
   ALTER COLUMN id SET DEFAULT nextval('public.your_table_name_seq'::regclass); -- public.your_table_name_seq is your sequence name
 
-
 -- ##################################################
--- Current time
+-- # Counts
 -- ##################################################
--- Using function NOW()
-SELECT NOW()
-
--- Using variable CURRENT_TIMESTAMP
-SELECT CURRENT_TIMESTAMP
-
--- ##################################################
--- Query shortcuts and defaults
--- ##################################################
--- 
 -- Count a column by its unique values amount
+-- --------------------------------------------------
 -- Using subquery with GROUP BY
 SELECT COUNT(1) FROM (
   SELECT column_name FROM table_name GROUP BY column_name
@@ -103,24 +105,21 @@ SELECT COUNT(1) FROM (
 SELECT COUNT(DISTINCT column_name) AS unique_count FROM table_name;
 
 -- ##################################################
--- Mathematics
+-- # Mathematics
 -- ##################################################
---
 -- Return the absolute value (without positive or negative signal) from a number
 SELECT ABS(-10)
 SELECT ABS(10)
 SELECT ABS(-10.5)
 SELECT ABS(10.5)
 
+-- Calc difference between dates as INTERVAL, (differencing negative and positive), returns a INTERVAL type
+SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ - '2000-01-01 00:00:00'::TIMESTAMPTZ
+SELECT '2000-01-01 00:00:00'::TIMESTAMPTZ - '2005-01-01 00:00:00'::TIMESTAMPTZ
 
 -- ##################################################
--- Other operations
--- ##################################################s
---
--- Detect a type from a data
-SELECT PG_TYPEOF(your_data_or_column)
-SELECT PG_TYPEOF(NOW())
-
+-- # Data
+-- ##################################################
 -- Convert VARCHAR (string) to TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ)
 SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ
 
@@ -136,11 +135,7 @@ SELECT '3 years 2 months 9 days 14 hours 25 minutes 35 seconds 258 milliseconds 
 -- Other ways to write INTERVALs
 SELECT '3 y 2 mon 9 d 14 h 25 min 35 sec'::INTERVAL
 
--- Calc difference between dates as INTERVAL, (differencing negative and positive)
-SELECT '2005-01-01 00:00:00'::TIMESTAMPTZ - '2000-01-01 00:00:00'::TIMESTAMPTZ
-SELECT '2000-01-01 00:00:00'::TIMESTAMPTZ - '2005-01-01 00:00:00'::TIMESTAMPTZ
-
--- Extract time unit data from an INTERVAL
+-- Extract time unit data from an INTERVAL, returns a NUMERIC type
 SELECT EXTRACT(EPOCH FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL); -- EPOCH (total number of seconds in the INTERVAL)
 SELECT EXTRACT(CENTURY FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 SELECT EXTRACT(DECADE FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
@@ -155,10 +150,10 @@ SELECT EXTRACT(MILLISECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 
 SELECT EXTRACT(MICROSECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 seconds'::INTERVAL);
 
 -- ##################################################
--- Management operations
+-- # Management
 -- ##################################################
---
 -- Select all queries (with their PIDs) with duration (INTERVAL) higher then 5 minutes
+-- --------------------------------------------------
 SELECT
   pid,
   NOW() - pg_stat_activity.query_start AS duration,
@@ -167,22 +162,24 @@ SELECT
 FROM pg_stat_activity
 WHERE (NOW() - pg_stat_activity.query_start) > INTERVAL '5 minutes';
 
--- Cancel a running query by its PID (see previous query on how to obtain)
-SELECT pg_cancel_backend(pid);
+-- Cancel a running query by its PID (need to obtain the PID first)
+SELECT PG_CANCEL_BACKEND(pid);
 
+-- ##################################################
+-- # Using PostgreSQL native related functionality
+-- ##################################################
+-- Get current time
+-- --------------------------------------------------
+-- Using function NOW(), returns a TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ) type
+SELECT NOW()
 
--- TODO: Atualizar com especificações, testes, versões de db, etc
--- Criar banco de dados, usuário e dar acesso para ele
-CREATE DATABASE market;
-CREATE ROLE market
-	NOSUPERUSER
-	NOCREATEDB
-	CREATEROLE
-	INHERIT
-	LOGIN
-	REPLICATION
-	BYPASSRLS
-	PASSWORD 'market';
+-- Using variable CURRENT_TIMESTAMP, returns a TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ) type
+SELECT CURRENT_TIMESTAMP
 
-GRANT ALL PRIVILEGES ON DATABASE market TO market;
--- Fim TODO
+-- Cancel a running query by its PID (need to obtain the PID first)
+SELECT PG_CANCEL_BACKEND(pid);
+
+-- Detect a type from a data
+SELECT PG_TYPEOF(your_data_or_column)
+SELECT PG_TYPEOF((SELECT NOW()))
+SELECT PG_TYPEOF(NOW())
