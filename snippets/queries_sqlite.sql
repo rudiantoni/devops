@@ -1,7 +1,7 @@
 -- ##################################################
 -- References
 --
--- SQLite: https://www.sqlite.org/docs.html
+-- SQLite: https://dev.mysql.com/doc/
 --
 -- Below queries are supported (and tested) in SQLite version 3
 --
