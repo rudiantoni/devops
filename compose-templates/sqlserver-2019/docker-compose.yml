@@ -23,8 +23,8 @@ services:
         max-file: "5"
         max-size: "20m"
     healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -U sa -P "masterDB123" -Q "SELECT @@VERSION"
-      # test: /opt/mssql-tools/bin/sqlcmd -U sa -P "$$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION"
+      test: /opt/mssql-tools18/bin/sqlcmd -U sa -P "masterDB123" -Q "SELECT @@VERSION" -C
+      # test: /opt/mssql-tools18/bin/sqlcmd -U sa -P "$$MSSQL_SA_PASSWORD" -Q "SELECT @@VERSION" -C
       interval: 10s
       retries: 15
       start_period: 5s
