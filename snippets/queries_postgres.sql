@@ -166,7 +166,6 @@ SELECT EXTRACT(MICROSECOND FROM '3 years 2 months 3 days 14 hours 25 minutes 35 
 -- # Management
 -- ##################################################
 -- Select all queries (with their PIDs) with duration (INTERVAL) higher then 5 minutes
--- --------------------------------------------------
 SELECT
   pid,
   NOW() - pg_stat_activity.query_start AS duration,
@@ -182,7 +181,6 @@ SELECT PG_CANCEL_BACKEND(pid);
 -- # Using native related functionality
 -- ##################################################
 -- Get database version
--- --------------------------------------------------
 SELECT VERSION();
 
 -- Get current time
@@ -193,19 +191,19 @@ SELECT NOW()
 -- Using variable CURRENT_TIMESTAMP, returns a TIMESTAMP WITH TIMEZONE (TIMESTAMPTZ) type
 SELECT CURRENT_TIMESTAMP
 
--- Get table size
-SELECT PG_SIZE_PRETTY(PG_TOTAL_RELATION_SIZE('table_name'));
-
--- Get database size
-SELECT PG_SIZE_PRETTY(PG_DATABASE_SIZE('db_name'))
-
--- Cancel a running query by its PID (need to obtain the PID first)
-SELECT PG_CANCEL_BACKEND(pid)
-
 -- Detect a type from a data
 SELECT PG_TYPEOF(data_or_column)
 SELECT PG_TYPEOF((SELECT NOW()))
 SELECT PG_TYPEOF(NOW())
+
+-- Get database size
+SELECT PG_SIZE_PRETTY(PG_DATABASE_SIZE('db_name'))
+
+-- Get table size
+SELECT PG_SIZE_PRETTY(PG_TOTAL_RELATION_SIZE('table_name'));
+
+-- Cancel a running query by its PID (need to obtain the PID first)
+SELECT PG_CANCEL_BACKEND(pid)
 
 --
 -- Reserved words
