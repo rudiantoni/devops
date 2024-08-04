@@ -41,13 +41,20 @@
 ## Microsoft SQL Server
 [[Top]](#)<br />
 
+- CLI tools: *sqlcmd*
+- All operations here are supported (and tested) in Microsoft SQL Server versions: 2019
+- In different database versions, when using a Docker container, the binaries location may change, check the following list referring to versions and images.
+  - 2019: `mcr.microsoft.com/mssql/server:2019-latest`
+    - *sqlcmd*: */opt/mssql-tools18/bin/sqlcmd*
+
+The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a Microsoft SQL Server Docker container.
+
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli e rodar queries em tabelas -->
-
-- CLI tools: *sqlcmd*
-
-The only possible backup in a Linux machine is a internal database backup, generated via a query sent to the database, generating a file inside the same machine (or container) where the database is located. That's why you should share a dedicated backup folder in a SQL Server docker container.
+**How to connect and run queries with sqlcmd**
+- Use this to connect to the database: `sqlcmd -C -S [host],[port] -U [user] -P [pass]`
+- After each command, query or multiline command, you should send `GO` to see the results.
+- Use `EXIT` to exit the application
 
 ### DUMP backup
 
@@ -69,15 +76,17 @@ The only possible backup in a Linux machine is a internal database backup, gener
   - `[user]`: database user
   - `[pass]`: database password
 
-
 ## MongoDB
 [[Top]](#)<br />
 
+- CLI tools: *mongo*, *mongodump*, *mongorestore*
+- All operations here are supported (and tested) in MongoDB versions: 5
+
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli e rodar queries em tabelas -->
-
-- CLI tools: *mongodump*, *mongorestore*
+**How to connect and run queries with mongo**
+- Use this to connect to the database: `mongo --host [host] --port [port] --user [user] --password [pass] --authenticationDatabase admin`
+- Use `exit` to exit the application
 
 ### DUMP backup
 
@@ -95,10 +104,13 @@ The only possible backup in a Linux machine is a internal database backup, gener
 [[Top]](#)<br />
 
 - CLI tools: *mysql*
+- All operations here are supported (and tested) in MySQL versions: 8
 
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli e rodar queries em tabelas -->
+**How to connect and run queries with mysql**
+- Use this to connect to the database: `mysql --host=[host] --port=[port] --user=[user] --password=[pass]`
+- Use `exit` to exit the application
 
 ## Oracle
 [[Top]](#)<br />
@@ -107,17 +119,40 @@ The only possible backup in a Linux machine is a internal database backup, gener
 
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli (sqlplus) e rodar queries em tabelas -->
+<!-- TODO: adicionar como conectar com o banco de dados com cli (sqlplus) e rodar queries em tabelas
+
+como se conectar
+
+e
+
+List all available databases
+
+Define an active database
+
+Show current active database
+
+List all tables from the active database
+
+caso houver comandos de CLI, listar aqui, as queries é só nos snippets
+
+-->
 
 
 ## PostgreSQL
 [[Top]](#)<br />
 
-- CLI tools: *pg_dump*, *pg_restore*, *psql*
+- CLI tools: *psql*, *pg_dump*, *pg_restore*
+- All operations here are supported (and tested) in PostgreSQL versions 14, 15 and 16
 
 ### General
 
-<!-- TODO: adicionar como conectar com o banco de dados com cli e rodar queries em tabelas -->
+**How to connect and run queries with psql**
+- Use this to connect to the database: `psql --host=[host] --port=[port] --username=[user]`
+- If prompted, type the password.
+  - `\l`, `\list`: list all available databases
+  - `\c my_db`, `\connect my_db`: define an active database
+  - `\dt`: list all tables  from the active database
+- Use `exit` to exit the application
 
 | Description | Specification |
 |-------------|:--------------|
