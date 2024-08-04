@@ -20,7 +20,7 @@ services:
       - "MONGO_INITDB_DATABASE=mongo"
       - "MONGO_INITDB_ROOT_USERNAME=mongo"
       - "MONGO_INITDB_ROOT_PASSWORD=mongo"
-      # - "TZ=UTC"
+      # - "TZ=UTC" # Container default
       # - "TZ=America/Sao_Paulo"
     ports:
       - 27017:27017
