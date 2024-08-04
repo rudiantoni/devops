@@ -12,12 +12,9 @@
 -- # Using native related functionality
 -- ##################################################
 -- Get database version
--- --------------------------------------------------
 SELECT * FROM v$version;
 SELECT banner FROM v$version;
 
--- Others
--- --------------------------------------------------
 -- Check current database in use
 SELECT ora_database_name AS "Current Database" FROM dual;
 
