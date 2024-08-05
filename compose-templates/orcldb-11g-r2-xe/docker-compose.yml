@@ -27,8 +27,8 @@ version: "3"
 #   Role: sysdba, sysoper
 
 services:
-  orcdb_base_11_xe:
-    container_name: orcdb-base-11-xe
+  orcldb_base_11_xe:
+    container_name: orcldb-base-11-xe
     image: oracle/database:11.2.0.1-xe # Non-public available image
     shm_size: '2g'
     restart: unless-stopped
@@ -56,5 +56,5 @@ services:
   #   container_name: application
   #   image: [img]
   #   depends_on:
-  #     orcdb_base_11_xe:
+  #     orcldb_base_11_xe:
   #       condition: service_healthy
