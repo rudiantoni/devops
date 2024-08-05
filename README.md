@@ -17,7 +17,7 @@
   - [Java 8 snippets](./snippets/java8/Snippets.java)
   - [JavaScript snippets](./snippets/snippets.js)
   - [Python snippets](./snippets/snippets.py)
-  - [SQL snippets for Microsoft SQL Server](./snippets/queries_micsqlserver.sql)
+  - [SQL snippets for Microsoft SQL Server](./snippets/queries_sqlserver.sql)
   - [SQL snippets for MySQL](./snippets/queries_mysql.sql)
   - [SQL snippets for Oracle Database](./snippets/queries_oracle.sql)
   - [SQL snippets for PostgreSQL](./snippets/queries_postgres.sql)
