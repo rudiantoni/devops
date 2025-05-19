@@ -3,9 +3,10 @@
 - Useful links
   - [Flutter](https://flutter.dev/)
     - [Install | Flutter](https://docs.flutter.dev/get-started/install)
+    - [Write your first app | Flutter](https://docs.flutter.dev/get-started/codelab)
 - Content
   - [Starting a project](#starting-a-project)
-    - [Creating](#creating)
+    - [Creating](#creating-a-project-in-vscode-and-running-in-a-emulated-android-device)
 
 ## Starting a project
 [[Top]](#)<br />
@@ -13,7 +14,7 @@
 ### Creating a project in VSCode and running in a emulated Android device
 [[Top]](#)<br />
 
-For this section, you must first be able to create a Flutter project in your VSCode, and have an Android device setup in Android Studio. If you don't see the useful links for the installation process.
+For this section, you must first be able to create a Flutter project in your VSCode, and have an Android device setup in Android Studio. If you don't, see the useful links for the installation process.
 
 It is not recommended to start the emulator from VSCode, because you can manage it entirely in Android Studio, like start and stop operations.
 
