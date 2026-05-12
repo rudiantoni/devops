@@ -1,15 +1,9 @@
 # Snippets
 
 <!--  -->
-## Instantiating new data
+## Variables
 
 ### Default non initialized variables/properties (primitive, reference)
-
-### Creating new arrays
-
-### Creating new lists
-
-### Creating new objects
 
 <!--  -->
 ## Data evaluation
@@ -58,6 +52,8 @@
 <!--  -->
 ## Array operations
 
+### Creating new arrays
+
 ### Obtaining array size
 
 ### Acessing array first element
@@ -81,6 +77,8 @@
 <!--  -->
 ## List operations
 
+### Creating new lists
+
 ### Obtaining list size
 
 ### Acessing list first element
@@ -99,8 +97,14 @@
 
 ### Appending lists
 
+### Inserting a list into another list
+
+### Shuffling lists
+
 <!--  -->
 ## Object operations
+
+### Creating new objects
 
 ### Checking object contains attributes
 
@@ -111,6 +115,8 @@
 
 
 <!--  -->
-## Languange specific
+## Language specific
 
 ### Using functional interfaces
+
+### Using StringBuilder
