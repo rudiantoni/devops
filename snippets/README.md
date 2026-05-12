@@ -54,11 +54,15 @@
 
 ### Creating new arrays
 
+### Assigning values to array positions
+
 ### Obtaining array size
 
 ### Acessing array first element
 
 ### Acessing array last element
+
+### Creating a sub-array from an index range
 
 ### Filtering arrays
 
@@ -79,11 +83,15 @@
 
 ### Creating new lists
 
+### Assigning values to list positions
+
 ### Obtaining list size
 
 ### Acessing list first element
 
 ### Acessing list last element
+
+### Creating a sub-list from an index range
 
 ### Filtering lists
 
@@ -108,6 +116,8 @@
 
 ### Checking object contains attributes
 
+### Merging objects
+
 <!--  -->
 ## Custom auxiliary functions
 
@@ -117,6 +127,12 @@
 <!--  -->
 ## Language specific
 
-### Using functional interfaces
+### Java
 
-### Using StringBuilder
+#### Using functional interfaces
+
+#### Using StringBuilder
+
+### Python
+
+#### Using NumPy arrays
