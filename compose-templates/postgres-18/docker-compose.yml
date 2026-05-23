@@ -23,7 +23,7 @@ services:
       # - "TZ=UTC" # Container default
       # - "TZ=America/Sao_Paulo"
     ports:
-      - 1234:5432
+      - 5432:5432 # host:container
     # volumes:
       # - ./[data-dir]:/var/lib/postgresql
       # - ./[init-dir]:/docker-entrypoint-initdb.d/ # use .sh, .sql, run in alphabetical order
