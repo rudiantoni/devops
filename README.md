@@ -7,6 +7,8 @@
   - [postgres-14](./compose-templates/postgres-14/docker-compose.yml)
   - [postgres-15](./compose-templates/postgres-15/docker-compose.yml)
   - [postgres-16](./compose-templates/postgres-16/docker-compose.yml)
+  - [postgres-17](./compose-templates/postgres-17/docker-compose.yml)
+  - [postgres-18](./compose-templates/postgres-18/docker-compose.yml)
   - [sqlserver-2019](./compose-templates/sqlserver-2019/docker-compose.yml)
 
 - [Custom docker images](./custom-docker-images/)

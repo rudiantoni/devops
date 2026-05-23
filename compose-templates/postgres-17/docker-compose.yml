@@ -1,7 +1,7 @@
 services:
-  pg_base_16:
-    container_name: pg-base-16
-    image: postgres:16
+  pg_base_17:
+    container_name: pg-base-17
+    image: postgres:17
     restart: unless-stopped
     # network_mode: host
     logging:
@@ -31,5 +31,5 @@ services:
   #   container_name: application
   #   image: [img]
   #   depends_on:
-  #     pg_base_16:
+  #     pg_base_17:
   #       condition: service_healthy

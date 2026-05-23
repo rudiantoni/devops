@@ -1,7 +1,7 @@
 services:
-  pg_base_16:
-    container_name: pg-base-16
-    image: postgres:16
+  pg_base_18:
+    container_name: pg-base-18
+    image: postgres:18
     restart: unless-stopped
     # network_mode: host
     logging:
@@ -25,11 +25,11 @@ services:
     ports:
       - 1234:5432
     # volumes:
-      # - ./[data-dir]:/var/lib/postgresql/data
+      # - ./[data-dir]:/var/lib/postgresql
       # - ./[init-dir]:/docker-entrypoint-initdb.d/ # use .sh, .sql, run in alphabetical order
   # application:
   #   container_name: application
   #   image: [img]
   #   depends_on:
-  #     pg_base_16:
+  #     pg_base_18:
   #       condition: service_healthy
