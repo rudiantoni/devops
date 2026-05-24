@@ -51,8 +51,13 @@
  *
  * java.lang.StringBuffer
  * https://docs.oracle.com/javase/8/docs/api/java/lang/StringBuffer.html
+ *
+ * java.math.BigDecimal
+ * https://docs.oracle.com/javase/8/docs/api/java/math/BigDecimal.html
  */
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -99,6 +104,47 @@ public class Snippets {
     Teste refTypeTest = new Teste();
     print(refTypeTest.checkRefTypeNull); // Output: null
     // Only works when loading from another object, local access in a non initialized variable throws a compile error
+
+    print("\nBigDecimal (java.math.BigDecimal)");
+    print("--------------------------------------------------");
+    print("From String (preferred for money and other exact decimal literals)");
+    BigDecimal bdFromString = new BigDecimal("19.99");
+    print(bdFromString); // Output: 19.99
+
+    print("\nFrom int or long");
+    BigDecimal bdFromInt = new BigDecimal(42);
+    BigDecimal bdFromLong = new BigDecimal(12345L);
+    print(bdFromInt); // Output: 42
+    print(bdFromLong); // Output: 12345
+
+    print("\nUsing BigDecimal.valueOf(long) or BigDecimal.valueOf(double)");
+    BigDecimal bdValueOfLong = BigDecimal.valueOf(999L);
+    BigDecimal bdValueOfDouble = BigDecimal.valueOf(3.14);
+    print(bdValueOfLong); // Output: 999
+    print(bdValueOfDouble); // Output: 3.14
+
+    print("\nBuilt-in constants");
+    BigDecimal bdZero = BigDecimal.ZERO;
+    BigDecimal bdOne = BigDecimal.ONE;
+    BigDecimal bdTen = BigDecimal.TEN;
+    print(bdZero); // Output: 0
+    print(bdOne); // Output: 1
+    print(bdTen); // Output: 10
+
+    print("\nAvoid new BigDecimal(double) for exact values (inherits double imprecision)");
+    BigDecimal bdFromDoubleBad = new BigDecimal(0.1);
+    BigDecimal bdFromStringGood = new BigDecimal("0.1");
+    print(bdFromDoubleBad); // Output: 0.1000000000000000055511151231257827021181583404541015625
+    print(bdFromStringGood); // Output: 0.1
+
+    print("\nBigDecimal arithmetic (methods return new instances; operands are unchanged)");
+    BigDecimal bdPrice = new BigDecimal("10.00");
+    BigDecimal bdQty = new BigDecimal("3");
+    print(bdPrice.add(bdQty)); // Output: 13.00
+    print(bdPrice.subtract(new BigDecimal("2.50"))); // Output: 7.50
+    print(bdPrice.multiply(bdQty)); // Output: 30.00
+    print(bdPrice.divide(new BigDecimal("4"), 2, RoundingMode.HALF_UP)); // Output: 2.50
+    print(bdPrice.setScale(4, RoundingMode.HALF_UP)); // Output: 10.0000
 
     print();
     print("##################################################");
@@ -149,6 +195,18 @@ public class Snippets {
     print("\nKeeping a null value when input is null (making optional useless)");
     String checkNullOptKeepNull = Optional.ofNullable(objCheckNull).orElse(null);
     print(checkNullOptKeepNull); // Output: null
+
+    print("\nComparing BigDecimal values");
+    print("--------------------------------------------------");
+    print("Using .compareTo() — numeric equality, scale ignored (use for ordering and thresholds)");
+    BigDecimal bdCompareA = new BigDecimal("0.10");
+    BigDecimal bdCompareB = new BigDecimal("0.1");
+    print(bdCompareA.compareTo(bdCompareB)); // Output: 0 (equal as numbers)
+    print(new BigDecimal("5").compareTo(new BigDecimal("10"))); // Output: -1
+    print(new BigDecimal("10").compareTo(new BigDecimal("5"))); // Output: 1
+
+    print("\nUsing .equals() — same numeric value AND same scale");
+    print(bdCompareA.equals(bdCompareB)); // Output: false
 
     print();
     print("##################################################");
@@ -215,6 +273,14 @@ public class Snippets {
 
     result = false ? 10 : 20;
     print(result); // Output: 20
+
+    print("\nComparing BigDecimal in if (never use == or .equals() for ordering)");
+    print("--------------------------------------------------");
+    BigDecimal bdOrderTotal = new BigDecimal("150.00");
+    BigDecimal bdFreeShippingMin = new BigDecimal("100.00");
+    if (bdOrderTotal.compareTo(bdFreeShippingMin) >= 0) {
+      print("Free shipping applies"); // Output: Free shipping applies
+    }
 
     print();
     print("##################################################");
@@ -302,6 +368,13 @@ public class Snippets {
 
     print("\nUsing (regex) .replaceAll() string function to use instead of .replaceAll()");
     print(strOpsReplaceBase.replaceAll("(?i)is", strOpsReplaceContent)); // Output: Hello world, thNOT NOT a sample string.
+
+    print("\nFormatting BigDecimal as String");
+    print("--------------------------------------------------");
+    BigDecimal bdFormat = new BigDecimal("1234567890.50");
+    print(bdFormat.toPlainString()); // Output: 1234567890.50 (no scientific notation)
+    print(bdFormat.toString()); // Output: 1234567890.50
+    print(new BigDecimal("10.5000").stripTrailingZeros().toPlainString()); // Output: 10.5
 
     print();
     print("##################################################");
@@ -682,6 +755,22 @@ public class Snippets {
       print(listShuffle); // Output: unknown, but it must be different orderings of the listShuffle list.
     }
 
+    print("\nAggregating BigDecimal values from a list");
+    print("--------------------------------------------------");
+    List<BigDecimal> listBdAmounts = Arrays.asList(
+      new BigDecimal("10.50"),
+      new BigDecimal("2.25"),
+      new BigDecimal("7.25")
+    );
+    BigDecimal listBdSum = listBdAmounts.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
+    print(listBdSum); // Output: 20.00
+
+    print("\nMapping list items to BigDecimal line totals");
+    List<BigDecimal> listBdLineTotals = listBdAmounts.stream()
+      .map(amount -> amount.multiply(new BigDecimal("1.10")).setScale(2, RoundingMode.HALF_UP))
+      .collect(Collectors.toList());
+    print(listBdLineTotals); // Output: [11.55, 2.48, 7.98]
+
     print();
     print("##################################################");
     print("# Object operations");
@@ -824,10 +913,12 @@ public class Snippets {
     sbAppend.append(' ');
     sbAppend.append(2.5f);                    // float
     sbAppend.append(' ');
+    sbAppend.append(new BigDecimal("99.99"));  // BigDecimal
+    sbAppend.append(' ');
     sbAppend.append((Object) null);           // null is appended literally as "null"
     sbAppend.append(' ');
     sbAppend.append(new char[]{'a','b','c'}); // char[]
-    print(sbAppend); // Output: Text 42 3.14 true 100 2.5 null abc
+    print(sbAppend); // Output: Text 42 3.14 true 100 2.5 99.99 null abc
 
     print("\nMethod chaining - idiomatic StringBuilder usage");
     String chainedResult = new StringBuilder()
