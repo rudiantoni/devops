@@ -595,6 +595,52 @@ public class Snippets {
     print(dataFind.stream().filter(it -> it.getAge() > 28).reduce((a, b) -> b).orElse(null)); // Output: DataModelA{name='Eve', age=40}
 
     print();
+    print("Removing first list element matching condition");
+    print("--------------------------------------------------");
+    print("Remove only the first DataModelA whose age is higher than 10 from a mutable list");
+    print("Using Stream API .filter() with .findFirst() and List.remove()");
+    List<DataModelA> dataRemoveFirst = new ArrayList<>(Arrays.asList(
+      new DataModelA("Alice", 8),
+      new DataModelA("Bob", 15),
+      new DataModelA("Charlie", 20)
+    ));
+    print(dataRemoveFirst); // Output: [DataModelA{name='Alice', age=8}, DataModelA{name='Bob', age=15}, DataModelA{name='Charlie', age=20}]
+    DataModelA toRemove = dataRemoveFirst.stream()
+      .filter(it -> it.getAge() > 10)
+      .findFirst()
+      .orElse(null);
+    if (toRemove != null) {
+      dataRemoveFirst.remove(toRemove);
+    }
+    print(dataRemoveFirst); // Output: [DataModelA{name='Alice', age=8}, DataModelA{name='Charlie', age=20}]
+
+    print();
+    print("Using Stream API .filter() with .findFirst() and .ifPresent()");
+    List<DataModelA> dataRemoveFirstA = new ArrayList<>(Arrays.asList(
+      new DataModelA("Alice", 8),
+      new DataModelA("Bob", 15),
+      new DataModelA("Charlie", 20)
+    ));
+    dataRemoveFirstA.stream()
+      .filter(it -> it.getAge() > 10)
+      .findFirst()
+      .ifPresent(it -> dataRemoveFirstA.remove(it));
+    print(dataRemoveFirstA); // Output: [DataModelA{name='Alice', age=8}, DataModelA{name='Charlie', age=20}]
+
+    print();
+    print("Using Stream API .filter() with .findFirst() and .ifPresent() with method reference");
+    List<DataModelA> dataRemoveFirstB = new ArrayList<>(Arrays.asList(
+      new DataModelA("Alice", 8),
+      new DataModelA("Bob", 15),
+      new DataModelA("Charlie", 20)
+    ));
+    dataRemoveFirstB.stream()
+      .filter(it -> it.getAge() > 10)
+      .findFirst()
+      .ifPresent(dataRemoveFirstB::remove);
+    print(dataRemoveFirstB); // Output: [DataModelA{name='Alice', age=8}, DataModelA{name='Charlie', age=20}]
+
+    print();
     print("Removing duplicate from lists");
     print("--------------------------------------------------");
     print("Removing strings apple and banana.");

@@ -101,6 +101,8 @@
 
 ### Finding last list element matching condition
 
+### Removing first list element matching condition
+
 ### Removing duplicate from lists
 
 ### Appending lists
