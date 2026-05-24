@@ -5,12 +5,18 @@
 
 ### Default non initialized variables/properties (primitive, reference)
 
+### BigDecimal initialization (Java — `java.math.BigDecimal`)
+
+### BigDecimal arithmetic and rounding (Java)
+
 <!--  -->
 ## Data evaluation
 
 ### Truthy or false
 
 ### Checking by unset (null, None, undefined, etc) values
+
+### Comparing BigDecimal values (Java — `compareTo` vs `equals`)
 
 <!--  -->
 ## Conditional structures
@@ -24,6 +30,8 @@
 ### switch
 
 ### ternary
+
+### Comparing BigDecimal in conditionals (Java — `compareTo` in `if`)
 
 <!--  -->
 ## Repetitive structures
@@ -48,6 +56,8 @@
 ### Transforming string to uppercase
 
 ### Replacing string with another string
+
+### Formatting BigDecimal as String (Java — `toPlainString`, `stripTrailingZeros`)
 
 <!--  -->
 ## Array operations
@@ -111,6 +121,10 @@
 
 ### Shuffling lists
 
+### Aggregating BigDecimal values from a list (Java)
+
+### Mapping list items to BigDecimal line totals (Java)
+
 <!--  -->
 ## Object operations
 
@@ -134,6 +148,8 @@
 #### Using functional interfaces
 
 #### Using StringBuilder
+
+#### Appending BigDecimal (StringBuilder overload)
 
 ### Python
 
