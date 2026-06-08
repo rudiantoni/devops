@@ -29,6 +29,13 @@
   - [Common info](./COMMON_INFO.md)
   - [Docker info](./DOCKER_INFO.md)
 
+- Quick reference
+  - [Angular](./quick-reference/ANGULAR.md)
+  - [Flutter](./quick-reference/FLUTTER.md)
+  - [Java](./quick-reference/JAVA.md)
+  - [Kotlin Multiplatform](./quick-reference/KOTLIN_MULTIPLATFORM.md)
+  - [React](./quick-reference/REACT.md)
+
 - Content
   - [Microsoft SQL Server](#microsoft-sql-server)
   - [MongoDB](#mongodb)
