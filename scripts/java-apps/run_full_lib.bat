@@ -31,15 +31,15 @@
 @REM   --help               Show usage information
 @REM
 @REM Run with Windows Command Prompt
-@REM > run_full.bat
-@REM > run_full.bat --jar-name HelloWorld.jar
-@REM > run_full.bat --src-dir src
-@REM > run_full.bat --out-dir out
-@REM > run_full.bat --lib-dir lib
-@REM > run_full.bat --keep-jar
-@REM > run_full.bat --keep-out-dir
-@REM > run_full.bat --silent
-@REM > run_full.bat --help
+@REM > run_full_lib.bat
+@REM > run_full_lib.bat --jar-name HelloWorld.jar
+@REM > run_full_lib.bat --src-dir src
+@REM > run_full_lib.bat --out-dir out
+@REM > run_full_lib.bat --lib-dir lib
+@REM > run_full_lib.bat --keep-jar
+@REM > run_full_lib.bat --keep-out-dir
+@REM > run_full_lib.bat --silent
+@REM > run_full_lib.bat --help
 @REM
 
 SETLOCAL
@@ -159,7 +159,7 @@ CALL :showHelp
 EXIT /B 0
 
 :showHelp
-ECHO Usage: run_full.bat [options]
+ECHO Usage: run_full_lib.bat [options]
 ECHO.
 ECHO Compile, package and run a Java project with lib\ dependencies.
 ECHO.

@@ -2,8 +2,10 @@
 
 #
 # --------------------------------------------------
-# Currently working on: Linux, Mac and Windows with Git Bash
+# Shell: bash on Linux and Mac, or Git Bash on Windows
 # --------------------------------------------------
+#
+# Use bash on Linux/Mac. On Windows, run these commands in Git Bash.
 #
 # This script compiles, packages, runs and cleans up a manual Java project
 # that depends on external JAR files in lib/.
@@ -31,21 +33,23 @@
 #   --silent             Suppress script messages (application output is still shown)
 #   --help               Show usage information
 #
-# Run with:
-# bash run_full.sh
-# bash run_full.sh --jar-name HelloWorld.jar
-# bash run_full.sh --src-dir src
-# bash run_full.sh --out-dir out
-# bash run_full.sh --lib-dir lib
-# bash run_full.sh --keep-jar
-# bash run_full.sh --keep-out-dir
-# bash run_full.sh --silent
-# bash run_full.sh --help
+# Run with bash (Linux, Mac) or Git Bash (Windows):
+# bash run_full_lib.sh
+# bash run_full_lib.sh --jar-name HelloWorld.jar
+# bash run_full_lib.sh --src-dir src
+# bash run_full_lib.sh --out-dir out
+# bash run_full_lib.sh --lib-dir lib
+# bash run_full_lib.sh --keep-jar
+# bash run_full_lib.sh --keep-out-dir
+# bash run_full_lib.sh --silent
+# bash run_full_lib.sh --help
 #
 
 show_help() {
   cat <<EOF
-Usage: bash run_full.sh [options]
+Usage: bash run_full_lib.sh [options]
+
+Requires bash. On Windows, use Git Bash.
 
 Compile, package and run a Java project with lib/ dependencies.
 

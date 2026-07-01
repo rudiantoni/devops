@@ -2,8 +2,10 @@
 
 #
 # --------------------------------------------------
-# Currently working on: Linux, Mac and Windows with Git Bash
+# Shell: bash on Linux and Mac, or Git Bash on Windows
 # --------------------------------------------------
+#
+# Use bash on Linux/Mac. On Windows, run these commands in Git Bash.
 #
 # This script compiles and packages a manual Java project into an executable JAR file.
 # It is intended for small standalone projects with no external dependencies (JDK only).
@@ -21,15 +23,17 @@
 #   --jar-name <name>    Change the output JAR file name (default: MyJavaProj.jar)
 #   --help               Show usage information
 #
-# Run with:
-# sh create_jar.sh
-# sh create_jar.sh --jar-name HelloWorld.jar
-# sh create_jar.sh --help
+# Run with bash (Linux, Mac) or Git Bash (Windows):
+# bash create_jar.sh
+# bash create_jar.sh --jar-name HelloWorld.jar
+# bash create_jar.sh --help
 #
 
 show_help() {
   cat <<EOF
-Usage: sh create_jar.sh [options]
+Usage: bash create_jar.sh [options]
+
+Requires bash. On Windows, use Git Bash.
 
 Compile and package a manual Java project into a JAR file.
 
